@@ -1,0 +1,23 @@
+DontDie creates a penalty for dying.
+The entire mod is activated by 2 events.
+On Save,
+		the save is given a SaveID and is registered to m2dSaveEntries that holds a ManualEditingString, a DeathCount, a GMTimestamp, and an array of NearbySaveIDs.
+        Then, all registered saves are scanned and those that are "nearby" get the newly generated SaveID added to their NearbySaveIDs.
+		The entire m2dSaveEntries is then stored in a DeathLog text file (The DeathLogs can be found in ...\Data\ConScribe Logs\Per-Mod\).
+On player death, 
+		The NearbySaveIDs for the current SaveID are scanned. If they are in range, their DeathCount++.
+Then, the mod dispatches 2 events.
+	EVENTDeathPenaltyInGame: Passes iDeathCount. Happens a few frames after loading is finished. This allows stability for handler's reference-modifying functions.
+	EVENTDeathPenaltyPostLoad: Passes iDeathCount. Happens before the first frame is shown. This allows the handlers to not be delayed.
+These events are contained within DontDie's esp.. so anyone wishing to register to the events would have to take DontDie as a master.
+
+The DeathLogs can be found in ...\Data\ConScribe Logs\Per-Mod\
+A new DeathLog is generated on NewGame. That way, multiple characters will not affect each other's deaths.
+The LogCountLog keeps track of what code to give the next log.
+The user can manually change the DeathCount for a save by opening the DeathLog for his character and modifying the number in the DeathCount column.
+
+**Feature Ideas
+>Make DontDie not reliant on ConScribe
+>Add notes to the DeathLogs so that the user can more easily make manual edits.
+**Notes
+>You can't keep the player name in the name of the DeathLog because then it creates a new log whenever the player's name is changed. (especially at NewGame)

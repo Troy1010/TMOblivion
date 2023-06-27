@@ -1,0 +1,43 @@
+CommonFunctions is a library. It is a master esm that contains functions and dispatches events for its child esps to use.
+
+The CommonFunctionsChild.esp allows CommonFunctions to dispatch events closer to the start of the frame. (the esp last in the load order is run first)
+
+**Initiation Features
+*Initiation Events
+There are 4 initiation events
+ InitOnStart: Once on the first frame of MainMenu.
+  UniversalData (aka SetEventHandlers, GameSettings, etc) is recommended to be set here.
+ InitPostLoad: Every PostLoad/NewGame.
+  SaveData (aka QuestVariables) is recommended to be set here.
+ InitMainMenu: Every MainMenu.
+  SaveData that is expected to exist during the MainMenu is recommended to be set here.
+ InitInGame: A few frames after every PostLoad/NewGame, once references are stable.
+  Reference edits (Adding tokens, etc) are recommended here.
+If SaveData is set in InitGameLoad||InitMainMenu, it can be expected to always exist.
+*Script Initiations
+Any child mod's script whose formid ends with "000800" will be scanned during initiation events.
+If that script contains a reference to any of the Init functions, it is called.
+*Activator Initiations
+Some script functions (ie ones that help explicitly read ini files) must be run from an object.
+During -all- initiation events, CF will activate -all- objects placed in zCFInitActRefCell.
+It is recommended that the scripts of these objects use the Init functions so that they do not run at each initiation event.
+
+**Form Maps
+Form maps are maps that use FormIDs as keys.
+Because FormIDs change (ie whenever mod load order is changed), it is important to resolve them as necessary.
+There are 8 types
+These next 3 FormMap types use this format: FormMap[svHexModIndexAsAString][svLast6DigitsOfFormIDAsAString]
+These types are your standard Stringmaps. Best to use if you rarely access items by key.
+ 1 - Stream(Resolve)
+ 2 - RawStream(ResolveRaw)
+ 3 - List(Whipe)
+These next 3 FormMap types use this format: FormMap[iDecModIndex][iLast6DigitsOfFormIDAsADecNumeral]
+These types take less processing power to access items by key, but require an initial chunk of space in the SaveData.
+ 4 - NumericFormMap(Resolve)
+ 5 - NumericFormMap(ResolveRaw)
+ 6 - NumericFormMap(Whipe)
+These next 2 FormMap types use this format: FormMap[iLast6DigitsOfFormIDAsADecNumeral]
+These types take less processing power to access items by key, but require that the ModIndex can be assumed.
+Because ModIndices are not recorded, resolutions are unnecessary.
+ 7 - QuasiFormMap(NoWhipe)
+ 8 - QuasiFormMap(Whipe)

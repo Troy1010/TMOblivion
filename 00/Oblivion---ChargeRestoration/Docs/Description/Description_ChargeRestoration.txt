@@ -1,0 +1,9 @@
+This mod recharges weapons that have spent time near a well.
+
+It works by triggering an event on sleep or on cell changed.
+This event records a timestamp for any nearby wells.
+The next time the well is seen by this event, the timestamp is used to recharge nearby items.
+
+This method is inaccurate, and will recharge items as if they had been left by the well as soon as the last time
+the player had triggered the event handler. It also means that items will not recharge unless an
+event is triggered. I'm also unsure if I need to add a "wait" handler?
