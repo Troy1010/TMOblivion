@@ -1,6 +1,6 @@
-CommonFunctions is a library. It is a master esm that contains functions and dispatches events for its child esps to use.
+TMCommonOblivion is meant to serve as a library. It is a master esm that contains functions and dispatches events for its child esps to use.
 
-The CommonFunctionsChild.esp allows CommonFunctions to dispatch events closer to the start of the frame. (the esp last in the load order is run first)
+The TMCommonOblivion.esp allows TMCommonOblivion to dispatch events closer to the start of the frame. (the esp last in the load order is run first)
 
 **Initiation Features
 *Initiation Events
