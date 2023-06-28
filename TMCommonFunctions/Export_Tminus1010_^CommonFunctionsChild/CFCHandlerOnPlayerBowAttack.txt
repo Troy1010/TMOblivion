@@ -1,0 +1,13 @@
+﻿;Tminus1010_^CommonFunctionsChild.esp
+;0x00081A
+;CFCHandlerOnPlayerBowAttack
+scn CFCHandlerOnPlayerBowAttack
+
+ref rActor
+
+Begin Function { rActor }
+set SB.bBowDrawn to 1
+end
+;<CSEBlock>
+;<CSECaretPos> 7 </CSECaretPos>
+;</CSEBlock>

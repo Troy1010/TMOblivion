@@ -1,0 +1,37 @@
+﻿;Tminus1010_^CommonFunctionsChild.esp
+;0x000800
+;CFCInit
+scn CFCInit
+
+ref rRef
+
+begin _Function { }
+	if eval Call InitOnStart0
+		; Set OBSE Event Actions
+		SetEventHandler "PostLoadGame" CFCHandlerPostLoadGame
+		SetEventHandler "OnNewGame" CFCHandlerOnNewGame
+		SetEventHandler "OnBowAttack" CFCHandlerOnPlayerBowAttack "first"::PlayerRef
+		SetEventHandler "OnRelease" CFCHandlerOnPlayerRelease "first"::PlayerRef
+		SetEventHandler "SaveGame" CFCHandlerSaveGame
+		SetEventHandler "LoadGame" CFCHandlerLoadGame
+		
+		let rRef := CFCHandlerOpenControlMenu
+		SetMenuEventHandler "OnOpen" rRef 1021 ;Controls menu
+		let rRef := CFCHandlerCloseControlMenu
+		SetMenuEventHandler "OnClose" rRef 1021 ;Controls menu
+	elseif eval Call InitPostLoad0
+		let SB.bGameLoaded := 1
+		; Construct arrays
+		let SB.nfmEvents := Call StandardFormMapInit SB.nfmEvents 5
+		let CFC.a2dDelayEntries := Call ArTryCreate CFC.a2dDelayEntries 0
+	elseif eval Call InitPostLoad2
+		; Set CF Event Actions
+		Call SetEventHandler2 EVENTQuasiStartOfFrame CFCHandlerQuasiStartOfFrame
+		Call SetEventHandler2 EVENTCellChanged CFCHandlerCellChanged
+	elseif eval Call InitInGame0
+		let SB.bGameLoaded := 2
+	endif
+end
+;<CSEBlock>
+;<CSECaretPos> 337 </CSECaretPos>
+;</CSEBlock>
