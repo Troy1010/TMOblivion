@@ -91,13 +91,17 @@ begin _Function { iInitiationType }
 			Call Iter["Value"]
 		loop
 		; Also activate every ref in CFInitRefCell. Their blocks should be self-filtered. (InitRefs are required for RunBatchScript's bRunOnRef option.)
-		Let rRef := GetFirstRefInCell zCFInitActRefCell
-		while rRef
-			Call logz "lll " + Call Narrate &rRef
-			rRef.Activate DummyNPCRef 1
-			Let rRef := GetNextRef
-		loop
+		;; *This was not working sometimes, like for the 2nd and 3rd refs, on earlier initiations.
+		;; You can detect that there's a problem by using GetNumRefsInCell, which will return 0.
+		;; Using alternative solutions until it's fixed.
+		;let rRef := GetFirstRefInCell zCFInitActRefCell
+		;While rRef
+		;	rRef.Activate DummyNPCRef 1
+		;	let rRef := GetNextRef
+		;loop
 	loop
+	; Manually calling activator initiation
+	CFCInitActRef.Activate DummyNPCRef 1
 	if eval iInitiationType ==0
 		Let CF.bCallingOnStartInitiations := 0
 	elseif eval iInitiationType ==1
