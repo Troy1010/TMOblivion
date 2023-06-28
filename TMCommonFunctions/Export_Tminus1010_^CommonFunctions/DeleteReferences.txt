@@ -1,0 +1,17 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x000845
+;DeleteReferences
+scn DeleteReferences
+
+array_var aReferences
+
+array_var aKeyAndValue
+
+begin Function { aReferences }
+ForEach aKeyAndValue <- aReferences
+	Call DeleteReference2 aKeyAndValue["Value"]
+loop
+end
+;<CSEBlock>
+;<CSECaretPos> 99 </CSECaretPos>
+;</CSEBlock>

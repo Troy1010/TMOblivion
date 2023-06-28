@@ -1,0 +1,51 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x000878
+;zCF0ShareBoxS
+scn zCF0ShareBoxS
+
+; Used in CF
+short bSprinting
+
+; Defined by CF
+short bGameLoaded ;0 during MainMenu, 1 during PostLoad frame, 2 after PostLoad frame (when objects might be stable).
+ref rLastCrosshairRef
+short bRunning
+short bWalking
+short bStanding
+short bBowDrawn
+ref rNull
+int iFrameCount
+short bModIndexResolutionRequired	;Used by StandardFormMapInit.
+float fFrameSecondsPassed
+float fGameModeGameHour
+int iGameModeDaysPassed
+;FormMaps
+array_var nfmEvents
+array_var LISTFloodingEvents	;If an event within this list is passed to DispatchEvent2, its iDebugLevel will be set to Flooding.
+
+
+
+; Defined in Mods.
+;StatSystems
+ref avrPhysicality
+
+
+
+
+
+
+
+
+
+
+
+
+
+;Registries
+;array_var regRecalcBaseHealth
+;array_var regRegulateSpeed
+;array_var regRecalc5050Confidence
+;array_var regFleeable
+;<CSEBlock>
+;<CSECaretPos> 786 </CSECaretPos>
+;</CSEBlock>

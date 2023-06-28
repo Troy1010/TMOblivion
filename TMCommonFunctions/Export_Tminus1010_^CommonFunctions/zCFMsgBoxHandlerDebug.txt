@@ -1,0 +1,15 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x000977
+;zCFMsgBoxHandlerDebug
+scn zCFMsgBoxHandlerDebug
+
+short iButtonPressed
+
+begin _Function { iButtonPressed }
+if eval iButtonPressed ==1
+	Con_QuitGame
+endif
+end
+;<CSEBlock>
+;<CSECaretPos> 84 </CSECaretPos>
+;</CSEBlock>

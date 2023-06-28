@@ -1,0 +1,13 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x000975
+;GameHour2
+scn GameHour2
+
+;Due to float limitations, this function will begin to loose accuracy after 2,394,000 game days (6,600 years).
+
+begin Function { }
+SetFunctionValue Floor GameDaysPassed*24 + GameHour
+end
+;<CSEBlock>
+;<CSECaretPos> 43 </CSECaretPos>
+;</CSEBlock>

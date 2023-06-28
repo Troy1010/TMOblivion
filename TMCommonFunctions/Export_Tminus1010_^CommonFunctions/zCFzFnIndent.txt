@@ -1,0 +1,20 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x0009CC
+;zCFzFnIndent
+scn zCFzFnIndent
+
+int iIndentCount
+
+string_var svReturning
+
+Begin Function { iIndentCount }
+While (iIndentCount-=1)>=0
+	let svReturning := svReturning+"-"
+Loop
+SetFunctionValue svReturning
+; Close
+sv_Destruct svReturning
+end
+;<CSEBlock>
+;<CSECaretPos> 4 </CSECaretPos>
+;</CSEBlock>

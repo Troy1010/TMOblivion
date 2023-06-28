@@ -1,0 +1,16 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x00088E
+;zCFWaiterEnable
+scn zCFWaiterEnable
+
+array_var aArguments
+
+ref rTemp
+
+begin Function { aArguments }
+let rTemp := aArguments[0]
+rTemp.Enable
+end
+;<CSEBlock>
+;<CSECaretPos> 7 </CSECaretPos>
+;</CSEBlock>

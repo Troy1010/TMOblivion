@@ -1,0 +1,36 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x0009D3
+;Narrate
+scn Narrate
+
+;**Don't forget to box the argument! (Box me with &)
+
+array_var bvBoxedVariable ;bvBoxedVariable. (Box me with &)
+
+string_var svTypeOf
+
+Begin Function {bvBoxedVariable}
+	; Filter
+	if eval !bvBoxedVariable
+		SetFunctionValue "Narrate\Error. Narrate was passed an UnconstructedCollection by "+$GetCallingScript+". Make sure to box Narrate's arguments with a &."
+		return
+	endif
+	;
+	let svTypeOf := TypeOf *bvBoxedVariable
+	if eval Call IsCollection bvBoxedVariable ;Proper syntax would be (&(*bvBoxedVariable))
+		SetFunctionValue "<Collection>  Size:"+$(ar_Size *bvBoxedVariable)+"..%r"+Call zCFzFnNarrateCollection *bvBoxedVariable 0 0
+	elseif eval svTypeOf == "String" || svTypeOf == "Number"
+		SetFunctionValue $(*bvBoxedVariable)
+	elseif eval svTypeOf == "Form"
+		SetFunctionValue Call zCFzFnNarrateForm (*bvBoxedVariable) 0
+	elseif eval svTypeOf == "<Bad Array>"
+		SetFunctionValue "<Collection(Unconstructed)>"
+	else
+		SetFunctionValue "<Unknown>"
+	endif
+	; Close
+	sv_Destruct svTypeOf
+end
+;<CSEBlock>
+;<CSECaretPos> 65 </CSECaretPos>
+;</CSEBlock>

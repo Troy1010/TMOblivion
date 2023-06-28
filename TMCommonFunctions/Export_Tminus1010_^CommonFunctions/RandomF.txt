@@ -1,0 +1,14 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x00084D
+;RandomF
+scn RandomF ;random float
+
+float min
+float max
+
+begin Function { min, max }
+SetFunctionValue (min + (max-min)*(Call Round (Rand 0 1000000) )/1000000.0)
+end
+;<CSEBlock>
+;<CSECaretPos> 10 </CSECaretPos>
+;</CSEBlock>

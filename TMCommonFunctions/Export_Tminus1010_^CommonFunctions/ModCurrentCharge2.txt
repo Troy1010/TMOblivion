@@ -1,0 +1,17 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x0009DB
+;ModCurrentCharge2
+scn ModCurrentCharge2
+
+;*While OBSE's counterpart ModCurrentCharge will fizzle if you try to overcharge a weapon, this version will simply max out its charge.
+
+ref rItem
+float fModChargeAmount
+
+Begin _Function { rItem fModChargeAmount }
+let fModChargeAmount := Call WithinRange 0 (rItem.GetCurrentCharge+fModChargeAmount) (rItem.GetObjectCharge)
+rItem.SetCurrentCharge fModChargeAmount
+end
+;<CSEBlock>
+;<CSECaretPos> 345 </CSECaretPos>
+;</CSEBlock>

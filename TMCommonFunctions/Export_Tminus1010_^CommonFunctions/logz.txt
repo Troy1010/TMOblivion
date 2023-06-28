@@ -1,0 +1,20 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x0009FF
+;logz
+scn logz
+;Easy, temporary logging meant to be deleted after debugging is complete.
+;Example usage:
+;	Call logz "Hello"
+
+string_var svText
+
+ref rCallingScript
+
+begin _Function { svText }
+	Let rCallingScript := GetCallingScript
+	if eval testexpr CF.aDebugIndentLevels[GetSourceModIndex rCallingScript]
+		Call zCFzFnDebug -1 CF.aDebugIndentLevels[GetSourceModIndex rCallingScript] svText rCallingScript
+	else
+		Call zCFzFnDebug -1 0 svText rCallingScript
+	endif
+end

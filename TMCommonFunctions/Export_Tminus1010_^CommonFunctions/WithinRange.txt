@@ -1,0 +1,22 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x00084C
+;WithinRange
+scn WithinRange
+
+float fArgument
+float fMin
+float fMax
+
+
+begin _Function { fMin, fArgument, fMax }
+if eval fArgument > fMax
+	SetFunctionValue fMax
+elseif eval fArgument < fMin
+	SetFunctionValue fMin
+else
+	SetFunctionValue fArgument
+endif
+end
+;<CSEBlock>
+;<CSECaretPos> 231 </CSECaretPos>
+;</CSEBlock>

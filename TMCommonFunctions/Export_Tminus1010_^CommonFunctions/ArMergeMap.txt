@@ -1,0 +1,18 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x0009A6
+;ArMergeMap
+scn ArMergeMap
+
+array_var mMapToGiveTo
+array_var mMapToTakeFrom
+
+array_var Iter
+
+begin Function { mMapToGiveTo mMapToTakeFrom }
+ForEach Iter <- mMapToTakeFrom
+	let mMapToGiveTo[Iter["Key"]] := Iter["Value"]
+Loop
+end
+;<CSEBlock>
+;<CSECaretPos> 14 </CSECaretPos>
+;</CSEBlock>
