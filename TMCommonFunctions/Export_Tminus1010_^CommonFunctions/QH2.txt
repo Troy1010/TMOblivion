@@ -22,6 +22,3 @@ endif
 SetGoldValue (Call QH okObjectKey) okObjectKey
 SetFunctionValue GetGoldValue okObjectKey
 end
-;<CSEBlock>
-;<CSECaretPos> 557 </CSECaretPos>
-;</CSEBlock>

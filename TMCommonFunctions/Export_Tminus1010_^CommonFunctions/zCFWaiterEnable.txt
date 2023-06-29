@@ -11,6 +11,3 @@ begin Function { aArguments }
 let rTemp := aArguments[0]
 rTemp.Enable
 end
-;<CSEBlock>
-;<CSECaretPos> 7 </CSECaretPos>
-;</CSEBlock>

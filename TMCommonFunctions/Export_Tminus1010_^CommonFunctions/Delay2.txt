@@ -11,6 +11,3 @@ array_var aVariablesToPass
 begin Function { fSecsToWait iMenuModeType rHandlerFunction aVariablesToPass }
 Call CFDebug 1 "The Delay2 function was called while CommonFunctionChild.esp was not loaded."
 end
-;<CSEBlock>
-;<CSECaretPos> 137 </CSECaretPos>
-;</CSEBlock>

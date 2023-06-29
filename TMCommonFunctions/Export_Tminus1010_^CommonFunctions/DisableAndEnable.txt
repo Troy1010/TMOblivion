@@ -12,6 +12,3 @@ begin Function { rRefToRefresh }
 rRefToRefresh.Disable
 Call Delay2 -1 2 zCFWaiterEnable ar_List rRefToRefresh
 end
-;<CSEBlock>
-;<CSECaretPos> 191 </CSECaretPos>
-;</CSEBlock>

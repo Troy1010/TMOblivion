@@ -17,6 +17,3 @@ else
 	Call zCFzFnDebug iDebugLevel 0 svText rCallingScript
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 163 </CSECaretPos>
-;</CSEBlock>

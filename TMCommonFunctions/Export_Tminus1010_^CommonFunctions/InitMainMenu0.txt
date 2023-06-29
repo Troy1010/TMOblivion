@@ -30,6 +30,3 @@ scn InitMainMenu0
 begin Function { }
 SetFunctionValue eval CF.bCallingMainMenuInitiations && CF.iInitiationIndex ==0
 end
-;<CSEBlock>
-;<CSECaretPos> 8 </CSECaretPos>
-;</CSEBlock>

@@ -25,6 +25,3 @@ else
 	SetFunctionValue ar_List (GetPos "x") (GetPos "y") (GetPos "z") (GetAngle "z") rCell
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 446 </CSECaretPos>
-;</CSEBlock>

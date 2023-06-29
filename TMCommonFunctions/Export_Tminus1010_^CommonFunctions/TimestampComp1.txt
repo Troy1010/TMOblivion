@@ -13,6 +13,3 @@ float fHour2
 Begin _Function {iDaysPassed1,fHour1,iDaysPassed2,fHour2}
 SetFunctionValue eval iDaysPassed1==iDaysPassed2 && fHour1==fHour2
 end
-;<CSEBlock>
-;<CSECaretPos> 273 </CSECaretPos>
-;</CSEBlock>

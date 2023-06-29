@@ -19,6 +19,3 @@ else
 	SetPos z zPos
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 11 </CSECaretPos>
-;</CSEBlock>

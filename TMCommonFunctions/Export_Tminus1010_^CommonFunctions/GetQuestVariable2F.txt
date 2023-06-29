@@ -13,6 +13,3 @@ Begin _Function { sQuestDotVariableName }
 RunScriptLine "set CF.fPassing to " +$sQuestDotVariableName
 SetFunctionValue CF.fPassing
 end
-;<CSEBlock>
-;<CSECaretPos> 255 </CSECaretPos>
-;</CSEBlock>

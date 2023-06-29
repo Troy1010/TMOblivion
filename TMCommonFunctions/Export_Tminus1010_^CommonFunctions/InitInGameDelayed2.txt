@@ -30,6 +30,3 @@ scn InitInGameDelayed2
 begin Function { }
 SetFunctionValue eval CF.bCallingInGameDelayedInitiations && CF.iInitiationIndex ==2
 end
-;<CSEBlock>
-;<CSECaretPos> 884 </CSECaretPos>
-;</CSEBlock>

@@ -31,6 +31,3 @@ While (iIndex+=1) < ar_Size aVariables
 	SetModLocalData (GetFormIDString okObjectKey)+$iIndex aVariables[iIndex]
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 807 </CSECaretPos>
-;</CSEBlock>

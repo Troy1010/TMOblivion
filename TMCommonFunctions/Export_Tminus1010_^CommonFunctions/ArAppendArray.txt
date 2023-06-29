@@ -13,6 +13,3 @@ ForEach Iter <- aArrayToTakeFrom
 	ar_Append aArrayToGiveTo Iter["Value"]
 Loop
 end
-;<CSEBlock>
-;<CSECaretPos> 71 </CSECaretPos>
-;</CSEBlock>

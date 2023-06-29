@@ -28,6 +28,3 @@ ForEach Iter <- SB.nfmEvents[GetSourceModIndex okEvent][iQH]
 	endif
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 533 </CSECaretPos>
-;</CSEBlock>

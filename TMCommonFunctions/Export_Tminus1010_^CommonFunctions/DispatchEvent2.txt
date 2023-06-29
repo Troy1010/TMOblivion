@@ -24,6 +24,3 @@ ForEach Iter <- SB.nfmEvents[GetSourceModIndex okEvent][Call QH2 okEvent]
 	Call Iter["Value"] smVariables
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 464 </CSECaretPos>
-;</CSEBlock>

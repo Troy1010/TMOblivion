@@ -26,6 +26,3 @@ endif
 SetFunctionValue GetFormFromMod svModName svObjectID
 sv_Destruct svModName
 end
-;<CSEBlock>
-;<CSECaretPos> 339 </CSECaretPos>
-;</CSEBlock>

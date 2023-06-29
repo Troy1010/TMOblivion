@@ -20,6 +20,3 @@ ForEach Iter <- aArray
 loop
 SetFunctionValue fReturning
 end
-;<CSEBlock>
-;<CSECaretPos> 44 </CSECaretPos>
-;</CSEBlock>

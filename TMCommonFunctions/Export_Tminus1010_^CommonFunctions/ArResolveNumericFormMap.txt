@@ -33,6 +33,3 @@ ForEach OuterIter <- nfmNumericFormMap
 loop
 SetFunctionValue nfmNewNumericFormMap
 end
-;<CSEBlock>
-;<CSECaretPos> 297 </CSECaretPos>
-;</CSEBlock>

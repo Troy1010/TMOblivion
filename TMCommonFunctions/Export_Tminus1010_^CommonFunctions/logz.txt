@@ -7,6 +7,14 @@ scn logz
 ;iDebugLevel. -1:BypassFilter 0:Ignore 1:Important 2:Limited 3:Fun 4:SemiVerbose 5:Verbose 6:Flooding
 string_var svText
 
+ref rCallingScript
+
+
 begin _Function { svText }
-	Call CFDebug -1 svText
+	Let rCallingScript := GetCallingScript
+	if eval testexpr CF.aDebugIndentLevels[GetSourceModIndex rCallingScript]
+		Call zCFzFnDebug -1 CF.aDebugIndentLevels[GetSourceModIndex rCallingScript] svText rCallingScript
+	else
+		Call zCFzFnDebug -1 0 svText rCallingScript
+	endif
 end

@@ -10,6 +10,3 @@ ref rMagicEffect ;aka EffectSetting
 begin Function { rMagicEffect }
 SetFunctionValue GetMagicEffectCode rMagicEffect
 end
-;<CSEBlock>
-;<CSECaretPos> 115 </CSECaretPos>
-;</CSEBlock>

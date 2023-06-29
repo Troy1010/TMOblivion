@@ -12,6 +12,3 @@ ref okObjectKey
 Begin _Function { okObjectKey }
 SetFunctionValue (ToNumber (GetRawFormIDString okObjectKey)[2:7] 1)
 end
-;<CSEBlock>
-;<CSECaretPos> 122 </CSECaretPos>
-;</CSEBlock>

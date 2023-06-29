@@ -30,6 +30,3 @@ scn InitInGame0
 begin Function { }
 SetFunctionValue eval CF.bCallingInGameInitiations && CF.iInitiationIndex ==0
 end
-;<CSEBlock>
-;<CSECaretPos> 859 </CSECaretPos>
-;</CSEBlock>

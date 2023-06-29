@@ -29,6 +29,3 @@ SetFunctionValue svReturning
 ; Close
 sv_Destruct
 end
-;<CSEBlock>
-;<CSECaretPos> 359 </CSECaretPos>
-;</CSEBlock>

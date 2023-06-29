@@ -19,6 +19,3 @@ if eval !ar_HasKey CF.LISTDoOncePerFrame GetFormIDString rTemp
 	SetFunctionValue 1
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 146 </CSECaretPos>
-;</CSEBlock>

@@ -23,7 +23,3 @@ if eval rContainer.GetDead || (rContainer.GetProcessLevel >0) ;0 represents High
 	SetFunctionValue 1
 endif
 end
-
-;<CSEBlock>
-;<CSECaretPos> 226 </CSECaretPos>
-;</CSEBlock>

@@ -10,6 +10,3 @@ float fMax
 begin _Function { fMin fArgument fMax }
 SetFunctionValue (fMin <= fArgument && fArgument <= fMax)
 end
-;<CSEBlock>
-;<CSECaretPos> 80 </CSECaretPos>
-;</CSEBlock>

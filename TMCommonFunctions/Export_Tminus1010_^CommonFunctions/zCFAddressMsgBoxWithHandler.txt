@@ -101,6 +101,3 @@ elseif eval (iButtonPressIndex := GetButtonPressed) != -1 ;UserInput recieved.
 	let CF.rMsgBoxHandler := SB.rNull
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 370 </CSECaretPos>
-;</CSEBlock>

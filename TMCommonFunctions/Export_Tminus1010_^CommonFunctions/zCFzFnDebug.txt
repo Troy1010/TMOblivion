@@ -52,6 +52,3 @@ endif
 sv_Destruct svLogName
 sv_Destruct svText
 end
-;<CSEBlock>
-;<CSECaretPos> 167 </CSECaretPos>
-;</CSEBlock>

@@ -61,6 +61,3 @@ elseif eval sGroupIndex ==4
 	SetFunctionValue 12
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 417 </CSECaretPos>
-;</CSEBlock>

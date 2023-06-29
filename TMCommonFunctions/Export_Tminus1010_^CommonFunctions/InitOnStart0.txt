@@ -30,6 +30,3 @@ scn InitOnStart0
 begin Function { }
 SetFunctionValue eval CF.bCallingOnStartInitiations && CF.iInitiationIndex ==0
 end
-;<CSEBlock>
-;<CSECaretPos> 273 </CSECaretPos>
-;</CSEBlock>

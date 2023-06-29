@@ -7,6 +7,3 @@ array_var aInitiationScripts
 
 begin Function { aInitiationScripts }
 end
-;<CSEBlock>
-;<CSECaretPos> 0 </CSECaretPos>
-;</CSEBlock>

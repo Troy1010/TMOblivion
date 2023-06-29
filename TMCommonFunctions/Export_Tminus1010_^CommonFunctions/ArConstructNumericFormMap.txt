@@ -17,6 +17,3 @@ While IsModLoaded (GetNthModName (iIndex+=1))
 loop
 SetFunctionValue nfmFormMap
 end
-;<CSEBlock>
-;<CSECaretPos> 286 </CSECaretPos>
-;</CSEBlock>

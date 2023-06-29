@@ -17,7 +17,3 @@ if bQuit
 	Con_QuitGame
 endif
 end
-
-;<CSEBlock>
-;<CSECaretPos> 270 </CSECaretPos>
-;</CSEBlock>

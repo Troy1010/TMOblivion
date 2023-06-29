@@ -46,6 +46,3 @@ ref avrPhysicality
 ;array_var regRegulateSpeed
 ;array_var regRecalc5050Confidence
 ;array_var regFleeable
-;<CSEBlock>
-;<CSECaretPos> 786 </CSECaretPos>
-;</CSEBlock>

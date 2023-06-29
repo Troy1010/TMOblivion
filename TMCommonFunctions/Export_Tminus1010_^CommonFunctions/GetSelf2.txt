@@ -8,6 +8,3 @@ if eval Call IsCallingObjectStable
 	SetFunctionValue GetSelf
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 4 </CSECaretPos>
-;</CSEBlock>

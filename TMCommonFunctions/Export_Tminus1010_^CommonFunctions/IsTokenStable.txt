@@ -28,6 +28,3 @@ if eval rContainer
 	endif
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 272 </CSECaretPos>
-;</CSEBlock>

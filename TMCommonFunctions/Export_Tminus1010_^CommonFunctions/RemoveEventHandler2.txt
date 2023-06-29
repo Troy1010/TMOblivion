@@ -18,6 +18,3 @@ endif
 ; Remove Action from list.
 ar_Erase SB.nfmEvents[GetSourceModIndex okEvent][Call QH okEvent] (ar_Find rHandlerFunction SB.nfmEvents[GetSourceModIndex okEvent][Call QH okEvent])
 end
-;<CSEBlock>
-;<CSECaretPos> 23 </CSECaretPos>
-;</CSEBlock>

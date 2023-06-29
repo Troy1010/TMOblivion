@@ -43,6 +43,3 @@ else
 	endif
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 1391 </CSECaretPos>
-;</CSEBlock>

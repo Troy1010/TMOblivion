@@ -26,6 +26,3 @@ While ModLocalDataExists (GetFormIDString okObjectKey)+$(iIndex+=1)
 	SetFunctionValue aReturning
 Loop
 end
-;<CSEBlock>
-;<CSECaretPos> 634 </CSECaretPos>
-;</CSEBlock>

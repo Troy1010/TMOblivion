@@ -12,6 +12,3 @@ Begin _Function { rItem fModChargeAmount }
 let fModChargeAmount := Call WithinRange 0 (rItem.GetCurrentCharge+fModChargeAmount) (rItem.GetObjectCharge)
 rItem.SetCurrentCharge fModChargeAmount
 end
-;<CSEBlock>
-;<CSECaretPos> 345 </CSECaretPos>
-;</CSEBlock>

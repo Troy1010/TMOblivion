@@ -13,6 +13,3 @@ else
 	SetFunctionValue fFloat2
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 29 </CSECaretPos>
-;</CSEBlock>

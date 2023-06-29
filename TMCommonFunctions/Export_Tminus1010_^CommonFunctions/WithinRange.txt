@@ -17,6 +17,3 @@ else
 	SetFunctionValue fArgument
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 231 </CSECaretPos>
-;</CSEBlock>

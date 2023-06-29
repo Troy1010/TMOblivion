@@ -24,6 +24,3 @@ elseif eval Call IsWithinRange 0 (avcReturning := Call DispatchEventWithIReturni
 	SetFunctionValue avcReturning
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 697 </CSECaretPos>
-;</CSEBlock>

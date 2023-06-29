@@ -28,6 +28,3 @@ else
 	endif
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 714 </CSECaretPos>
-;</CSEBlock>

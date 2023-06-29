@@ -10,6 +10,3 @@ Begin _Function { sFileFullPath }
 	let aSplitFilePath := sv_Split sFileFullPath,"\"
 	SetFunctionValue aSplitFilePath[ar_Last aSplitFilePath]
 end
-;<CSEBlock>
-;<CSECaretPos> 15 </CSECaretPos>
-;</CSEBlock>

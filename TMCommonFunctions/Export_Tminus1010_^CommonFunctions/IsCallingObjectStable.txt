@@ -27,6 +27,3 @@ elseif eval (GetFormIDString GetBaseObject) != "FF000800" ;"FF000800" represents
 	return
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 1128 </CSECaretPos>
-;</CSEBlock>

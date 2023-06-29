@@ -10,6 +10,3 @@ if eval iButtonPressed ==1
 	Con_QuitGame
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 84 </CSECaretPos>
-;</CSEBlock>

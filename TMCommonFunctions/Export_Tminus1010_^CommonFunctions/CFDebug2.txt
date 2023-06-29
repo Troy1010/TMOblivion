@@ -15,6 +15,3 @@ begin _Function { iDebugLevel iIndentLength svText }
 let rCallingScript := GetCallingScript
 Call zCFzFnDebug iDebugLevel iIndentLength svText rCallingScript
 end
-;<CSEBlock>
-;<CSECaretPos> 210 </CSECaretPos>
-;</CSEBlock>

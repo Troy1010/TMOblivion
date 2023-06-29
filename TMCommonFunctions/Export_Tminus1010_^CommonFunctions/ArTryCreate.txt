@@ -20,6 +20,3 @@ else ;if eval iType ==2
 	SetFunctionValue ar_Construct "Stringmap"
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 49 </CSECaretPos>
-;</CSEBlock>

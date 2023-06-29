@@ -49,6 +49,3 @@ else
 	SetFunctionValue ar_Construct "stringmap"
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 1512 </CSECaretPos>
-;</CSEBlock>

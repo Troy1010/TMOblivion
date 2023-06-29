@@ -8,6 +8,3 @@ ref rMagicItem
 begin Function { rMagicItem }
 SetFunctionValue Call IsInCollection (&(Call GetMagicItemType2 rMagicItem)) ar_List 2 5 10
 end
-;<CSEBlock>
-;<CSECaretPos> 117 </CSECaretPos>
-;</CSEBlock>

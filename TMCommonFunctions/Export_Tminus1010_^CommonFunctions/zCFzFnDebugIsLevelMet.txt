@@ -18,6 +18,3 @@ endif
 
 SetFunctionValue (iDebugLevel <= CF.aDebugThresholds[GetSourceModIndex rCallingScript]) && (iDebugLevel <= CF.iMasterDebugThreshold)
 end
-;<CSEBlock>
-;<CSECaretPos> 83 </CSECaretPos>
-;</CSEBlock>

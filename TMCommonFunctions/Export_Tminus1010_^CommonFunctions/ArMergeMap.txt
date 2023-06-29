@@ -13,6 +13,3 @@ ForEach Iter <- mMapToTakeFrom
 	let mMapToGiveTo[Iter["Key"]] := Iter["Value"]
 Loop
 end
-;<CSEBlock>
-;<CSECaretPos> 14 </CSECaretPos>
-;</CSEBlock>

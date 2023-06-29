@@ -12,6 +12,3 @@ begin _Function { rTarget rMagicItem }
 CFHitWithSpellCasterRef.MoveTo rTarget
 CFHitWithSpellCasterRef.Cast rMagicItem rTarget
 end
-;<CSEBlock>
-;<CSECaretPos> 252 </CSECaretPos>
-;</CSEBlock>

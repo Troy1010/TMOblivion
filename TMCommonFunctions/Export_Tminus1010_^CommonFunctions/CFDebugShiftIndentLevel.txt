@@ -12,6 +12,3 @@ if eval CF.aDebugIndentLevels[GetSourceModIndex GetCallingScript] < 0
 	let CF.aDebugIndentLevels[GetSourceModIndex GetCallingScript] := 0
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 171 </CSECaretPos>
-;</CSEBlock>

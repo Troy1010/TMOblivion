@@ -10,6 +10,3 @@ Begin _Function { iDebugLevel }
 let rCallingScript := GetCallingScript
 SetFunctionValue Call zCFzFnDebugIsLevelMet iDebugLevel rCallingScript
 end
-;<CSEBlock>
-;<CSECaretPos> 142 </CSECaretPos>
-;</CSEBlock>

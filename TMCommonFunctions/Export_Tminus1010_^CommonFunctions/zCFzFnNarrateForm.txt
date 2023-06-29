@@ -22,7 +22,3 @@ SetFunctionValue svString
 sv_Destruct svString
 end
 
-
-;<CSEBlock>
-;<CSECaretPos> 272 </CSECaretPos>
-;</CSEBlock>

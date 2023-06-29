@@ -11,6 +11,3 @@ short sEffectItemIndex
 begin Function { rEffectItem sEffectItemIndex }
 SetFunctionValue GetNthEffectItemCode rEffectItem sEffectItemIndex
 end
-;<CSEBlock>
-;<CSECaretPos> 113 </CSECaretPos>
-;</CSEBlock>

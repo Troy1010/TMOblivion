@@ -33,6 +33,3 @@ While (sActiveEffectIndex+=1)<(rTarget.GetActiveEffectCount)
 	printc "CF ReportActiveEffects: ( " + $sActiveEffectIndex + " ):: rCaster:%i rMagicItem:%i" rCaster rMagicitem
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 139 </CSECaretPos>
-;</CSEBlock>

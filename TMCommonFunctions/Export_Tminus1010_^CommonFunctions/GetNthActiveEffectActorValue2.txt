@@ -42,6 +42,3 @@ else
 	endif
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 1388 </CSECaretPos>
-;</CSEBlock>

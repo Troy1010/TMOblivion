@@ -20,6 +20,3 @@ else
 	let CF.RAWSTREAMDeathRowRefs[GetFormIDString rRefToDelete] := GameDaysPassed
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 661 </CSECaretPos>
-;</CSEBlock>

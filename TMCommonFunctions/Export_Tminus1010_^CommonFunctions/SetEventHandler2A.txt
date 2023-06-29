@@ -23,6 +23,3 @@ ForEach Iter <- aHandlerFunctions
 	Call SetEventHandler2 okEvent (*Iter)
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 154 </CSECaretPos>
-;</CSEBlock>

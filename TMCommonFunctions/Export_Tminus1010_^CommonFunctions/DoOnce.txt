@@ -19,6 +19,3 @@ if eval !ar_HasKey CF.STREAMDoOnce GetFormIDString rTemp
 	SetFunctionValue 1
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 170 </CSECaretPos>
-;</CSEBlock>

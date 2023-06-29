@@ -23,6 +23,3 @@ endif
 ; Add Action To Event
 ar_Append SB.nfmEvents[GetSourceModIndex okEvent][Call QH okEvent] rHandlerFunction
 end
-;<CSEBlock>
-;<CSECaretPos> 153 </CSECaretPos>
-;</CSEBlock>

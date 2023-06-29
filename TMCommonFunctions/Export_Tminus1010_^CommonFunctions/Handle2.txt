@@ -39,6 +39,3 @@ If eval Call rHandler rAction aActionArgs
 	endif
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 141 </CSECaretPos>
-;</CSEBlock>

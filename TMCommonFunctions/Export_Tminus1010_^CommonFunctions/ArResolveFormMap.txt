@@ -34,6 +34,3 @@ loop
 SetFunctionValue fmNewFormMap
 sv_Destruct svKey
 end
-;<CSEBlock>
-;<CSECaretPos> 675 </CSECaretPos>
-;</CSEBlock>

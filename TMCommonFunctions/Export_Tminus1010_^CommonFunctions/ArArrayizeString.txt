@@ -24,6 +24,3 @@ if eval (sv_Length svString) != -1
 endif
 SetFunctionValue aReturning
 end
-;<CSEBlock>
-;<CSECaretPos> 159 </CSECaretPos>
-;</CSEBlock>

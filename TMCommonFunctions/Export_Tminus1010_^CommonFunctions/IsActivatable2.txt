@@ -12,6 +12,3 @@ if eval IsFormValid rRef
 	SetFunctionValue rRef.IsActivatable
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 98 </CSECaretPos>
-;</CSEBlock>

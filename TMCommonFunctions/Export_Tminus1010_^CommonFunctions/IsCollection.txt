@@ -22,6 +22,3 @@ SetFunctionValue eval svTypeOf=="Array" || svTypeOf=="StringMap" || svTypeOf=="M
 ; Close
 sv_Destruct svTypeOf
 end
-;<CSEBlock>
-;<CSECaretPos> 76 </CSECaretPos>
-;</CSEBlock>

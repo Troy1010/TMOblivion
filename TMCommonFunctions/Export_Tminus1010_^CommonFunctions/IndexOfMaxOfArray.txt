@@ -23,6 +23,3 @@ foreach keyAndValue <- arg
 loop
 SetFunctionValue returningShort
 end
-;<CSEBlock>
-;<CSECaretPos> 221 </CSECaretPos>
-;</CSEBlock>

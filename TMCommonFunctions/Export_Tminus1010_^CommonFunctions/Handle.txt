@@ -37,6 +37,3 @@ If eval Call rHandler
 	endif
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 108 </CSECaretPos>
-;</CSEBlock>

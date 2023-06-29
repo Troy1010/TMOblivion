@@ -23,6 +23,3 @@ else
 	SetFunctionValue 0
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 130 </CSECaretPos>
-;</CSEBlock>

@@ -12,6 +12,3 @@ ForEach aKeyAndValue <- aReferences
 	Call DeleteReference2 aKeyAndValue["Value"]
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 99 </CSECaretPos>
-;</CSEBlock>

@@ -15,6 +15,3 @@ else
 	SetFunctionValue GetNthActiveEffectCode sActiveEffectIndex
 endif
 end
-;<CSEBlock>
-;<CSECaretPos> 119 </CSECaretPos>
-;</CSEBlock>

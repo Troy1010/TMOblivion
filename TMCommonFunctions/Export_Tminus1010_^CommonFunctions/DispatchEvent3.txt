@@ -22,6 +22,3 @@ ForEach Iter <- SB.nfmEvents[GetSourceModIndex okEvent][iQH]
 	Call Iter["Value"] smVariables
 loop
 end
-;<CSEBlock>
-;<CSECaretPos> 384 </CSECaretPos>
-;</CSEBlock>

@@ -8,6 +8,3 @@ scn GameHour2
 begin Function { }
 SetFunctionValue Floor GameDaysPassed*24 + GameHour
 end
-;<CSEBlock>
-;<CSECaretPos> 43 </CSECaretPos>
-;</CSEBlock>

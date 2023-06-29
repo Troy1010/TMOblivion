@@ -33,6 +33,3 @@ Begin Function {bvBoxedVariable}
 	; Close
 	sv_Destruct svTypeOf
 end
-;<CSEBlock>
-;<CSECaretPos> 85 </CSECaretPos>
-;</CSEBlock>

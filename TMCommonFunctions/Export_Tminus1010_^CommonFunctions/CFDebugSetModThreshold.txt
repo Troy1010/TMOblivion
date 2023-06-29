@@ -10,6 +10,3 @@ short iDebugLevel ;iDebugLevel. -1:BypassFilter 0:Ignore 1:Important 2:Limited 3
 Begin _Function { iDebugLevel }
 let CF.aDebugThresholds[GetSourceModIndex GetCallingScript] := iDebugLevel
 end
-;<CSEBlock>
-;<CSECaretPos> 17 </CSECaretPos>
-;</CSEBlock>

@@ -31,6 +31,3 @@ let CF.rMsgBoxHandler := rMsgBoxHandler
 Call zCFAddressMsgBoxWithHandler aMsgBoxStrings
 ;Let CFC call the handler when UserInput arrives
 end
-;<CSEBlock>
-;<CSECaretPos> 777 </CSECaretPos>
-;</CSEBlock>
