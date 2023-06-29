@@ -50,35 +50,31 @@ float fPassing
 ;This quest mainly exists to store variables.
 ;This block warns about missing dependencies that prevent traditional debugging.
 Begin MenuMode
-if iMandatoryDebugStage==0
-	set iMandatoryDebugStage to 1
-	set fQuestDelayTime to 0.001
-else
-	if bOBSEFlag==0
-		if iMandatoryDebugStage ==1
-			set iMandatoryDebugStage to 2
-			MessageBox "CFMandatoryError|Missing Dependency: OBSE v0021."
-		endif
-	elseif GetWeight zzCFChildFlag ==0
-		if iMandatoryDebugStage ==1
-			set iMandatoryDebugStage to 2
-			MessageBox "CFMandatoryError|CommonFunctionsChild.esp is not activated." "Continue" "Quit"
-		else
-			set iButtonPressed to GetButtonPressed
-			if iButtonPressed ==0 ;0:Continue
-				StopQuest CF
-				StopQuest zCFQstHelper
-			elseif iButtonPressed ==1 ;1:Quit
-				set zCFQstHelper.bQuit to 1
-			endif
-		endif
+	if iMandatoryDebugStage==0
+		set iMandatoryDebugStage to 1
+		set fQuestDelayTime to 0.001
 	else
-		StopQuest CF
-		StopQuest zCFQstHelper
+		if bOBSEFlag==0
+			if iMandatoryDebugStage ==1
+				set iMandatoryDebugStage to 2
+				MessageBox "CFMandatoryError|Missing Dependency: OBSE v0021."
+			endif
+		elseif GetWeight zzCFChildFlag ==0
+			if iMandatoryDebugStage ==1
+				set iMandatoryDebugStage to 2
+				MessageBox "CFMandatoryError|CommonFunctionsChild.esp is not activated." "Continue" "Quit"
+			else
+				set iButtonPressed to GetButtonPressed
+				if iButtonPressed ==0 ;0:Continue
+					StopQuest CF
+					StopQuest zCFQstHelper
+				elseif iButtonPressed ==1 ;1:Quit
+					set zCFQstHelper.bQuit to 1
+				endif
+			endif
+		else
+			StopQuest CF
+			StopQuest zCFQstHelper
+		endif
 	endif
-endif
 end
-
-;<CSEBlock>
-;<CSECaretPos> 457 </CSECaretPos>
-;</CSEBlock>

@@ -1,0 +1,12 @@
+﻿;Tminus1010_^CommonFunctions.esm
+;0x0009FF
+;logz
+scn logz
+; Easy, temporary, local debugging. Should not be merged into releases.
+
+;iDebugLevel. -1:BypassFilter 0:Ignore 1:Important 2:Limited 3:Fun 4:SemiVerbose 5:Verbose 6:Flooding
+string_var svText
+
+begin _Function { svText }
+	Call CFDebug -1 svText
+end
