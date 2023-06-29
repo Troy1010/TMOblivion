@@ -1,0 +1,8 @@
+This mod helps debugging by doing things like:
+	Printing menu identifiers
+	Making the player speedier and turning on TCL so they can quickly get to a bugged cell
+	Immediately starting a new game when Oblivion loads
+
+See DebugHelper.ini for a complete list.
+
+I've forgotten what the Dev file is for..
