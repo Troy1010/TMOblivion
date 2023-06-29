@@ -82,5 +82,8 @@ AFTER: Oblivion.esm
 ADD: Tminus1010_^CommonFunctionsChild.esp
 BEFORE: Bashed Patch, 0.esp
 
+ADD: TMArchery.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
 ADD: TMDebugHelper.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
