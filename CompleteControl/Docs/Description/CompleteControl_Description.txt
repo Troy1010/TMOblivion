@@ -1,0 +1,13 @@
+CompleteControl adds APIs to help mods manage player controls.
+For instance, it helps with this situation:
+	Mod A disables key 1
+	Mod B disables key 1
+	Mod B enables key 1
+	! Oh no! Mod A expects that key 1 is still disabled, but it isn't!
+
+I do not remember what CompleteControlHelper.esp is for, or if it is even necessary.
+
+===== Install
+Install CompleteControl.7z with MO2
+Extract CompleteControl.7z, and copy CompleteControl/Data into Oblivion/
+TODO: There is probably a more standard way of doing this.
