@@ -1,0 +1,11 @@
+scn DWInit
+
+begin Function { }
+if eval Call InitPostLoad2
+	Call CFDebugSetModThreshold 6
+	if eval !DW.fQuestDelayTime
+		let DW.fQuestDelayTime := 0.0001
+		StartQuest DW
+	endif
+endif
+end

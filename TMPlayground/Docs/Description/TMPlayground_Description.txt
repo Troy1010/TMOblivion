@@ -1,0 +1,7 @@
+TMPlayground helps development because it provides a place to test isolated script code.
+
+Usual usage would be:
+	Install TMPlayground
+	Edit it with ConstructionSet to use commands that you're trying to test
+	Manually test those edits
+	Uninstall TMPlayground

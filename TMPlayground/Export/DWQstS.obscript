@@ -1,0 +1,15 @@
+scn DWQstS
+
+float fQuestDelayTime
+
+begin _GameMode
+	if eval OnKeyDown 64
+		PrintToConsole "F6"
+	elseif OnKeyDown 65
+		PrintToConsole "F7"
+	elseif OnKeyDown 66
+		PrintToConsole "F8"
+	elseif OnKeyDown 67
+		PrintToConsole "F9"
+	endif
+end
