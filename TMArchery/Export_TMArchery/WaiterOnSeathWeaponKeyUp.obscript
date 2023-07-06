@@ -1,0 +1,11 @@
+scn WaiterOnSeathWeaponKeyUp
+
+array_var void
+
+begin Function { void }
+if eval IsPressed ControlIDSeathWeapon
+	Call Delay -1 WaiterOnSeathWeaponKeyUp ar_Null
+else
+	EnableControl ControlIDSeathWeapon
+endif
+end

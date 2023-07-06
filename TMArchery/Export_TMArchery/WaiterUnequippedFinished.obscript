@@ -1,0 +1,13 @@
+scn WaiterUnequippedFinished
+
+array_var void
+
+begin Function { void }
+	if eval PlayerRef.IsAnimGroupPlaying Unequip
+		SetFunctionValue 1 ;Call me again next frame
+	else
+		PlayerRef.PlayGroup Idle 1 ; Releases the player from unequip animation.
+		Call logz "EnableControl ControlIDAttack"
+		EnableControl ControlIDAttack
+	endif
+end

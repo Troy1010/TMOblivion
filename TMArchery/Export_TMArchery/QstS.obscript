@@ -1,0 +1,69 @@
+scn QstS
+;This quest is only on while bow is drawn
+
+float fQuestDelayTime
+short resolutionY
+float thetaX
+float xDiceTimer
+float xMult
+float thetaY
+float yDiceTimer
+float yMult
+float tempFloat
+float tempFloat2
+float movement
+float drawtime
+
+begin _GameMode
+	; Bump drawtime
+	let drawtime += GetSecondsPassed
+	; Determine movement mult
+	if SB.bSprinting
+		let movement :=4
+	elseif SB.bRunning
+		let movement :=2
+	elseif SB.bWalking
+		let movement :=1.33
+	else
+		let movement :=1
+	endif
+	; X
+	let thetaX += GetSecondsPassed*4
+	while xDiceTimer < thetaX ;DiceTimer will try to RollDice every 0.1 seconds
+		let xDiceTimer += 0.1*4
+		if (getrandompercent>90)
+			let thetaX := Call RandomF 0 (2*3.1416) ;random starting angle for sin(thetaX)
+			let xDiceTimer := thetaX + (2*3.1416) ;DiceTimer will not try to RollDice until 2pi after last roll.
+			let xMult := (1 - 2*(Call RandomI 0 1))*(Call RandomF 0.1 1) ;random speed multiplier with range [-1,-0.1]U[0.1,1]
+		endif
+	loop
+	let tempFloat := 0.3*0.06325*resolutionY*xMult*movement*RSIN thetaX ;using resolutionY standardises sway speed
+	; I'm not sure why, but SetMouseSpeed is doing nothing for me atm
+	; As a duct-tape solution, I am using MoveMouse instead.
+	;SetMouseSpeedX tempFloat
+	let tempFloat2 := tempFloat * GetSecondsPassed * 10
+	MoveMouseX tempFloat2
+	; Y
+	let thetaY += GetSecondsPassed*4
+	while yDiceTimer < thetaY ;DiceTimer will try to RollDice every 0.1 seconds
+		let yDiceTimer += 0.1*4
+		if (getrandompercent>90)
+			let thetaY := Call RandomF 0 (2*3.1416) ;random starting angle for sin(thetaY)
+			let yDiceTimer := thetaY + (2*3.1416) ;DiceTimer will not try to RollDice until 2pi after last roll.
+			let yMult := (1 - 2*(Call RandomI 0 1))*(Call RandomF 0.1 1) ;random speed multiplier with range [-1,-0.1]U[0.1,1]
+		endif
+	loop
+	let tempFloat := 0.3*0.06325*resolutionY*yMult*movement*RSIN thetaY
+	; I'm not sure why, but SetMouseSpeed is doing nothing for me atm
+	; As a duct-tape solution, I am using MoveMouse instead.
+	;SetMouseSpeedY tempFloat
+	let tempFloat2 := tempFloat * GetSecondsPassed * 10
+	MoveMouseY tempFloat2
+	; If SeathWeapon is pressed, denock the arrow.
+	if eval (!(IsEngaged ControlIDAttack)&&drawtime<1.43) || ((IsEngaged ControlIDAttack)&&(OnControlDown2 ControlIDSeathWeapon)&&((IsDisabled ControlIDSeathWeapon)==1)) ;Alternative to OnControlDown2 while SeathWeapon is disabled
+		Call logz "SeathWeapon is pressed, denocking the arrow."
+		playerRef.playGroup "unequip" 1
+		DisableControl2 ControlIDAttack ;Prevents another arrow from being drawn immediately after denock
+		Call Delay -1 WaiterUnequippedFinished ar_Null ;Ensure that playGroup unequip is at least 1 frame before playGroup idle.
+	endif
+end

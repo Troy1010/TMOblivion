@@ -1,0 +1,16 @@
+scn Init
+
+begin Function { }
+if eval Call InitOnStart2
+	SetEventHandler "OnBowAttack" HandlerOnBowAttack "first"::playerRef
+	Call CFDebugSetModThreshold 6
+	Call CFDebug 4 "Archery InitOnStart2 complete"
+endif
+if eval Call InitPostLoad2
+	Call SetEventHandler2 EVENTPlayerBowRelease HandlerOnPlayerBowRelease
+	set Qst.fQuestDelayTime to 0.00001
+	set Qst.resolutionY to (GetNumericIniSetting "iSize H:Display")
+	Call CFDebugSetModThreshold 6
+	Call CFDebug 4 "Archery InitPostLoad2 complete"
+endif
+end
