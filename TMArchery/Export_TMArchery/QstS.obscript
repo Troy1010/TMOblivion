@@ -60,8 +60,7 @@ begin _GameMode
 	let tempFloat2 := tempFloat * GetSecondsPassed * 10
 	MoveMouseY tempFloat2
 	; If SeathWeapon is pressed, denock the arrow.
-	if eval (!(IsEngaged ControlIDAttack)&&drawtime<1.43) || ((IsEngaged ControlIDAttack)&&(OnControlDown2 ControlIDSeathWeapon)&&((IsDisabled ControlIDSeathWeapon)==1)) ;Alternative to OnControlDown2 while SeathWeapon is disabled
-		Call logz "SeathWeapon is pressed, denocking the arrow."
+	if eval (!(IsEngaged ControlIDAttack)&&drawtime<1.43) || ((IsEngaged ControlIDAttack)&&(OnControlDown2 ControlIDSeathWeapon)&&((IsDisabled ControlIDSeathWeapon)==1))
 		playerRef.playGroup "unequip" 1
 		DisableControl2 ControlIDAttack ;Prevents another arrow from being drawn immediately after denock
 		Call Delay -1 WaiterUnequippedFinished ar_Null ;Ensure that playGroup unequip is at least 1 frame before playGroup idle.

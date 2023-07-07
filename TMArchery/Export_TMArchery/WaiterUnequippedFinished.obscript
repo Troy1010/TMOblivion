@@ -7,7 +7,6 @@ begin Function { void }
 		SetFunctionValue 1 ;Call me again next frame
 	else
 		PlayerRef.PlayGroup Idle 1 ; Releases the player from unequip animation.
-		Call logz "EnableControl ControlIDAttack"
-		EnableControl ControlIDAttack
+		EnableControl2 ControlIDAttack
 	endif
 end

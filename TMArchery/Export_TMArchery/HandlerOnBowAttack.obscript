@@ -11,7 +11,8 @@ begin Function { actor }
 	let Qst.thetaY := Call RandomF 0 (2*3.1416) ;random starting angle for sin(thetaY)
 	let Qst.yDiceTimer := Qst.thetaY + (2*3.1416) ;DiceTimer will not try to RollDice until 2pi after last roll.
 	let Qst.yMult := (1 - 2*(Call RandomI 0 1))*(Call RandomF 0.1 1) ;random speed multiplier with range [-1,-0.1]U[0.1,1]
-	DisableControl ControlIDSeathWeapon
+	; Disabling SeathWeapon in case other mods use that control for something, which we would want disabled during this time.
+	DisableControl2 ControlIDSeathWeapon
 	StartQuest Qst
 	Call CFDebug 4 "HandlerOnBowAttack`Close"
 end

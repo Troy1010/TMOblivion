@@ -1,0 +1,7 @@
+# Features
+Bow sways while drawn
+While bow is drawn, the SeathWeapon control denocks the arrow
+If bow is drawn very briefly, the arrow is simply denocked
+
+# Developer Notes
+Because I figured I might want to make sure other mods could add functionality to SeathWeapon, but not while bow is drawn.. SeathWeapon is disabled while bow is drawn.
