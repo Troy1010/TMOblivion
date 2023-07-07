@@ -3,7 +3,7 @@ scn HandlerOnBowAttack
 ref actor
 
 begin Function { actor }
-	Call CFDebug 4 "HandlerOnBowAttack`Open"
+	Call Logd "HandlerOnBowAttack`Open"
 	let Qst.drawtime := 0
 	let Qst.thetaX := Call RandomF 0 (2*3.1416) ;random starting angle for sin(thetaX)
 	let Qst.xDiceTimer := Qst.thetaX + (2*3.1416) ;DiceTimer will not try to RollDice until 2pi after last roll.
@@ -14,5 +14,5 @@ begin Function { actor }
 	; Disabling SeathWeapon in case other mods use that control for something, which we would want disabled during this time.
 	DisableControl2 ControlIDSeathWeapon
 	StartQuest Qst
-	Call CFDebug 4 "HandlerOnBowAttack`Close"
+	Call Logd "HandlerOnBowAttack`Close"
 end
