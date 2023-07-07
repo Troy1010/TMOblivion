@@ -1,8 +1,0 @@
-scn DELETEMEHandlerOnRelease
-
-ref actor
-
-begin Function { actor }
-	Call CFDebug 4 "HandlerOnRelease`Open"
-	Call CFDebug 4 "HandlerOnRelease`Close"
-end
