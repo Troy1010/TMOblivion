@@ -1,7 +1,16 @@
 # Features
-Bow sways while drawn
-While bow is drawn, the SeathWeapon control denocks the arrow
-If bow is drawn very briefly, the arrow is simply denocked
+While bow is drawn, the camera sways
+While bow is drawn, when the player clicks the SeathWeapon control, it denocks the arrow
+If bow is drawn very briefly, the arrow is denocked
 
 # Developer Notes
 Because I figured I might want to make sure other mods could add functionality to SeathWeapon, but not while bow is drawn.. SeathWeapon is disabled while bow is drawn.
+
+# Install
+Extract the mod's zip into Oblivion/
+Put Tminus1010_^CommonFunctions.esm near the top of the load order
+Put Tminus1010_^CommonFunctionsChild.esp near the bottom of the load order
+Put TMArchery.esp and CompleteControlHelper.esp in between
+
+#
+Keep in mind that this mod is still alpha. There are lots of things that could still be better, like the install process, ini options, docs, etc.
