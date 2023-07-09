@@ -4,5 +4,3 @@ This mod helps debugging by doing things like:
 	Immediately starting a new game when Oblivion loads
 
 See DebugHelper.ini for a complete list.
-
-I've forgotten what the Dev file is for..
