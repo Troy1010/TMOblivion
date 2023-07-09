@@ -1,8 +1,9 @@
-scn DWQstS
+scn QstS
 
 float fQuestDelayTime
 
 begin _GameMode
+	logz "Playground QstS"
 	if eval OnKeyDown 64
 		PrintToConsole "F6"
 	elseif OnKeyDown 65
