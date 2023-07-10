@@ -3,7 +3,6 @@ scn QstS
 float fQuestDelayTime
 
 
-; negative seconds essentially means "how far in the past did the player have full fatigue?"
 float secondsUntilFullRegenWhileStandingIfCompletelyFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyFit
 float secondsUntilFullRegenWhileRunningIfCompletelyFit
@@ -12,23 +11,67 @@ float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+float secondsUntilFullRegen
 float fTemp
 float fAccumulator
-float fBuffer
-
-; base (av) * GetSecondsPassed (s) / secondsUntilRegen
+int iBuffer
+short bWalkMode
+int iLastSpeedAdjustment
 
 begin _GameMode
-	Logz "RA GameMode`Open"
-	Let fAccumulator += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+	DisableControl ControlIDRunWalk ;There is probably a better place to do this.
+	; If sprint key is pressed, untoggle walk
+	if eval (!PlayerRef.IsRunning) && IsEngaged ControlIDRunWalk
+		TapControl ControlIDToggleRunWalk
+	endif
+	; Define bSprinting, bWalking, etc
+	if eval !IsEngaged ControlIDForward && !IsEngaged ControlIDBack && !IsEngaged ControlIDLeft && !IsEngaged ControlIDRight
+		let SB.bStanding := 1
+		let SB.bWalking := 0
+		let SB.bRunning := 0
+		let SB.bSprinting := 0
+	elseif eval !PlayerRef.IsRunning
+		let SB.bStanding := 0
+		let SB.bWalking := 1
+		let SB.bRunning := 0
+		let SB.bSprinting := 0
+	elseif eval (!IsEngaged ControlIDRunWalk)
+		let SB.bStanding := 0
+		let SB.bWalking := 0
+		let SB.bRunning := 1
+		let SB.bSprinting := 0
+	else
+		let SB.bStanding := 0
+		let SB.bWalking := 0
+		let SB.bRunning := 0
+		let SB.bSprinting := 1
+	endif
+	; Speed Adjustments
+;	PlayerRef.ModActorValueC avcSpeed (-iLastSpeedAdjustment)
+;	let iLastSpeedAdjustment := 0
+;	if eval SB.bSprinting
+;		let iLastSpeedAdjustment := 50
+;		PlayerRef.ModActorValueC avcSpeed iLastSpeedAdjustment
+;	endif
+	; Fatigue Regen
+	if SB.bWalking
+		let secondsUntilFullRegen := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+	elseif SB.bRunning
+		let secondsUntilFullRegen := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+	elseif SB.bSprinting
+		let secondsUntilFullRegen := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+	else
+		let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+	endif
+	Let fAccumulator += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegen
 	while (fAccumulator < -1)
-		Let fBuffer -= 1
+		Let iBuffer -= 1
 		Let fAccumulator += 1
 	loop
 	while (fAccumulator > 1)
-		Let fBuffer += 1
+		Let iBuffer += 1
 		Let fAccumulator -= 1
 	loop
-	PlayerRef.ModActorValue2 "Fatigue" fBuffer
-	Let fBuffer := 0
+	PlayerRef.ModActorValue2 "Fatigue" iBuffer
+	Let iBuffer := 0
 end

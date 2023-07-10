@@ -3,6 +3,7 @@ scn Init
 begin _Function { }
 	if eval Call InitPostLoad2
 		SetModLogLevel LogLevelWarning
+		DisableControl ControlIDRunWalk ; Disabled so that it can act as a sprint mechanism
 		if eval !Qst.fQuestDelayTime
 			Let Qst.fQuestDelayTime := 0.0001
 			StartQuest Qst
