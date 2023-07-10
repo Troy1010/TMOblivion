@@ -1,9 +1,0 @@
-﻿;Tminus1010_^CommonFunctions.esm
-;0x0008A8
-;IncludeInitiations
-scn IncludeInitiations ;This is a dummy function. If called within a xx000800 ID, all explicit refs within the script are checked for Init refs.
-
-array_var aInitiationScripts
-
-begin Function { aInitiationScripts }
-end
