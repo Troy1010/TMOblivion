@@ -1,0 +1,34 @@
+scn QstS
+
+float fQuestDelayTime
+
+
+; negative seconds essentially means "how far in the past did the player have full fatigue?"
+float secondsUntilFullRegenWhileStandingIfCompletelyFit
+float secondsUntilFullRegenWhileWalkingIfCompletelyFit
+float secondsUntilFullRegenWhileRunningIfCompletelyFit
+float secondsUntilFullRegenWhileSprintingIfCompletelyFit
+float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+float fTemp
+float fAccumulator
+float fBuffer
+
+; base (av) * GetSecondsPassed (s) / secondsUntilRegen
+
+begin _GameMode
+	Logz "RA GameMode`Open"
+	Let fAccumulator += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+	while (fAccumulator < -1)
+		Let fBuffer -= 1
+		Let fAccumulator += 1
+	loop
+	while (fAccumulator > 1)
+		Let fBuffer += 1
+		Let fAccumulator -= 1
+	loop
+	PlayerRef.ModActorValue2 "Fatigue" fBuffer
+	Let fBuffer := 0
+end
