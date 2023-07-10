@@ -1,0 +1,72 @@
+scn QstS
+
+short bFeatureUnlock
+short bFeaturePrintMenuIdentifiers
+short bFeatureTCLStart
+short bFeatureSpeedyPlayer
+short bFeatureTransport
+short bFeatureStartRunning
+short bFeatureStartNewGame
+short bQuitOnStartIfSpaceDown
+
+float fQuestDelayTime
+ref rCrosshairRef
+
+string_var svPosComplete
+array_var Iter
+
+short bClickNextYes
+short bExitNextRaceMenu
+short bSkipIntroVideo
+
+short bNextSpacebarTCL
+
+begin _GameMode
+	if eval bSkipIntroVideo
+		TapKey 1
+		Let bSkipIntroVideo := 0
+	endif
+	if eval bFeatureUnlock
+		Let rCrosshairRef := GetCrosshairRef
+		if eval rCrosshairRef
+			if eval rCrosshairRef.GetLocked
+				rCrosshairRef.UnLock
+			endif
+		endif
+	endif
+	if eval bFeatureTransport
+		if eval (OnKeyDown 64) && (IsKeyPressed3 42) ;F6, LShift
+			Call Logd "PlayerPosition"+(Call NarrateSL (Call GetPosComplete PlayerRef))
+		endif
+		if eval (OnKeyDown 65) && (IsKeyPressed3 42) ;F7, LShift
+			Call SetPosComplete PlayerRef ar_List 47073.3 82958.1 294.203 47.0626 Tamriel
+		endif
+		if eval (OnKeyDown 66) && (IsKeyPressed3 42) ;F8, LShift
+		endif
+		if eval (OnKeyDown 67) && (IsKeyPressed3 42) ;F9, LShift
+		endif
+	endif
+	if eval bNextSpacebarTCL
+		if eval (OnKeyDown 57) ;Spacebar
+			Let bNextSpacebarTCL := 0
+			con_TCL
+			Call Delay -30 WaiterEnableSpacebar ar_Null ;In a waiter so that player doesn't jump
+		endif
+	endif
+end
+
+begin _MenuMode 1001
+	if eval bClickNextYes
+		Let bClickNextYes := 0
+		ClickMenuButton "#4" 1001
+	endif
+end
+
+begin _MenuMode 1036
+	if eval bExitNextRaceMenu
+		Let bExitNextRaceMenu := 0
+		CloseAllMenus
+		ToggleFirstPerson 1
+		PlayerRef.SetName "Mr. NoName"
+	endif
+end

@@ -1,0 +1,39 @@
+scn InitActS
+
+short iDebugThreshold
+short bFeatureUnlock
+short bFeaturePrintMenuIdentifiers
+short bFeatureTCLStart
+short bFeatureSpeedyPlayer
+short bFeatureTransport
+short bFeatureStartRunning
+short bFeatureStartNewGame
+short bQuitOnStartIfSpaceDown 
+
+begin _OnActivate
+	if eval (Call InitPostLoad2) || (Call InitOnStart1)
+		; Default ini
+		Let bFeatureUnlock := 0
+		Let bFeaturePrintMenuIdentifiers := 0
+		Let iDebugThreshold := 6
+		Let bFeatureTCLStart := 0
+		Let bFeatureSpeedyPlayer := 0
+		Let bFeatureTransport := 0
+		Let bFeatureStartRunning := 1
+		Let bFeatureStartNewGame := 0
+		let bQuitOnStartIfSpaceDown := 1
+		; Read ini
+		RunBatchScript "Data\Ini\DebugHelper.ini" 1
+		; Pass ini
+		Let Qst.bFeatureUnlock := bFeatureUnlock
+		Let Qst.bFeaturePrintMenuIdentifiers := bFeaturePrintMenuIdentifiers
+		Call CFDebugSetModThreshold iDebugThreshold
+		Let Qst.bFeatureTCLStart := bFeatureTCLStart
+		Let Qst.bFeatureSpeedyPlayer := bFeatureSpeedyPlayer
+		Let Qst.bFeatureTransport := bFeatureTransport
+		Let Qst.bFeatureStartRunning := bFeatureStartRunning
+		Let Qst.bFeatureStartNewGame := bFeatureStartNewGame
+		Let Qst.bQuitOnStartIfSpaceDown := bQuitOnStartIfSpaceDown
+		Logd "DebugHelper InitActS Close"
+	endif
+end

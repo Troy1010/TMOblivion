@@ -1,0 +1,66 @@
+scn Init
+
+ref rTemp
+short iMenuID
+array_var Iter
+
+begin _Function {}
+	if eval Call InitOnStart1
+		DHInitActRef.Activate DummyNPCRef 1
+	endif
+	if eval Call InitOnStart2
+		SetModLogLevel LogLevelWarning
+		if eval !Qst.fQuestDelayTime
+			Let Qst.fQuestDelayTime := 0.0001
+			StartQuest Qst
+		endif
+		if eval Qst.bFeaturePrintMenuIdentifiers
+			ForEach Iter <- ar_Range 1001 1051
+				Let iMenuID := Iter["Value"]
+				Let rTemp := HandlerOnOpen
+				SetMenuEventHandler "OnOpen" rTemp iMenuID
+				Let rTemp := HandlerOnClick
+				SetMenuEventHandler "OnClick" rTemp iMenuID
+			loop
+		endif
+		if eval Qst.bQuitOnStartIfSpaceDown
+			if eval IsKeyPressed3 57 ;Spacebar
+				Logd "DebugHelper`Quitting because spacebar was held down"
+				con_QuitGame
+				return
+			else
+				Logd "DebugHelper`Not quitting because spacebar was not held down"
+			endif
+		endif
+		if eval Qst.bFeatureStartNewGame
+			Logd "DebugHelper`Clicking New Game"
+			ClickMenuButton "#3" 1044
+			Let Qst.bClickNextYes := 1
+			Let Qst.bExitNextRaceMenu := 1
+			Let Qst.bSkipIntroVideo := 1
+		endif
+		Logd "DebugHelper`InitOnStart2"
+	endif
+	if eval Call InitPostLoad2
+		DHInitActRef.Activate DummyNPCRef 1
+		if eval !Qst.fQuestDelayTime
+			Let Qst.fQuestDelayTime := 0.0001
+			StartQuest Qst
+		endif
+	endif
+	if eval Call InitInGameDelayed2
+		if eval Qst.bFeatureSpeedyPlayer
+			PlayerRef.ModActorValue avcSpeed 100
+		endif
+		if eval Qst.bFeatureTCLStart
+			con_TCL
+			Let Qst.bNextSpacebarTCL := 1
+			DisableKey 57
+		endif
+		if eval Qst.bFeatureStartRunning
+			if eval !playerRef.IsRunning
+				TapControl 11
+			endif
+		endif
+	endif
+end

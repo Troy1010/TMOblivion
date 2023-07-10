@@ -1,0 +1,10 @@
+scn HandlerOnClick
+
+short iMenuType
+string_var svTile
+short iID
+string_var s
+
+begin Function { iMenuType svTile iID }
+	Call Logi "OnClick. MenuType:"+$iMenuType+" svTile:"+svTile+" iID:"+$iID
+end

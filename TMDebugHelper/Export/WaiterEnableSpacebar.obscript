@@ -1,0 +1,7 @@
+scn WaiterEnableSpacebar
+
+array_var args
+
+begin Function { args }
+	EnableKey 57
+end

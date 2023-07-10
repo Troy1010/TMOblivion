@@ -1,0 +1,7 @@
+scn HandlerOnOpen
+
+short iMenuType
+
+begin Function { iMenuType }
+	Call Logi "OnOpen. MenuType:"+$iMenuType
+end
