@@ -2,7 +2,7 @@
 This mod is based on these ideas:
 	- Sprinting is a nice game feature.
 	- Fatigue management should be important, and its importance should not disappear when you level up.
-	- Your top skills should represent your character's abilities in a broader sense.
+	- Character should be required to specialize.. they can't be the best warrior, best rogue, and best wizard all at the same time. They should be defined by their top skills.
 
 # Features
 When holding the RunWalk key and only the forward key Then the player will sprint, gaining speed and draining Fatigue.
@@ -11,7 +11,6 @@ Fatigue regen is overhauled.
 	It is based on a combination of:
 		-how many of your top 6 skills are athletics, blade, block, blunt, handToHand, heavyArmor, acrobatics, lightArmor, marksman, sneak.
 		-if you are standing still, walking, running, or sprinting
-		-
 
 # Install
 Extract the mod's zip into Oblivion/
