@@ -14,13 +14,13 @@ begin _OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
 		; Default ini
 		let iLogLevel := LogLevelWarning
-		let secondsUntilFullRegenWhileStandingIfCompletelyFit := 300
-		let secondsUntilFullRegenWhileWalkingIfCompletelyFit := 400
-		let secondsUntilFullRegenWhileRunningIfCompletelyFit := -30
+		let secondsUntilFullRegenWhileStandingIfCompletelyFit := 20
+		let secondsUntilFullRegenWhileWalkingIfCompletelyFit := 20 * 1.2
+		let secondsUntilFullRegenWhileRunningIfCompletelyFit := -600
 		let secondsUntilFullRegenWhileSprintingIfCompletelyFit := -10
-		let secondsUntilFullRegenWhileStandingIfCompletelyNotFit := 150
-		let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 200
-		let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -60
+		let secondsUntilFullRegenWhileStandingIfCompletelyNotFit := 60
+		let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 60 * 1.2
+		let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
 		let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
 		; Read ini
 		RunBatchScript "Data\Ini\RunningAlong.ini" 1

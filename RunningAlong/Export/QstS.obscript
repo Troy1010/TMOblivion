@@ -11,58 +11,106 @@ float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+float fFitMult
 float secondsUntilFullRegen
-float fTemp
 float fAccumulator
 int iBuffer
-short bWalkMode
-int iLastSpeedAdjustment
+int iPreviousAVMax
+int iCountDownAfterMenuMode
+array_var iter
+short iFitSkillCount
+int avMax
 
 begin _GameMode
-	DisableControl ControlIDRunWalk ;There is probably a better place to do this.
-	; If sprint key is pressed, untoggle walk
-	if eval (!PlayerRef.IsRunning) && IsEngaged ControlIDRunWalk
+	SetModLogLevel LogLevelWarning ; I'm not sure why setting this in Init is not working
+	; Disabled ControlIDRunWalk so that it can act as a sprint mechanism instead
+	DisableControl ControlIDRunWalk
+	; # Given walking When sprint key pressed Then untoggle walk
+	if eval (iCountDownAfterMenuMode >=0) ;This is a workaround to solve an issue where the control would be tapped when coming out of MenuMode and control is pressed
+		Let iCountDownAfterMenuMode -= 1
+	elseif eval (!PlayerRef.IsRunning) && IsEngaged ControlIDRunWalk
 		TapControl ControlIDToggleRunWalk
 	endif
-	; Define bSprinting, bWalking, etc
+	; # Define bStanding, bWalking, bRunning, bSprinting
 	if eval !IsEngaged ControlIDForward && !IsEngaged ControlIDBack && !IsEngaged ControlIDLeft && !IsEngaged ControlIDRight
-		let SB.bStanding := 1
-		let SB.bWalking := 0
-		let SB.bRunning := 0
-		let SB.bSprinting := 0
+		Let SB.bStanding := 1
+		Let SB.bWalking := 0
+		Let SB.bRunning := 0
+		Let SB.bSprinting := 0
 	elseif eval !PlayerRef.IsRunning
-		let SB.bStanding := 0
-		let SB.bWalking := 1
-		let SB.bRunning := 0
-		let SB.bSprinting := 0
-	elseif eval (!IsEngaged ControlIDRunWalk)
-		let SB.bStanding := 0
-		let SB.bWalking := 0
-		let SB.bRunning := 1
-		let SB.bSprinting := 0
+		Let SB.bStanding := 0
+		Let SB.bWalking := 1
+		Let SB.bRunning := 0
+		Let SB.bSprinting := 0
+	elseif eval (!IsEngaged ControlIDRunWalk) || IsEngaged ControlIDBack || IsEngaged ControlIDLeft || IsEngaged ControlIDRight
+		Let SB.bStanding := 0
+		Let SB.bWalking := 0
+		Let SB.bRunning := 1
+		Let SB.bSprinting := 0
 	else
-		let SB.bStanding := 0
-		let SB.bWalking := 0
-		let SB.bRunning := 0
-		let SB.bSprinting := 1
+		Let SB.bStanding := 0
+		Let SB.bWalking := 0
+		Let SB.bRunning := 0
+		Let SB.bSprinting := 1
 	endif
-	; Speed Adjustments
-;	PlayerRef.ModActorValueC avcSpeed (-iLastSpeedAdjustment)
-;	let iLastSpeedAdjustment := 0
-;	if eval SB.bSprinting
-;		let iLastSpeedAdjustment := 50
-;		PlayerRef.ModActorValueC avcSpeed iLastSpeedAdjustment
-;	endif
-	; Fatigue Regen
+	; # Speed Adjustments
+	; I'm not sure if SetAVModC is the best way to adjust Speed
+	; Using a flat value instead of % to prevent multiplicativeness
+	; You might need AVUncapper so that values above 100 have an effect
+	if eval SB.bSprinting
+		PlayerRef.SetAVModC avcSpeed "script" 50
+	else
+		PlayerRef.SetAVModC avcSpeed "script" 0
+	endif
+	; # Define fFitMult
+	Logf "====== Define fFitMult ======"
+	;At some point, it might be a good idea to define fFitMult in CommonFunction's SB (ShareBox), so that multiple mods have access.
+	;It would also be a good idea to calculate this less often, perhaps every 5s.
+	;I'm not sure if creating arrays like this can cause memory leaks.
+	;Using iPreviousValue so that, for example, if the player has all skills at 100, it considers them completely fit.
+	;I did not strongly test the iPreviousValue mechanism, yet.
+	Let iFitSkillCount := 0
+	Let iPreviousAVMax := 0
+	ForEach iter <- ar_CustomSort (ar_List avcAthletics, avcBlade, avcBlock, avcBlunt, avcHandToHand, avcHeavyArmor, avcAlchemy, avcAlteration, avcConjuration, avcDestruction, avcIllusion, avcMysticism, avcRestoration, avcAcrobatics, avcLightArmor, avcMarksman, avcMercantile, avcSecurity, avcSneak, avcSpeechcraft) ActorValueComparator 1
+		Let avMax := Call CFGetAVMax PlayerRef iter["Value"]
+		if eval (ShouldLog LogLevelFlooding)
+			Logf "i:" +$iter["Key"] +" avc:" +$iter["Value"] +" avMax:" +$avMax +" iPreviousAVMax:" +$iPreviousAVMax
+		endif
+		if eval ((avMax <= 5) || (iter["Key"] >= 6 && iPreviousAVMax != avMax))
+			break
+		elseif eval (-99999.0 != ar_Find iter["Value"] (ar_List avcAthletics, avcBlade, avcBlock, avcBlunt, avcHandToHand, avcHeavyArmor, avcAcrobatics, avcLightArmor, avcMarksman, avcSneak))
+			if eval (ShouldLog LogLevelFlooding)
+				Logf "Found matching avc:" +$iter["Value"]+ " avMax:" + $avMax
+			endif
+			Let iFitSkillCount += 1
+			if eval (ShouldLog LogLevelFlooding)
+				Logf "iFitSkillCount is now:" +$iFitSkillCount
+				if eval iter["Key"] >= 6
+					Logf "iter[Key] >= 6:"+$(Call NarrateSL &(iter["Key"] >= 6))
+					Logf "iPreviousAVMax != avMax:"+$(iPreviousAVMax != avMax)
+				endif
+			endif
+			Let iPreviousAVMax := Call CFGetAVMax PlayerRef iter["Value"]
+		endif
+	loop
+	if eval (ShouldLog LogLevelFlooding)
+		Logf "iFitSkillCount:" +$iFitSkillCount
+	endif
+	Let fFitMult := Call Min 1 (iFitSkillCount / 6)
+	if eval (ShouldLog LogLevelFlooding)
+		Logf "fFitMult:" +$fFitMult
+	endif
+	; # Fatigue Regen
 	if SB.bWalking
-		let secondsUntilFullRegen := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+		Let secondsUntilFullRegen := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit + (secondsUntilFullRegenWhileWalkingIfCompletelyFit - secondsUntilFullRegenWhileWalkingIfCompletelyNotFit) * fFitMult
 	elseif SB.bRunning
-		let secondsUntilFullRegen := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+		Let secondsUntilFullRegen := secondsUntilFullRegenWhileRunningIfCompletelyNotFit + (secondsUntilFullRegenWhileRunningIfCompletelyFit - secondsUntilFullRegenWhileRunningIfCompletelyNotFit) * fFitMult
 	elseif SB.bSprinting
-		let secondsUntilFullRegen := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
-	else
-		let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+		Let secondsUntilFullRegen := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit + (secondsUntilFullRegenWhileSprintingIfCompletelyFit - secondsUntilFullRegenWhileSprintingIfCompletelyNotFit) * fFitMult
+	else ; SB.bStanding
+		Let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit + (secondsUntilFullRegenWhileStandingIfCompletelyFit - secondsUntilFullRegenWhileStandingIfCompletelyNotFit) * fFitMult
 	endif
+	; ModActorValue2 does not handle decimals. Using an accumulator as a workaround.
 	Let fAccumulator += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegen
 	while (fAccumulator < -1)
 		Let iBuffer -= 1
@@ -74,4 +122,8 @@ begin _GameMode
 	loop
 	PlayerRef.ModActorValue2 "Fatigue" iBuffer
 	Let iBuffer := 0
+end
+
+begin _MenuMode
+	Let iCountDownAfterMenuMode := 10
 end
