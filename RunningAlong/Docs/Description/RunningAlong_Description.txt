@@ -22,3 +22,6 @@ Put after any mod that adjusts the Fatigue game settings.
 Keep in mind that this mod is still alpha. There are lots of things that could still be better, like the install process, ini options, docs, etc.
 This mod might negate some functionality of, for example, star signs that rely on fFatigueReturnMult or something. I might fix that later on, but again, it's still alpha.
 Feel free to make edits and re-release something similar. I know it's an opinionated mod, and I didn't add many ini options.
+
+# KNOWN BUG
+Currently, it causes NPCs to not regain fatigue. I think I might use Realistic Fatigue instead.

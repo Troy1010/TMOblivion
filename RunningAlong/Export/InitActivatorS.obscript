@@ -10,29 +10,29 @@ float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
 
-begin _OnActivate
+begin OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
 		; Default ini
-		let iLogLevel := LogLevelWarning
-		let secondsUntilFullRegenWhileStandingIfCompletelyFit := 20
-		let secondsUntilFullRegenWhileWalkingIfCompletelyFit := 20 * 1.2
-		let secondsUntilFullRegenWhileRunningIfCompletelyFit := -600
-		let secondsUntilFullRegenWhileSprintingIfCompletelyFit := -10
-		let secondsUntilFullRegenWhileStandingIfCompletelyNotFit := 60
-		let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 60 * 1.2
-		let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
-		let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
+		Let iLogLevel := LogLevelWarning
+		Let secondsUntilFullRegenWhileStandingIfCompletelyFit := 20
+		Let secondsUntilFullRegenWhileWalkingIfCompletelyFit := 20 * 1.2
+		Let secondsUntilFullRegenWhileRunningIfCompletelyFit := -600
+		Let secondsUntilFullRegenWhileSprintingIfCompletelyFit := -10
+		Let secondsUntilFullRegenWhileStandingIfCompletelyNotFit := 60
+		Let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 60 * 1.2
+		Let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
+		Let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
 		; Read ini
-		RunBatchScript "Data\Ini\RunningAlong.ini" 1
+		RunBatchScript "Data\ini\RunningAlong.ini" 1
 		; Pass ini
 		SetModLogLevel iLogLevel
-		let Qst.secondsUntilFullRegenWhileStandingIfCompletelyFit := secondsUntilFullRegenWhileStandingIfCompletelyFit
-		let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyFit := secondsUntilFullRegenWhileWalkingIfCompletelyFit
-		let Qst.secondsUntilFullRegenWhileRunningIfCompletelyFit := secondsUntilFullRegenWhileRunningIfCompletelyFit
-		let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyFit := secondsUntilFullRegenWhileSprintingIfCompletelyFit
-		let Qst.secondsUntilFullRegenWhileStandingIfCompletelyNotFit := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
-		let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
-		let Qst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
-		let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileStandingIfCompletelyFit := secondsUntilFullRegenWhileStandingIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyFit := secondsUntilFullRegenWhileWalkingIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyFit := secondsUntilFullRegenWhileRunningIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyFit := secondsUntilFullRegenWhileSprintingIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileStandingIfCompletelyNotFit := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
 	endif
 end

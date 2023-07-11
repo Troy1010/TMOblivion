@@ -2,7 +2,6 @@ scn Init
 
 begin _Function { }
 	if eval Call InitPostLoad2
-		;SetModLogLevel LogLevelFlooding ; I'm not sure why setting this in Init is not working
 		if eval !Qst.fQuestDelayTime
 			Let Qst.fQuestDelayTime := 0.0001
 			StartQuest Qst
