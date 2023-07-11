@@ -1,0 +1,12 @@
+scn Init
+
+begin _Function { }
+	if eval Call InitPostLoad2
+		if eval !Qst.fQuestDelayTime
+			Let Qst.fQuestDelayTime := 0.0001
+			StartQuest Qst
+		endif
+	endif
+	Call InitAll
+	InitActRef.Activate2 PlayerRef 1
+end

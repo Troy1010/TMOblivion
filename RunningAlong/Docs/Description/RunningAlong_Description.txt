@@ -1,0 +1,27 @@
+# Summary
+This mod is based on these ideas:
+	- Sprinting is a nice game feature.
+	- Fatigue management should be important, and its importance should not disappear when you level up.
+	- Your top skills should represent your character's abilities in a broader sense.
+
+# Features
+When holding the RunWalk key and only the forward key Then the player will sprint, gaining speed and draining Fatigue.
+Jumping drains less Fatigue.
+Fatigue regen is overhauled.
+	It is based on a combination of:
+		-how many of your top 6 skills are athletics, blade, block, blunt, handToHand, heavyArmor, acrobatics, lightArmor, marksman, sneak.
+		-if you are standing still, walking, running, or sprinting
+		-
+
+# Install
+Extract the mod's zip into Oblivion/
+Put after any mod that adjusts the Fatigue game settings.
+(These install instructions might not be complete)
+
+#
+Keep in mind that this mod is still alpha. There are lots of things that could still be better, like the install process, ini options, docs, etc.
+This mod might negate some functionality of, for example, star signs that rely on fFatigueReturnMult or something. I might fix that later on, but again, it's still alpha.
+Feel free to make edits and re-release something similar. I know it's an opinionated mod, and I didn't add many ini options.
+
+# KNOWN BUG
+Currently, it causes NPCs to not regain fatigue. I think I might use Realistic Fatigue instead.

@@ -1,0 +1,38 @@
+scn InitActivatorS
+
+short iLogLevel
+float secondsUntilFullRegenWhileStandingIfCompletelyFit
+float secondsUntilFullRegenWhileWalkingIfCompletelyFit
+float secondsUntilFullRegenWhileRunningIfCompletelyFit
+float secondsUntilFullRegenWhileSprintingIfCompletelyFit
+float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+
+begin OnActivate
+	if eval (Call InitPostLoad2) || (Call InitOnStart1)
+		; Default ini
+		Let iLogLevel := LogLevelWarning
+		Let secondsUntilFullRegenWhileStandingIfCompletelyFit := 20
+		Let secondsUntilFullRegenWhileWalkingIfCompletelyFit := 20 * 1.2
+		Let secondsUntilFullRegenWhileRunningIfCompletelyFit := -600
+		Let secondsUntilFullRegenWhileSprintingIfCompletelyFit := -10
+		Let secondsUntilFullRegenWhileStandingIfCompletelyNotFit := 60
+		Let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 60 * 1.2
+		Let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
+		Let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
+		; Read ini
+		RunBatchScript "Data\ini\RunningAlong.ini" 1
+		; Pass ini
+		SetModLogLevel iLogLevel
+		Let Qst.secondsUntilFullRegenWhileStandingIfCompletelyFit := secondsUntilFullRegenWhileStandingIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyFit := secondsUntilFullRegenWhileWalkingIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyFit := secondsUntilFullRegenWhileRunningIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyFit := secondsUntilFullRegenWhileSprintingIfCompletelyFit
+		Let Qst.secondsUntilFullRegenWhileStandingIfCompletelyNotFit := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+	endif
+end
