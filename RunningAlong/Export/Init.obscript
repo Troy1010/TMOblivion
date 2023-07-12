@@ -6,7 +6,6 @@ begin _Function { }
 			Let Qst.fQuestDelayTime := 0.0001
 			StartQuest Qst
 		endif
+		InitActRef.Activate2 PlayerRef 1
 	endif
-	Call InitAll
-	InitActRef.Activate2 PlayerRef 1
 end

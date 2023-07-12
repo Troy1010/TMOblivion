@@ -1,0 +1,7 @@
+scn PostFallWaiter
+
+array_var args ;None expected
+
+begin _Function { args }
+	Call CFSetAVCurrent PlayerRef avcFatigue (Call Max 10, 0.05 * (Call CFGetAVMax PlayerRef avcFatigue)) ;Restore a bit of extra fatigue
+end
