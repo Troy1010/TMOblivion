@@ -33,7 +33,7 @@ begin _GameMode
 		TapControl ControlIDToggleRunWalk
 	endif
 	; # Define bStanding, bWalking, bRunning, bSprinting
-	if eval ((!IsEngaged ControlIDForward) && (!IsEngaged ControlIDBack) && (!IsEngaged ControlIDLeft) && (!IsEngaged ControlIDRight)) || PlayerRef.IsRidingHorse
+	if eval ((!PlayerRef.IsMovingForward) && (!PlayerRef.IsMovingBackward) && (!PlayerRef.IsMovingLeft) && (!PlayerRef.IsMovingRight)) || PlayerRef.IsRidingHorse
 		Let SB.bStanding := 1
 		Let SB.bWalking := 0
 		Let SB.bRunning := 0
@@ -43,7 +43,7 @@ begin _GameMode
 		Let SB.bWalking := 1
 		Let SB.bRunning := 0
 		Let SB.bSprinting := 0
-	elseif eval ((!IsEngaged ControlIDRunWalk) || IsEngaged ControlIDBack || IsEngaged ControlIDLeft || IsEngaged ControlIDRight) && (fRecentlyJumpedWhileSprintingTimer <= 0)
+	elseif eval ((!IsEngaged ControlIDRunWalk) || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight) && (fRecentlyJumpedWhileSprintingTimer <= 0)
 		Let SB.bStanding := 0
 		Let SB.bWalking := 0
 		Let SB.bRunning := 1
