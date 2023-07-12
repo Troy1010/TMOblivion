@@ -13,8 +13,7 @@ float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
 float fFitMult
 float secondsUntilFullRegen
-float fAccumulator
-int iBuffer
+float fFatigueRegen
 int iPreviousAVMax
 int iCountDownAfterMenuMode
 array_var iter
@@ -68,7 +67,6 @@ begin _GameMode
 	;It would also be a good idea to calculate this less often, perhaps every 5s.
 	;I'm not sure if creating arrays like this can cause memory leaks.
 	;Using iPreviousValue so that, for example, if the player has all skills at 100, it considers them completely fit.
-	;I did not strongly test the iPreviousValue mechanism, yet.
 	Let iFitSkillCount := 0
 	Let iPreviousAVMax := 0
 	ForEach iter <- ar_CustomSort (ar_List avcAthletics, avcBlade, avcBlock, avcBlunt, avcHandToHand, avcHeavyArmor, avcAlchemy, avcAlteration, avcConjuration, avcDestruction, avcIllusion, avcMysticism, avcRestoration, avcAcrobatics, avcLightArmor, avcMarksman, avcMercantile, avcSecurity, avcSneak, avcSpeechcraft) ActorValueComparator 1
@@ -110,18 +108,20 @@ begin _GameMode
 	else ; SB.bStanding
 		Let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit + (secondsUntilFullRegenWhileStandingIfCompletelyFit - secondsUntilFullRegenWhileStandingIfCompletelyNotFit) * fFitMult
 	endif
+	Let fFatigueRegen := 0
 	;ModActorValue2 does not handle decimals, so I'm using an accumulator as a workaround.
-	Let fAccumulator += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegen
-	while (fAccumulator < -1)
-		Let iBuffer -= 1
-		Let fAccumulator += 1
-	loop
-	while (fAccumulator > 1)
-		Let iBuffer += 1
-		Let fAccumulator -= 1
-	loop
-	PlayerRef.ModActorValue2 "Fatigue" iBuffer
-	Let iBuffer := 0
+	Let fFatigueRegen += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegen
+	;Need to compensate for fFatigueReturnBase, fFatigueRunBase
+	;(Those GameSettings cannot be adjusted without affecting NPCs.)
+	Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
+	if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
+		Let fFatigueRegen += GetSecondsPassed * (GetGameSetting "fFatigueRunBase")
+	endif
+	;If GetSecondsPassed is big, it means the player waited or something. Just regen all of it.
+	if (GetSecondsPassed > 20)
+		Let fFatigueRegen := 10000
+	endif
+	PlayerRef.ModAVModC avcFatigue "Damage" fFatigueRegen
 end
 
 begin _MenuMode
