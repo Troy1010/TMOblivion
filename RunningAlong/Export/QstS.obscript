@@ -20,6 +20,7 @@ array_var iter
 short iFitSkillCount
 int avMax
 short bRecentlyFell
+float fRecentlyJumpedWhileSprintingTimer
 
 begin _GameMode
 	SetModLogLevel LogLevelWarning ;There might be a better place to define this
@@ -42,7 +43,7 @@ begin _GameMode
 		Let SB.bWalking := 1
 		Let SB.bRunning := 0
 		Let SB.bSprinting := 0
-	elseif eval (!IsEngaged ControlIDRunWalk) || IsEngaged ControlIDBack || IsEngaged ControlIDLeft || IsEngaged ControlIDRight
+	elseif eval ((!IsEngaged ControlIDRunWalk) || IsEngaged ControlIDBack || IsEngaged ControlIDLeft || IsEngaged ControlIDRight) && (fRecentlyJumpedWhileSprintingTimer <= 0)
 		Let SB.bStanding := 0
 		Let SB.bWalking := 0
 		Let SB.bRunning := 1
@@ -52,6 +53,16 @@ begin _GameMode
 		Let SB.bWalking := 0
 		Let SB.bRunning := 0
 		Let SB.bSprinting := 1
+	endif
+	if eval fRecentlyJumpedWhileSprintingTimer > 0
+		if eval PlayerRef.IsInAir && (fRecentlyJumpedWhileSprintingTimer > 0.3)
+			Let fRecentlyJumpedWhileSprintingTimer -= GetSecondsPassed
+		else
+			Let fRecentlyJumpedWhileSprintingTimer := 0
+		endif
+	endif
+	if eval PlayerRef.IsJumping && SB.bSprinting
+		let fRecentlyJumpedWhileSprintingTimer := 2
 	endif
 	; # Speed Adjustments
 	;I'm not sure if SetAVModC is the best way to adjust Speed
