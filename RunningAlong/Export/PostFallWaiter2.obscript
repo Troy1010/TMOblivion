@@ -1,0 +1,7 @@
+scn PostFallWaiter2
+
+array_var args ;None expected
+
+begin _Function { args }
+	Let Qst.bRecentlyFell := 0
+end

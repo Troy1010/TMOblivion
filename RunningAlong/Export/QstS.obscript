@@ -19,6 +19,7 @@ int iCountDownAfterMenuMode
 array_var iter
 short iFitSkillCount
 int avMax
+short bRecentlyFell
 
 begin _GameMode
 	SetModLogLevel LogLevelWarning ;There might be a better place to define this
@@ -98,28 +99,34 @@ begin _GameMode
 	if eval (ShouldLog LogLevelFlooding)
 		Logf "fFitMult:" +$fFitMult
 	endif
+	; # When fatigue is very low Then fall
+	if eval ((PlayerRef.GetAVC avcFatigue) < 3) && !bRecentlyFell
+		let bRecentlyFell := 1
+		Call CFSetAVCurrent PlayerRef avcFatigue (-1000) ;Negative fatigue causes the actor to fall.
+		Call Delay 3 PostFallWaiter ar_Null
+		Call Delay 6 PostFallWaiter2 ar_Null
+	endif
 	; # Fatigue Regen
-	if SB.bWalking
-		Let secondsUntilFullRegen := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit + (secondsUntilFullRegenWhileWalkingIfCompletelyFit - secondsUntilFullRegenWhileWalkingIfCompletelyNotFit) * fFitMult
-	elseif SB.bRunning
-		Let secondsUntilFullRegen := secondsUntilFullRegenWhileRunningIfCompletelyNotFit + (secondsUntilFullRegenWhileRunningIfCompletelyFit - secondsUntilFullRegenWhileRunningIfCompletelyNotFit) * fFitMult
-	elseif SB.bSprinting
-		Let secondsUntilFullRegen := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit + (secondsUntilFullRegenWhileSprintingIfCompletelyFit - secondsUntilFullRegenWhileSprintingIfCompletelyNotFit) * fFitMult
-	else ; SB.bStanding
-		Let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit + (secondsUntilFullRegenWhileStandingIfCompletelyFit - secondsUntilFullRegenWhileStandingIfCompletelyNotFit) * fFitMult
-	endif
-	Let fFatigueRegen := 0
-	;ModActorValue2 does not handle decimals, so I'm using an accumulator as a workaround.
-	Let fFatigueRegen += (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegen
-	;Need to compensate for fFatigueReturnBase, fFatigueRunBase
-	;(Those GameSettings cannot be adjusted without affecting NPCs.)
-	Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
-	if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
-		Let fFatigueRegen += GetSecondsPassed * (GetGameSetting "fFatigueRunBase")
-	endif
 	;If GetSecondsPassed is big, it means the player waited or something. Just regen all of it.
 	if (GetSecondsPassed > 20)
 		Let fFatigueRegen := 10000
+	else
+		if SB.bWalking
+			Let secondsUntilFullRegen := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit + (secondsUntilFullRegenWhileWalkingIfCompletelyFit - secondsUntilFullRegenWhileWalkingIfCompletelyNotFit) * fFitMult
+		elseif SB.bRunning
+			Let secondsUntilFullRegen := secondsUntilFullRegenWhileRunningIfCompletelyNotFit + (secondsUntilFullRegenWhileRunningIfCompletelyFit - secondsUntilFullRegenWhileRunningIfCompletelyNotFit) * fFitMult
+		elseif SB.bSprinting
+			Let secondsUntilFullRegen := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit + (secondsUntilFullRegenWhileSprintingIfCompletelyFit - secondsUntilFullRegenWhileSprintingIfCompletelyNotFit) * fFitMult
+		else ; SB.bStanding
+			Let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit + (secondsUntilFullRegenWhileStandingIfCompletelyFit - secondsUntilFullRegenWhileStandingIfCompletelyNotFit) * fFitMult
+		endif
+		Let fFatigueRegen := (Call CFGetAVBase PlayerRef 10) * GetSecondsPassed / secondsUntilFullRegen
+		;Need to compensate for fFatigueReturnBase, fFatigueRunBase
+		;(Those GameSettings cannot be adjusted without affecting NPCs.)
+		Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
+		if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
+			Let fFatigueRegen += GetSecondsPassed * (GetGameSetting "fFatigueRunBase")
+		endif
 	endif
 	PlayerRef.ModAVModC avcFatigue "Damage" fFatigueRegen
 end
