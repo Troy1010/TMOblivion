@@ -87,3 +87,6 @@ BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
 ADD: TMDebugHelper.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
+ADD: RunningAlong.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
