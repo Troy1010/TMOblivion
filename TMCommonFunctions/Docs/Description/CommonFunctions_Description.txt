@@ -4,6 +4,13 @@ It was designed for my mods, but you can use it for yours as well, if you like.
 
 The CommonFunctionsChild.esp allows CommonFunctions to dispatch events closer to the start of the frame. (the esp last in the load order is run first)
 
+# Misc Features
+Allows mods to share state with one another in SB (ShareBox).
+There are some reusable functions you can check out. Some examples:
+	DoOnce
+	Delay
+	IsCallingObjectStable
+  (Some of these might have been better as OBSE plugin methods. I've migrated some over already into LogLevels and CompleteControl, but not all.)
 # Initiation Features
 ## Initiation Events
 There are 4 initiation events
