@@ -1,0 +1,7 @@
+Helps development by providing a place to test isolated script code.
+
+An example use case would be:
+	Install Playground.esp
+	Edit it with ConstructionSet to use commands that you're trying to test
+	Manually test those edits
+	Uninstall Playground.esp
