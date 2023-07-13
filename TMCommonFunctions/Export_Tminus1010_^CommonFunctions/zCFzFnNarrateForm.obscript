@@ -18,3 +18,4 @@ SetFunctionValue svString
 ; Close
 sv_Destruct svString
 end
+

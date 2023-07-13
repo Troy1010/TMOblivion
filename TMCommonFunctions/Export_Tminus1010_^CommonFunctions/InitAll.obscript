@@ -1,0 +1,6 @@
+scn InitAll
+;DEPRECATED: Was causing CTD on start
+;This is a dummy function. If called within a xx000800 ID, that script will be called on every initiation event.
+
+begin Function { }
+end

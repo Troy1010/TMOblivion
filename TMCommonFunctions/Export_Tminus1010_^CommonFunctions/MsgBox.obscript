@@ -1,0 +1,5 @@
+scn MsgBox ; DEPRECATED: Just use MessageBox
+
+begin _Function { }
+
+end
