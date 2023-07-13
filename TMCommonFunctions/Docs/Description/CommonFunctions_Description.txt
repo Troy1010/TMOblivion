@@ -1,9 +1,11 @@
-CommonFunctions is a library. It is a master esm that contains functions and dispatches events for its child esps to use.
+# Description
+CommonFunctions acts as a shared codebase, an event bus, and a shared state cache for other mods.
+It was designed for my mods, but you can use it for yours as well, if you like.
 
 The CommonFunctionsChild.esp allows CommonFunctions to dispatch events closer to the start of the frame. (the esp last in the load order is run first)
 
-**Initiation Features
-*Initiation Events
+# Initiation Features
+## Initiation Events
 There are 4 initiation events
  InitOnStart: Once on the first frame of MainMenu.
   UniversalData (aka SetEventHandlers, GameSettings, etc) is recommended to be set here.
@@ -14,15 +16,16 @@ There are 4 initiation events
  InitInGame: A few frames after every PostLoad/NewGame, once references are stable.
   Reference edits (Adding tokens, etc) are recommended here.
 If SaveData is set in InitGameLoad||InitMainMenu, it can be expected to always exist.
-*Script Initiations
+## Script Initiations
 Any child mod's script whose formid ends with "000800" will be scanned during initiation events.
 If that script contains a reference to any of the Init functions, it is called.
-*Activator Initiations
+## Activator Initiations
 Some script functions (ie ones that help explicitly read ini files) must be run from an object.
 During -all- initiation events, CF will activate -all- objects placed in zCFInitActRefCell.
+!! ^This is no longer working
 It is recommended that the scripts of these objects use the Init functions so that they do not run at each initiation event.
 
-**Form Maps
+# Form Maps
 Form maps are maps that use FormIDs as keys.
 Because FormIDs change (ie whenever mod load order is changed), it is important to resolve them as necessary.
 There are 8 types
