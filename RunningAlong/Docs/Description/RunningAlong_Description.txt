@@ -1,26 +1,33 @@
 # Summary
 This mod is based on these ideas:
-	- Sprinting is a nice game feature.
-	- Fatigue management should be important, and its importance should not disappear when you level up.
-	- Character should be required to specialize.. they can't be the best warrior, best rogue, and best wizard all at the same time. They should be defined by their top skills.
+	-Sprinting is a nice game feature.
+	-Fatigue management should be important, and its importance should not disappear when you level up.
+	-Character should be required to specialize.. they can't be the best warrior, best rogue, and best wizard all at the same time.
+	-Backwards running at full speed makes it a bit too easy to kite.
 
 # Features
+No backwards running
 When holding the RunWalk key and only the forward key Then the player will sprint, gaining speed and draining Fatigue.
-Jumping drains less Fatigue.
-Fatigue regen is overhauled.
-	It is based on a combination of:
-		-how many of your top 6 skills are athletics, blade, block, blunt, handToHand, heavyArmor, acrobatics, lightArmor, marksman, sneak.
-		-if you are standing still, walking, running, or sprinting
+Player falls when fatigue is 0
+Player fatigue drains/regenerates according to:
+	-How many of your top 6 skills are athletics, blade, block, blunt, handToHand, heavyArmor, acrobatics, lightArmor, marksman, sneak.
+	-If you are standing still, walking, running, or sprinting
+	-Configurable ini values, such as:
+		secondsUntilFullRegenWhileStandingIfCompletelyFit
+		secondsUntilFullRegenWhileWalkingIfCompletelyFit
+		secondsUntilFullRegenWhileRunningIfCompletelyFit
+		secondsUntilFullRegenWhileSprintingIfCompletelyFit
+		secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+		secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+		secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+		secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+Jumping drains only 1 Fatigue.
 
 # Install
+Requires CompleteControl, LogLevels, and TMCommonFunctions
 Extract the mod's zip into Oblivion/
-Put after any mod that adjusts the Fatigue game settings.
-(These install instructions might not be complete)
+Put RunningAlong before TMCommonFunctionsChild in the load order
 
 #
 Keep in mind that this mod is still alpha. There are lots of things that could still be better, like the install process, ini options, docs, etc.
-This mod might negate some functionality of, for example, star signs that rely on fFatigueReturnMult or something. I might fix that later on, but again, it's still alpha.
 Feel free to make edits and re-release something similar. I know it's an opinionated mod, and I didn't add many ini options.
-
-# KNOWN BUG
-Currently, it causes NPCs to not regain fatigue. I think I might use Realistic Fatigue instead.
