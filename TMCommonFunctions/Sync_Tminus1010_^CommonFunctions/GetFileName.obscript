@@ -1,9 +1,0 @@
-scn GetFileName
-
-string_var sFileFullPath
-array_var aSplitFilePath
-
-Begin _Function { sFileFullPath }
-	let aSplitFilePath := sv_Split sFileFullPath,"\"
-	SetFunctionValue aSplitFilePath[ar_Last aSplitFilePath]
-end
