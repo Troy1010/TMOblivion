@@ -85,7 +85,7 @@ BEFORE: Bashed Patch, 0.esp
 ADD: TMArchery.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
-ADD: TMDebugHelper.esp
+ADD: DebugHelper.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
 ADD: RunningAlong.esp
