@@ -1,0 +1,11 @@
+scn TMHealthTokenS
+
+begin _GameMode
+	if eval !Call CFIsTokenStable
+		return
+	elseif eval Call CFStandardTokenRemovalCheck
+		RemoveMe
+	endif
+
+	logz "TMHealthTokenS. GetContainer:" +$GetContainer
+end

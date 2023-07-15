@@ -1,0 +1,61 @@
+scn QstS
+
+float startBleedHealthPercentage
+float secondsUntilDeathFromBleedHealthPercentage
+float secondsUntilFullHealthFromBleedHealthPercentage
+float curveFactorOfBleed ;1 means the equation is flat, more than 1 means the equation is curved, with less bleeding early on and more bleeding later. No matter what the value is, secondsUntilDeathFromBleedHealthPercentage is still followed.
+
+ref rTemp
+int counter
+ref rTemp2
+
+begin _GameMode
+	SetModLogLevel LogLevelFlooding
+	Let counter := 0
+	Set rTemp to GetFirstRef
+	while rTemp
+		if eval !(rTemp.Call CFIsCallingObjectStable)
+			if eval ShouldLog LogLevelFlooding
+				Logf "Skipping bc rTemp is not stable. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		if eval !(rTemp.IsActor)
+			if eval ShouldLog LogLevelFlooding
+				Logf "Skipping bc rTemp was not an actor. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		if eval (rTemp.GetItemCount TMHealthToken) > 0
+			if eval ShouldLog LogLevelFlooding
+				Logf "Skipping bc rTemp already has token. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+
+		
+;		if eval (rTemp == PlayerRef)
+;			;PlayerRef.AddItem shows a message at the top left of the screen.
+;			;This workaround prevents that message from being shown.
+;			Let rTemp2 := PlayerRef.PlaceAtMe TMHealthToken 1
+;			rTemp2.Activate PlayerRef 1
+;			Set rTemp to GetNextRef
+;			continue
+;		endif
+
+		
+
+		Let counter += 1
+		if eval ShouldLog LogLevelFlooding
+			Logf "Adding item to:" + $(rTemp)
+		endif
+		rTemp.AddItem TMHealthToken 1
+
+
+		Set rTemp to GetNextRef
+	loop
+	Logf "Loop complete. counter:" +$counter
+end
