@@ -85,6 +85,9 @@ BEFORE: Bashed Patch, 0.esp
 ADD: TMArchery.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
+ADD: TMHealth.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
 ADD: DebugHelper.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
