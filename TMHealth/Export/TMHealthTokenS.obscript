@@ -13,7 +13,7 @@ float fStartRegenValue
 float fullHealthTimer
 
 begin _GameMode
-	SetModLogLevel LogLevelFlooding
+	;SetModLogLevel LogLevelFlooding
 	if eval !Call CFIsTokenStable
 		return
 	elseif eval Call CFStandardTokenRemovalCheck
@@ -47,8 +47,13 @@ begin _GameMode
 
 		Let deathTimer -= GetSecondsPassed * Qst.secondsMult
 		
-		; Solving for x (targetHealth) because solving for dx can get inaccurate due to lack of precision.
-		Let targetHealth := (deathTimer / Qst.secondsUntilDeathFromBleedHealthPercentage) * fStartBleedValue + 1
+		if (deathTimer <= 0)
+			; Might not be necessary..
+			Let targetHealth := 0
+		else
+			; Solving for x (targetHealth) because solving for dx can get inaccurate due to lack of precision.
+			Let targetHealth := (deathTimer / Qst.secondsUntilDeathFromBleedHealthPercentage) * fStartBleedValue + 1
+		endif
 
 		if eval ShouldLog LogLevelFlooding
 			if eval container == PlayerRef
@@ -71,7 +76,8 @@ begin _GameMode
 			endif
 		endif
 
-		Let fullHealthTimer -= Call CFMax 0 GetSecondsPassed * Qst.secondsMult
+		Let fullHealthTimer -= GetSecondsPassed * Qst.secondsMult
+		Let fullHealthTimer := Call CFMax 0 fullHealthTimer
 		
 		; Solving for x (targetHealth) because solving for dx can get inaccurate due to lack of precision.
 		Let targetHealth := xMax - (xMax - fStartRegenValue)*(fullHealthTimer / Qst.secondsUntilFullHealthFromRegenHealthPercentage) + 1
