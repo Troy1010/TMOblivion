@@ -17,7 +17,7 @@ int counter
 ref rTemp2
 
 begin _GameMode
-	SetModLogLevel LogLevelDebug
+	SetModLogLevel LogLevelWarning
 	if eval !binit
 		Let bInit := 1
 		RunBatchScript "Data\ini\TMHealth.ini"
@@ -32,7 +32,6 @@ begin _GameMode
 	Let counter := 0
 	Set rTemp to GetFirstRef
 	while rTemp
-		SetModLogLevel LogLevelWarning
 		if eval !(rTemp.Call CFIsCallingObjectStable)
 			if eval ShouldLog LogLevelFlooding
 				Logf "Skipping bc rTemp is not stable. rTemp:" +$rTemp
