@@ -1,0 +1,93 @@
+scn TMHealthTokenS
+
+float fTemp
+float fHealthFraction
+ref container
+float xMax
+float x ;x represents health
+float fStartBleedValue
+float deathTimer
+float targetHealth
+float previousHealth
+float fStartRegenValue
+float fullHealthTimer
+
+begin _GameMode
+	SetModLogLevel LogLevelFlooding
+	if eval !Call CFIsTokenStable
+		return
+	elseif eval Call CFStandardTokenRemovalCheck
+		RemoveMe
+	endif
+
+	set container to GetContainer
+
+	if eval ShouldLog LogLevelFlooding
+		if eval container == PlayerRef
+			Logf "----TMHealthTokenS. container:" +$container
+		endif
+	endif
+
+	Let xMax := (Call CFGetAVMax container avcHealth) -1 ; You die when you reach < 1 health, so we'll adjust by -1
+	Let x := ((Call CFGetAVCurrent container avcHealth) -1) ; You die when you reach < 1 health, so we'll adjust by -1
+	Let fHealthFraction := x / xMax
+
+	if eval (fHealthFraction < Qst.startBleedHealthFraction)
+		Let fStartBleedValue := Qst.startBleedHealthFraction * xMax
+
+		if previousHealth != x
+			;t = x * SUD / SBV
+			Let deathTimer := Qst.secondsUntilDeathFromBleedHealthPercentage * x / fStartBleedValue
+			if eval ShouldLog LogLevelFlooding
+				if eval container == PlayerRef
+					Logf "QAZ. previousHealth:"+$previousHealth+" (GetActorValueC avcHealth):"+$(GetActorValueC avcHealth)+" deathTimer:"+$deathTimer+" Qst.secondsMult:"+$Qst.secondsMult
+				endif
+			endif
+		endif
+
+		Let deathTimer -= GetSecondsPassed * Qst.secondsMult
+		
+		; Solving for x (targetHealth) because solving for dx can get inaccurate due to lack of precision.
+		Let targetHealth := (deathTimer / Qst.secondsUntilDeathFromBleedHealthPercentage) * fStartBleedValue + 1
+
+		if eval ShouldLog LogLevelFlooding
+			if eval container == PlayerRef
+				Logf "deathTimer:"+$deathTimer+" targetHealth:"+$targetHealth+" previousHealth:"+$previousHealth
+			endif
+		endif
+
+		Call CFSetAVCurrent container avcHealth targetHealth
+	endif
+	if eval (fHealthFraction > Qst.startRegenHealthFraction)
+		Let fStartRegenValue := Qst.startRegenHealthFraction * xMax
+
+		if previousHealth != x
+			;t = (xMax - x) * SUFH / (xMax - SRV)
+			Let fullHealthTimer := (xMax - x) * Qst.secondsUntilFullHealthFromRegenHealthPercentage / (xMax - fStartRegenValue)
+			if eval ShouldLog LogLevelFlooding
+				if eval container == PlayerRef
+					Logf "ZAQ. previousHealth:"+$previousHealth+" (GetActorValueC avcHealth):"+$(GetActorValueC avcHealth)+" fullHealthTimer:"+$fullHealthTimer+" Qst.secondsMult:"+$Qst.secondsMult
+				endif
+			endif
+		endif
+
+		Let fullHealthTimer -= Call CFMax 0 GetSecondsPassed * Qst.secondsMult
+		
+		; Solving for x (targetHealth) because solving for dx can get inaccurate due to lack of precision.
+		Let targetHealth := xMax - (xMax - fStartRegenValue)*(fullHealthTimer / Qst.secondsUntilFullHealthFromRegenHealthPercentage) + 1
+
+		if eval ShouldLog LogLevelFlooding
+			if eval container == PlayerRef
+				Logf "fullHealthTimer:"+$fullHealthTimer+" targetHealth:"+$targetHealth+" previousHealth:"+$previousHealth
+			endif
+		endif
+
+		Call CFSetAVCurrent container avcHealth targetHealth
+	endif
+	if eval ShouldLog LogLevelFlooding
+		if eval container == PlayerRef && (Qst.startBleedHealthFraction <= fHealthFraction) && (fHealthFraction <= Qst.startRegenHealthFraction)
+			Logf "Neither bleeding nor regenerating"
+		endif
+	endif
+	Let previousHealth := (Call CFGetAVCurrent container avcHealth) -1
+end
