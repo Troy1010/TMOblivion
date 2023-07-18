@@ -1,19 +1,38 @@
 scn QstS
 
 float startBleedHealthPercentage
+float startRegenHealthPercentage
 float secondsUntilDeathFromBleedHealthPercentage
-float secondsUntilFullHealthFromBleedHealthPercentage
-float curveFactorOfBleed ;1 means the equation is flat, more than 1 means the equation is curved, with less bleeding early on and more bleeding later. No matter what the value is, secondsUntilDeathFromBleedHealthPercentage is still followed.
+float secondsUntilFullHealthFromRegenHealthPercentage
+float secondsMult
+
+float startBleedHealthFraction
+float startRegenHealthFraction
+
+
+short bInit
 
 ref rTemp
 int counter
 ref rTemp2
 
 begin _GameMode
-	SetModLogLevel LogLevelFlooding
+	SetModLogLevel LogLevelDebug
+	if eval !binit
+		Let bInit := 1
+		RunBatchScript "Data\ini\TMHealth.ini"
+		Let startBleedHealthFraction := startBleedHealthPercentage / 100
+		Let startRegenHealthFraction := startRegenHealthPercentage / 100
+		Logd "startBleedHealthFraction:" + $startBleedHealthFraction
+		Logd "startRegenHealthFraction:" + $startRegenHealthFraction
+		Logd "secondsUntilDeathFromBleedHealthPercentage:" + $secondsUntilDeathFromBleedHealthPercentage
+		Logd "secondsUntilFullHealthFromRegenHealthPercentage:" + $secondsUntilFullHealthFromRegenHealthPercentage
+		Logd "secondsMult:" + $secondsMult
+	endif
 	Let counter := 0
 	Set rTemp to GetFirstRef
 	while rTemp
+		SetModLogLevel LogLevelWarning
 		if eval !(rTemp.Call CFIsCallingObjectStable)
 			if eval ShouldLog LogLevelFlooding
 				Logf "Skipping bc rTemp is not stable. rTemp:" +$rTemp
@@ -31,6 +50,13 @@ begin _GameMode
 		if eval (rTemp.GetItemCount TMHealthToken) > 0
 			if eval ShouldLog LogLevelFlooding
 				Logf "Skipping bc rTemp already has token. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		if eval (rTemp.GetDead)
+			if eval ShouldLog LogLevelFlooding
+				Logf "Skipping bc rTemp is dead. rTemp:" +$rTemp
 			endif
 			Set rTemp to GetNextRef
 			continue
