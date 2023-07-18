@@ -82,6 +82,18 @@ AFTER: Oblivion.esm
 ADD: Tminus1010_^CommonFunctionsChild.esp
 BEFORE: Bashed Patch, 0.esp
 
+ADD: TMBashableTweaks_FrostAtronach.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
+ADD: TMBashableTweaks_Ingredients.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
+ADD: TMBashableTweaks_NoDrainLifeStaffEnchants.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
+ADD: TMBashableTweaks_Rat.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
 ADD: TMArchery.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
