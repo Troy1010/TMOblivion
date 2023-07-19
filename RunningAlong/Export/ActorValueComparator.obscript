@@ -4,5 +4,5 @@ array_var arg1
 array_var arg2
 
 begin _Function { arg1, arg2 }
-	SetFunctionValue (Call CFGetAVMax PlayerRef arg1[0]) < (Call CFGetAVMax PlayerRef arg2[0]) ; I'm not sure if I should use CFGetAVMax or something else
+	SetFunctionValue (Call CFGetAVBase PlayerRef arg1[0]) < (Call CFGetAVBase PlayerRef arg2[0])
 end

@@ -9,6 +9,7 @@ float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+float secondsMult
 
 begin OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
@@ -22,6 +23,7 @@ begin OnActivate
 		Let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 60 * 1.2
 		Let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
 		Let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
+		Let secondsMult := 1.0
 		; Read ini
 		RunBatchScript "Data\ini\RunningAlong.ini" 1
 		; Pass ini
@@ -34,5 +36,6 @@ begin OnActivate
 		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+		Let Qst.secondsMult := secondsMult
 	endif
 end
