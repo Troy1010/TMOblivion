@@ -11,20 +11,17 @@ float secondsMult
 float startBleedHealthFraction
 float startRegenHealthFraction
 
-
-short bInit
-
 ref rTemp
 int counter
 ref rTemp2
 
 begin _GameMode
-	SetModLogLevel logLevel
-	if eval !binit
-		Let bInit := 1
+	if eval GetGameLoaded
 		RunBatchScript "Data\ini\TMHealth.ini"
+		SetModLogLevel logLevel
 		Let startBleedHealthFraction := startBleedHealthPercentage / 100
 		Let startRegenHealthFraction := startRegenHealthPercentage / 100
+		Logd "logLevel:" + $logLevel
 		Logd "bEnableBleedAndRegen:" + $bEnableBleedAndRegen
 		Logd "startBleedHealthFraction:" + $startBleedHealthFraction
 		Logd "startRegenHealthFraction:" + $startRegenHealthFraction
