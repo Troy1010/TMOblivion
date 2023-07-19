@@ -123,3 +123,18 @@ BEFORE: Bashed Patch, 0.esp
 
 ADD: No Starting Spells True.esp
 BEFORE: Bashed Patch, 0.esp
+
+ADD: CompleteControlHelper.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: NoTutorial.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: TMWeaponPatcher.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: Synthesis.esp
+AFTER: TMWeaponPatcher.esp
+
+ADD: Better Cities Leyawiin - Unofficial Oblivion Patch.esp
+AFTER: Better Cities Full - OOO.esp
