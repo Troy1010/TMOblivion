@@ -105,3 +105,21 @@ BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
 ADD: RunningAlong.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
+ADD: The Lost Spires - Assorted Fixes.esp
+AFTER: The Lost Spires.esp
+
+ADD: The Lost Spires - Optional Diary Narration.esp
+AFTER: The Lost Spires.esp
+
+ADD: The Lost Spires - Rodon Dakkon Dialogue Tweak.esp
+AFTER: The Lost Spires.esp
+
+ADD: Artifacts_Remastered.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: Mart's Monster Mod - Divserse Wisp and VASE Addon.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: No Starting Spells True.esp
+BEFORE: Bashed Patch, 0.esp
