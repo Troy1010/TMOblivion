@@ -1,5 +1,7 @@
 scn QstS
 
+short logLevel
+short bEnableBleedAndRegen
 float startBleedHealthPercentage
 float startRegenHealthPercentage
 float secondsUntilDeathFromBleedHealthPercentage
@@ -17,12 +19,13 @@ int counter
 ref rTemp2
 
 begin _GameMode
-	SetModLogLevel LogLevelWarning
+	SetModLogLevel logLevel
 	if eval !binit
 		Let bInit := 1
 		RunBatchScript "Data\ini\TMHealth.ini"
 		Let startBleedHealthFraction := startBleedHealthPercentage / 100
 		Let startRegenHealthFraction := startRegenHealthPercentage / 100
+		Logd "bEnableBleedAndRegen:" + $bEnableBleedAndRegen
 		Logd "startBleedHealthFraction:" + $startBleedHealthFraction
 		Logd "startRegenHealthFraction:" + $startRegenHealthFraction
 		Logd "secondsUntilDeathFromBleedHealthPercentage:" + $secondsUntilDeathFromBleedHealthPercentage
@@ -61,7 +64,7 @@ begin _GameMode
 			continue
 		endif
 
-		
+		; TODO: Add to player silently
 ;		if eval (rTemp == PlayerRef)
 ;			;PlayerRef.AddItem shows a message at the top left of the screen.
 ;			;This workaround prevents that message from being shown.
@@ -71,16 +74,17 @@ begin _GameMode
 ;			continue
 ;		endif
 
-		
-
 		Let counter += 1
-		if eval ShouldLog LogLevelFlooding
-			Logf "Adding item to:" + $(rTemp)
+		if eval bEnableBleedAndRegen
+			if eval ShouldLog LogLevelFlooding
+				Logf "Adding item to:" + $(rTemp)
+			endif
+			rTemp.AddItem TMHealthToken 1
 		endif
-		rTemp.AddItem TMHealthToken 1
-
 
 		Set rTemp to GetNextRef
 	loop
-	Logf "Loop complete. counter:" +$counter
+	if eval (ShouldLog LogLevelFlooding)
+		Logf "Loop complete. counter:" +$counter
+	endif
 end
