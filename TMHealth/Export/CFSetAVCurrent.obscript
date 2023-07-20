@@ -9,8 +9,8 @@ float fAmount
 
 begin _Function { rTarget avc fAmount }
 	if eval rTarget
-		rTarget.SetAVModC avc "Damage" (fAmount - Call CFGetAVBase rTarget avc)
+		rTarget.SetAVModC avc "Damage" (fAmount - Call CFGetAVMax rTarget avc)
 	else
-		
+		Loge "Not implemented"
 	endif
 end
