@@ -138,3 +138,6 @@ AFTER: TMWeaponPatcher.esp
 
 ADD: Better Cities Leyawiin - Unofficial Oblivion Patch.esp
 AFTER: Better Cities Full - OOO.esp
+
+ADD: TMTimescale.esp
+BEFORE: Bashed Patch, 0.esp
