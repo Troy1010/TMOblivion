@@ -1,0 +1,58 @@
+scn RegisterNonMasters
+
+array_var tempA ;for non-masters. This array must be filled with literal formids (without two-digit mod index)
+
+begin Function { }
+if IsModLoaded "Oscuro's_Oblivion_Overhaul.esm"
+	let tempA := ar_List "000D61" "001B2E" "001D36" "002158" "002159" "002642" "0027DB" "0028E2" "003769" "003C34" "0043BA" "00453A" "007065" "007C0B" "007C0C" "00A844" "015C2B" "015D7D" "01630A" "016D4A" 
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "Oscuro's_Oblivion_Overhaul.esm" tempA
+	let tempA := ar_List "016E23" "016ECF" "017645" "01948B" "01E620" "01E79C" "039749" "0398D0" "039FAD" "03A070" "03A15C"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "Oscuro's_Oblivion_Overhaul.esm" tempA
+endif
+if IsModLoaded "DLCMehrunesRazor.esp"
+	let tempA := ar_List "000CE6" "000EC2" "000EC4" "000EC8" "000ECA" "000ECC" "000ECE" "000ED0" "000ED2" "000ED4" "0012E8" "00130E" "0019AF" "001A1B" "0020C6" "00216D" "00282A" "002982" "002AEA" "002DB4"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "DLCMehrunesRazor.esp" tempA
+	let tempA := ar_List "003438" "00364B" "00385C"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "DLCMehrunesRazor.esp" tempA
+endif
+if IsModLoaded "DLCThievesDen.esp"
+	let tempA := ar_List "000D94" "00139D" "0019A9"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "DLCThievesDen.esp" tempA
+endif
+if IsModLoaded "Knights.esp"
+	let tempA := ar_List "000FD6" "001215" "001432" "0016F8" "001850" "001CF2" "001E1A" "002214" "0023C0" "0024BE"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "Knights.esp" tempA
+endif
+if IsModLoaded "xulColovianHighlands_EV.esp"
+	let tempA := ar_List "01EECA" "01EECB" "01EECC"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulColovianHighlands_EV.esp" tempA
+endif
+if IsModLoaded "xulBeachesOfCyrodiilLostCoast.esp"
+	let tempA := ar_List "0092DA" "00B8D9" "00C124" "00CD94" "00CE35" "00E899" "00F21B"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulBeachesOfCyrodiilLostCoast.esp" tempA
+endif
+if IsModLoaded "xulArriusCreek.esp"
+	let tempA := ar_List "0088DE"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulArriusCreek.esp" tempA
+endif
+if IsModLoaded "xulBrenaRiverRavine.esp"
+	let tempA := ar_List "0048A0" "004E0C" "004E0D" "005795" "0066DF" "012777" "012851"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulBrenaRiverRavine.esp" tempA
+endif
+if IsModLoaded "xulBlackwoodForest.esp"
+	let tempA := ar_List "006992" "00872B"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulBlackwoodForest.esp" tempA
+endif
+if IsModLoaded "xulSkingradOutskirts.esp"
+	let tempA := ar_List "004BF6"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulSkingradOutskirts.esp" tempA
+endif
+if IsModLoaded "xulSnowdale.esp"
+	let tempA := ar_List "010ADD" "01A655" "0212A4" "022F53" "02D4DC" "02DC5C"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulSnowdale.esp" tempA
+endif
+if IsModLoaded "xulCliffsOfAnvil.esp"
+	let tempA := ar_List "0021A6" "0080DC" "008693" "016AF2" "01B0A1"
+	Call AddNonMasterToRegistry Qst.CellsWithDarkLightingRegistry "xulCliffsOfAnvil.esp" tempA
+endif
+end

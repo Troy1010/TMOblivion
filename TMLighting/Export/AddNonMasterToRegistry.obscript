@@ -1,0 +1,14 @@
+scn AddNonMasterToRegistry
+
+array_var mapToAddTo
+array_var arrayToGetFrom
+string_var modToGetFrom
+
+array_var keyAndValue
+
+begin Function { mapToAddTo modToGetFrom arrayToGetFrom }
+ForEach keyAndValue <- arrayToGetFrom
+	let mapToAddTo[GetRawFormIDString (GetFormFromMod modToGetFrom keyAndValue["value"])] := 0
+loop
+sv_Destruct modToGetFrom
+end

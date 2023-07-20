@@ -1,0 +1,14 @@
+scn Init
+
+begin _Function { }
+	if eval Call InitPostLoad2
+		Call CFDebugSetModThreshold 7
+		let Qst.CellsWithDarkLightingRegistry := ar_Construct "stringmap"
+		Call RegisterVanilla
+		Call RegisterShiveringIsles
+		Call RegisterNonMasters
+		
+		Call SetEventHandler2 EVENTCellChanged HandlerCellChanged
+		Call CFDebug 2 "Lighting Init"
+	endif
+end

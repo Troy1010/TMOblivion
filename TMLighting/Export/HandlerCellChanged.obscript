@@ -1,0 +1,34 @@
+scn HandlerCellChanged
+
+array_var argumentArr
+ref rTemp
+array_var aTemp
+short bDarkCell
+
+Begin Function { argumentArr }
+	Call CFDebug 2 "Lighting`HandlerCellChanged`Open"
+	Call CFDebug 4 "argumentArr:"+$Call Narrate &argumentArr
+	let bDarkCell := 0
+	if eval argumentArr["bInterior"]
+		let rTemp := argumentArr["rNewCell"]
+		Call CFDebug 4 "New Cell ID:"+(GetFormIDString rTemp)
+		if eval ar_HasKey Qst.CellsWithDarkLightingRegistry (GetFormIDString rTemp)
+			let bDarkCell := 1
+		endif
+	endif
+	
+	if bDarkCell
+		Call CFDebug 4 "Dark Cell"
+		; Contrast
+		ORSetCustomShaderEnabled "Tminus1010_Lighting" 1
+		; Ambient Light
+		let aTemp := ar_Construct "stringmap"
+		let aTemp["ambient"] := ar_List 15 15 15
+		let rTemp := argumentArr["rNewCell"]
+		SetCellLighting rTemp aTemp
+	else
+		Call CFDebug 4 "Light Cell"
+		; Contrast
+		ORSetCustomShaderEnabled "Tminus1010_Lighting" 0
+	endif
+end
