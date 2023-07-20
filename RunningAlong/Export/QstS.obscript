@@ -2,7 +2,7 @@ scn QstS
 
 float fQuestDelayTime
 
-
+short logLevel
 float secondsMult
 float secondsUntilFullRegenWhileStandingIfCompletelyFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyFit
@@ -26,7 +26,7 @@ short bInit
 float secondsPassed
 
 begin _GameMode
-	SetModLogLevel LogLevelDebug
+	SetModLogLevel logLevel
 	DisableControl ControlIDRunWalk ;Disabled so that it can act as a sprint mechanism instead
 	Let secondsPassed := GetSecondsPassed * secondsMult
 	; # Start Walking
@@ -108,7 +108,7 @@ begin _GameMode
 	ForEach iter <- ar_CustomSort (ar_List avcAthletics, avcBlade, avcBlock, avcBlunt, avcHandToHand, avcHeavyArmor, avcAlchemy, avcAlteration, avcConjuration, avcDestruction, avcIllusion, avcMysticism, avcRestoration, avcAcrobatics, avcLightArmor, avcMarksman, avcMercantile, avcSecurity, avcSneak, avcSpeechcraft) ActorValueComparator 1
 		Let avBase := Call CFGetAVBase PlayerRef iter["Value"]
 		if eval (ShouldLog LogLevelFlooding)
-			Logf "i:" +$iter["Key"] +" avc:" +$iter["Value"] +" avBase:" +$avBase +" iPreviousAVBase" +$iPreviousAVBase
+			Logf "i:" +$iter["Key"] +" avc:" +$iter["Value"] +" avBase:" +$avBase +" iPreviousAVBase:" +$iPreviousAVBase
 		endif
 		if eval ((avBase <= 5) || (iter["Key"] >= 6 && iPreviousAVBase != avBase))
 			break
@@ -143,6 +143,7 @@ begin _GameMode
 	endif
 	; # Fatigue Regen
 	;If secondsPassed is big, it means the player waited or something. Just regen all of it.
+	Let fFatigueRegen := 0
 	if (secondsPassed > 20)
 		Let fFatigueRegen := 10000
 	else
@@ -155,13 +156,23 @@ begin _GameMode
 		else ; SB.bStanding
 			Let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit + (secondsUntilFullRegenWhileStandingIfCompletelyFit - secondsUntilFullRegenWhileStandingIfCompletelyNotFit) * SB.fPhysicalityFraction
 		endif
-		Let fFatigueRegen := (Call CFGetAVBase PlayerRef 10) * secondsPassed / secondsUntilFullRegen
+		Let fFatigueRegen += (Call CFGetAVBase PlayerRef 10) * secondsPassed / secondsUntilFullRegen
+		if eval (ShouldLog LogLevelFlooding)
+			Logf "Before adjustments. fFatigueRegen:" +$fFatigueRegen
+		endif
 		;Need to compensate for fFatigueReturnBase, fFatigueRunBase
 		;(Those GameSettings cannot be adjusted without affecting NPCs.)
-		Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
-		if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
-			Let fFatigueRegen += GetSecondsPassed * (GetGameSetting "fFatigueRunBase")
+		if eval (ShouldLog LogLevelFlooding)
+			Logf "After fFatigueReturnBase adjustment. fFatigueRegen:" +$fFatigueRegen
 		endif
+		if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
+			Let fFatigueRegen -= GetSecondsPassed * (((GetGameSetting "fFatigueReturnBase") - (GetGameSetting "fFatigueRunBase")) +2); I'm not sure why +2 is required here.
+		else
+			Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
+		endif
+	endif
+	if eval (ShouldLog LogLevelFlooding)
+		Logf "fFatigueRegen:" +$fFatigueRegen
 	endif
 	PlayerRef.ModAVModC avcFatigue "Damage" fFatigueRegen
 end

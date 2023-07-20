@@ -1,6 +1,6 @@
 scn InitActivatorS
 
-short iLogLevel
+short logLevel
 float secondsUntilFullRegenWhileStandingIfCompletelyFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyFit
 float secondsUntilFullRegenWhileRunningIfCompletelyFit
@@ -14,7 +14,7 @@ float secondsMult
 begin OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
 		; Default ini
-		Let iLogLevel := LogLevelWarning
+		Let logLevel := LogLevelWarning
 		Let secondsUntilFullRegenWhileStandingIfCompletelyFit := 20
 		Let secondsUntilFullRegenWhileWalkingIfCompletelyFit := 20 * 1.2
 		Let secondsUntilFullRegenWhileRunningIfCompletelyFit := -600
@@ -27,15 +27,15 @@ begin OnActivate
 		; Read ini
 		RunBatchScript "Data\ini\RunningAlong.ini" 1
 		; Pass ini
-		SetModLogLevel iLogLevel
-		Let Qst.secondsUntilFullRegenWhileStandingIfCompletelyFit := secondsUntilFullRegenWhileStandingIfCompletelyFit
-		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyFit := secondsUntilFullRegenWhileWalkingIfCompletelyFit
-		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyFit := secondsUntilFullRegenWhileRunningIfCompletelyFit
-		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyFit := secondsUntilFullRegenWhileSprintingIfCompletelyFit
-		Let Qst.secondsUntilFullRegenWhileStandingIfCompletelyNotFit := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
-		Let Qst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
-		Let Qst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
-		Let Qst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
-		Let Qst.secondsMult := secondsMult
+		Let RAQst.logLevel := logLevel
+		Let RAQst.secondsUntilFullRegenWhileStandingIfCompletelyFit := secondsUntilFullRegenWhileStandingIfCompletelyFit
+		Let RAQst.secondsUntilFullRegenWhileWalkingIfCompletelyFit := secondsUntilFullRegenWhileWalkingIfCompletelyFit
+		Let RAQst.secondsUntilFullRegenWhileRunningIfCompletelyFit := secondsUntilFullRegenWhileRunningIfCompletelyFit
+		Let RAQst.secondsUntilFullRegenWhileSprintingIfCompletelyFit := secondsUntilFullRegenWhileSprintingIfCompletelyFit
+		Let RAQst.secondsUntilFullRegenWhileStandingIfCompletelyNotFit := secondsUntilFullRegenWhileStandingIfCompletelyNotFit
+		Let RAQst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
+		Let RAQst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
+		Let RAQst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+		Let RAQst.secondsMult := secondsMult
 	endif
 end
