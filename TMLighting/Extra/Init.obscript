@@ -2,7 +2,7 @@ scn Init
 
 begin _Function { }
 	if eval Call InitPostLoad2
-		Call CFDebugSetModThreshold 7
+		Call CFDebugSetModThreshold 0
 		let Qst.CellsWithDarkLightingRegistry := ar_Construct "stringmap"
 		Call RegisterVanilla
 		Call RegisterShiveringIsles
