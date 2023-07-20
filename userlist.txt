@@ -141,3 +141,6 @@ AFTER: Better Cities Full - OOO.esp
 
 ADD: TMTimescale.esp
 BEFORE: Bashed Patch, 0.esp
+
+ADD: TMLighting.esp
+BEFORE: Bashed Patch, 0.esp
