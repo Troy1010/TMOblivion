@@ -20,7 +20,7 @@ Begin Function { argumentArr }
 	if bDarkCell
 		Call CFDebug 4 "Dark Cell"
 		; Contrast
-		ORSetExtraEffectEnabled "Tminus1010_Lighting" 1
+		ORSetExtraEffectEnabled "TMLighting" 1
 		; Ambient Light
 		let aTemp := ar_Construct "stringmap"
 		let aTemp["ambient"] := ar_List 15 15 15
@@ -29,6 +29,6 @@ Begin Function { argumentArr }
 	else
 		Call CFDebug 4 "Light Cell"
 		; Contrast
-		ORSetExtraEffectEnabled "Tminus1010_Lighting" 0
+		ORSetExtraEffectEnabled "TMLighting" 0
 	endif
 end
