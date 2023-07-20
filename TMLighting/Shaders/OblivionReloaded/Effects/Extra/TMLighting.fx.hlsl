@@ -31,7 +31,7 @@ float4 TMShaderPass(VSOUT IN) : COLOR0
 {
 	float3 Color = tex2D(TESR_RenderedBuffer, IN.UVCoord).rgb;
 	// Color = float3(min(max((Color.r - 128)*0.9f + 128,0),256),min(max((Color.g - 128)*0.9f + 128,0),256),min(max((Color.b - 128)*0.9f + 128,0),256));
-	Color = float3((Color.r - 0.5f)*1.1f + 0.5f,(Color.g - 0.5f)*1.1f + 0.5f,(Color.b - 0.5f)*1.1f + 0.5f);
+	Color = float3((Color.r - 0.5f)*1.04f + 0.5f,(Color.g - 0.5f)*1.04f + 0.5f,(Color.b - 0.5f)*1.04f + 0.5f);
 	// Color = float3(Color.x*0.5,Color.y*0.5,Color.z*0.5);
 	// Color = float3(Color.r*0.5,Color.g*0.5,Color.b*0.5);
 	// Color = float3(Color.r,Color.g,Color.b);
