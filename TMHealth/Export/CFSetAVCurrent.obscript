@@ -11,6 +11,6 @@ begin _Function { rTarget avc fAmount }
 	if eval rTarget
 		rTarget.SetAVModC avc "Damage" (fAmount - Call CFGetAVMax rTarget avc)
 	else
-		Loge "Not implemented"
+		Scribe (GetFormIDString CFSetAVCurrent) + "Not implemented", 1
 	endif
 end

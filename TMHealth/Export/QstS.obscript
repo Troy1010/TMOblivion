@@ -1,12 +1,15 @@
 scn QstS
 
-short logLevel
-short bEnableBleedAndRegen
+short bEnableBleed
+short bEnableRegen
+short bLogWarning
+short bLogDebug
+short bLogFlooding
 float startBleedHealthPercentage
 float startRegenHealthPercentage
 float secondsUntilDeathFromBleedHealthPercentage
 float secondsUntilFullHealthFromRegenHealthPercentage
-float secondsMult
+float neutralizefGlobalTimeMultiplier
 
 float startBleedHealthFraction
 float startRegenHealthFraction
@@ -18,70 +21,72 @@ ref rTemp2
 begin _GameMode
 	if eval GetGameLoaded
 		RunBatchScript "Data\ini\TMHealth.ini"
-		SetModLogLevel logLevel
 		Let startBleedHealthFraction := startBleedHealthPercentage / 100
 		Let startRegenHealthFraction := startRegenHealthPercentage / 100
-		Logd "logLevel:" + $logLevel
-		Logd "bEnableBleedAndRegen:" + $bEnableBleedAndRegen
-		Logd "startBleedHealthFraction:" + $startBleedHealthFraction
-		Logd "startRegenHealthFraction:" + $startRegenHealthFraction
-		Logd "secondsUntilDeathFromBleedHealthPercentage:" + $secondsUntilDeathFromBleedHealthPercentage
-		Logd "secondsUntilFullHealthFromRegenHealthPercentage:" + $secondsUntilFullHealthFromRegenHealthPercentage
-		Logd "secondsMult:" + $secondsMult
+		if eval bLogDebug
+			Scribe (GetFormIDString QstS) + "`bEnableBleed:" +$bEnableBleed, 1
+			Scribe (GetFormIDString QstS) + "`bEnableRegen:" +$bEnableRegen, 1
+			Scribe (GetFormIDString QstS) + "`bLogWarning:" +$bLogWarning, 1
+			Scribe (GetFormIDString QstS) + "`bLogDebug:" +$bLogDebug, 1
+			Scribe (GetFormIDString QstS) + "`bLogFlooding:" +$bLogFlooding, 1
+			Scribe (GetFormIDString QstS) + "`startBleedHealthFraction:" + $startBleedHealthFraction, 1
+			Scribe (GetFormIDString QstS) + "`startRegenHealthFraction:" + $startRegenHealthFraction, 1
+			Scribe (GetFormIDString QstS) + "`secondsUntilDeathFromBleedHealthPercentage:" + $secondsUntilDeathFromBleedHealthPercentage, 1
+			Scribe (GetFormIDString QstS) + "`secondsUntilFullHealthFromRegenHealthPercentage:" + $secondsUntilFullHealthFromRegenHealthPercentage, 1
+			Scribe (GetFormIDString QstS) + "`neutralizefGlobalTimeMultiplier:" + $neutralizefGlobalTimeMultiplier, 1
+		endif
 	endif
 	Let counter := 0
 	Set rTemp to GetFirstRef
 	while rTemp
 		if eval !(rTemp.Call CFIsCallingObjectStable)
-			if eval ShouldLog LogLevelFlooding
-				Logf "Skipping bc rTemp is not stable. rTemp:" +$rTemp
+			if eval bLogFlooding
+				Scribe (GetFormIDString QstS) + "`Skipping bc rTemp is not stable. rTemp:" +$rTemp, 1
 			endif
 			Set rTemp to GetNextRef
 			continue
 		endif
 		if eval !(rTemp.IsActor)
-			if eval ShouldLog LogLevelFlooding
-				Logf "Skipping bc rTemp was not an actor. rTemp:" +$rTemp
+			if eval bLogFlooding
+				Scribe (GetFormIDString QstS) + "`Skipping bc rTemp was not an actor. rTemp:" +$rTemp, 1
 			endif
 			Set rTemp to GetNextRef
 			continue
 		endif
 		if eval (rTemp.GetItemCount TMHealthToken) > 0
-			if eval ShouldLog LogLevelFlooding
-				Logf "Skipping bc rTemp already has token. rTemp:" +$rTemp
+			if eval bLogFlooding
+				Scribe (GetFormIDString QstS) + "`Skipping bc rTemp already has token. rTemp:" +$rTemp, 1
 			endif
 			Set rTemp to GetNextRef
 			continue
 		endif
 		if eval (rTemp.GetDead)
-			if eval ShouldLog LogLevelFlooding
-				Logf "Skipping bc rTemp is dead. rTemp:" +$rTemp
+			if eval bLogFlooding
+				Scribe (GetFormIDString QstS) + "`Skipping bc rTemp is dead. rTemp:" +$rTemp, 1
 			endif
 			Set rTemp to GetNextRef
 			continue
 		endif
 
 		; TODO: Add to player silently
-;		if eval (rTemp == PlayerRef)
-;			;PlayerRef.AddItem shows a message at the top left of the screen.
-;			;This workaround prevents that message from being shown.
-;			Let rTemp2 := PlayerRef.PlaceAtMe TMHealthToken 1
-;			rTemp2.Activate PlayerRef 1
-;			Set rTemp to GetNextRef
-;			continue
-;		endif
+		;		if eval (rTemp == PlayerRef)
+		;			;PlayerRef.AddItem shows a message at the top left of the screen.
+		;			;This workaround prevents that message from being shown.
+		;			Let rTemp2 := PlayerRef.PlaceAtMe TMHealthToken 1
+		;			rTemp2.Activate PlayerRef 1
+		;			Set rTemp to GetNextRef
+		;			continue
+		;		endif
 
 		Let counter += 1
-		if eval bEnableBleedAndRegen
-			if eval ShouldLog LogLevelFlooding
-				Logf "Adding item to:" + $(rTemp)
-			endif
-			rTemp.AddItem TMHealthToken 1
+		if eval bLogFlooding
+			Scribe (GetFormIDString QstS) + "`Adding item to:" + $(rTemp), 1
 		endif
+		rTemp.AddItem TMHealthToken 1
 
 		Set rTemp to GetNextRef
 	loop
-	if eval (ShouldLog LogLevelFlooding)
-		Logf "Loop complete. counter:" +$counter
+	if eval (bLogFlooding)
+		Scribe (GetFormIDString QstS) + "`Loop complete. counter:" +$counter, 1
 	endif
 end
