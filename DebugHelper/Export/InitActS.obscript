@@ -8,7 +8,9 @@ short bFeatureSpeedyPlayer
 short bFeatureTransport
 short bFeatureStartRunning
 short bFeatureStartNewGame
-short bQuitOnStartIfSpaceDown 
+short bQuitOnStartIfSpaceDown
+short bStartMode1
+short bStartMode2
 
 begin _OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
@@ -22,6 +24,8 @@ begin _OnActivate
 		Let bFeatureStartRunning := 1
 		Let bFeatureStartNewGame := 0
 		let bQuitOnStartIfSpaceDown := 1
+		let bStartMode1 := 0
+		Let bStartMode2 := 0
 		; Read ini
 		RunBatchScript "Data\Ini\DebugHelper.ini" 1
 		; Pass ini
@@ -31,9 +35,11 @@ begin _OnActivate
 		Let Qst.bFeatureTCLStart := bFeatureTCLStart
 		Let Qst.bFeatureSpeedyPlayer := bFeatureSpeedyPlayer
 		Let Qst.bFeatureTransport := bFeatureTransport
-		Let Qst.bFeatureStartRunning := bFeatureStartRunning
-		Let Qst.bFeatureStartNewGame := bFeatureStartNewGame
+		Let Qst.bFeatureStartRunning := bFeatureStartRunning || bStartMode1
+		Let Qst.bFeatureStartNewGame := bFeatureStartNewGame || bStartMode1
 		Let Qst.bQuitOnStartIfSpaceDown := bQuitOnStartIfSpaceDown
-		Logd "DebugHelper InitActS Close"
+		let Qst.bStartMode1 := bStartMode1
+		let Qst.bStartMode2 := bStartMode2
+		Call Logd "DebugHelper InitActS Close"
 	endif
 end

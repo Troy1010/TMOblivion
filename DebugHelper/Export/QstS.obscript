@@ -8,6 +8,8 @@ short bFeatureTransport
 short bFeatureStartRunning
 short bFeatureStartNewGame
 short bQuitOnStartIfSpaceDown
+short bStartMode1
+short bStartMode2
 
 float fQuestDelayTime
 ref rCrosshairRef
@@ -15,11 +17,16 @@ ref rCrosshairRef
 string_var svPosComplete
 array_var Iter
 
+short bClickNextNewGame
 short bClickNextYes
 short bExitNextRaceMenu
 short bSkipIntroVideo
 
 short bNextSpacebarTCL
+float fCloseAllMenusFrameTimer
+short bStartTeleportToSpot1
+float fTeleportToSpot1Timer
+ref rTemp
 
 begin _GameMode
 	if eval bSkipIntroVideo
@@ -53,6 +60,26 @@ begin _GameMode
 			Call Delay -30 WaiterEnableSpacebar ar_Null ;In a waiter so that player doesn't jump
 		endif
 	endif
+	if eval bStartTeleportToSpot1
+		Let fTeleportToSpot1Timer := 10
+	endif
+	if eval fTeleportToSpot1Timer >= 0
+		Let fTeleportToSpot1Timer -= GetSecondsPassed
+		if eval fTeleportToSpot1Timer < 0
+			Logd "Teleporting to spot 1.."
+			Call SetPosComplete PlayerRef ar_List 47073.3 82958.1 294.203 47.0626 Tamriel
+			; TODO: Shouldn't do this if not Oblivion
+			; Set the stage of CharGen forward so that it doesn't teleport us back to the original start.
+			SetStage (Call GetFormFromID "0002466E") 10
+		endif
+	endif
+end
+
+begin _MenuMode 1044
+	if eval bClickNextNewGame
+		Let bClickNextNewGame := 0
+		ClickMenuButton "#3" 1044
+	endif
 end
 
 begin _MenuMode 1001
@@ -65,8 +92,35 @@ end
 begin _MenuMode 1036
 	if eval bExitNextRaceMenu
 		Let bExitNextRaceMenu := 0
-		CloseAllMenus
-		ToggleFirstPerson 1
-		PlayerRef.SetName "Mr. NoName"
+		Let fCloseAllMenusFrameTimer := 10
+	endif
+	if eval fCloseAllMenusFrameTimer >= 0
+		Let fCloseAllMenusFrameTimer -= 1
+		if eval fCloseAllMenusFrameTimer < 0
+			CloseAllMenus
+			ToggleFirstPerson 1
+			PlayerRef.SetName "Mr. NoName"
+			if eval bStartMode2
+				PlayerRef.SetAVC avcMarksman 25
+				PlayerRef.SetAVC avcConjuration 25
+				PlayerRef.SetAVC avcAthletics 25
+				PlayerRef.SetAVC avcAcrobatics 25
+				PlayerRef.SetAVC avcBlade 25
+				PlayerRef.SetAVC avcBlock 25
+				PlayerRef.ModAVModC avcHealth "max" 50
+				PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0AA05F"
+				PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0A97B3"
+				PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0A9825"
+				PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0A9826"
+				PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0A97AD"
+				PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0A981A"
+				PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "00000f" 1000
+				PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "03A860" 1
+				PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "017829" 25
+			endif
+			if eval bStartMode1 || bStartMode2
+				Let bStartTeleportToSpot1 := 1
+			endif
+		endif
 	endif
 end
