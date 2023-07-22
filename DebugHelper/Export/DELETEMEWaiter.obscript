@@ -1,8 +1,0 @@
-scn DELETEMEWaiter
-
-array_var args
-
-begin Function { args }
-	Call CFDebug 4 "Waiter`Open"
-	ClickMenuButton "button_layout\main_new"
-end
