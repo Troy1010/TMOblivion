@@ -86,8 +86,8 @@ begin _GameMode
 		if eval !PlayerRef.IsRunning
 			Logd "No longer running backwards, so tapping ToggleRunWalk"
 			TapControl ControlIDToggleRunWalk
+			Let bShouldRunAfterNotMovingBackwards := 0
 		endif
-		Let bShouldRunAfterNotMovingBackwards := 0
 	endif
 	; # Speed Adjustments
 	;I'm not sure if SetAVModC is the best way to adjust Speed
