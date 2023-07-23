@@ -1,0 +1,47 @@
+scn aaHeartbeatscript
+
+float health
+float healthMax
+float healthpercent
+float fQuestDelayTime
+
+begin _GameMode
+	Scribe "==== aaHeartbeatscript", 1
+
+	set fQuestDelayTime to 0.1 
+
+	set health to Call CFGetAVCurrent PlayerRef avcHealth
+	set healthMax to Call CFGetAVMax PlayerRef avcHealth
+	if (healthMax == 0)
+		Scribe "aaHeartbeatscript`healthMax is 0, returning.", 1
+		return
+	endif
+	set healthpercent to ( health/healthMax )
+	Scribe "healthpercent:"+$healthpercent + " health:"+$health+" healthMax:"+$healthMax, 1
+
+
+	if eval ( healthpercent <= .85 ) && ( healthpercent >= .45 )
+		Scribe "aaHeartbeatscript`aaheartbeatquiet2", 1
+		PlaySound aaheartbeatquiet2
+		return
+	endif
+
+	if eval ( healthpercent <= .45 ) && ( healthpercent >= .30 )
+		Scribe "aaHeartbeatscript`aaheartbeatquiet", 1
+		PlaySound aaheartbeatquiet
+		return
+	endif
+
+	if eval ( healthpercent < .30 ) && ( healthpercent >= .15 )
+		Scribe "aaHeartbeatscript`aaheartbeatorigonal", 1
+		PlaySound aaheartbeatorigonal
+		return
+	endif
+
+	if eval ( healthpercent < .15 )
+		Scribe "aaHeartbeatscript`aaheartbeatloud", 1
+		PlaySound aaheartbeatloud
+		return
+	endif
+
+end

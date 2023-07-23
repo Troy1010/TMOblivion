@@ -1,0 +1,29 @@
+scn aaBreathscript
+
+float fatigue 
+float fatiguebase 
+float fatiguepercent 
+float fQuestDelayTime
+
+begin GameMode 
+
+set fQuestDelayTime to .1
+set fatigue to player.getactorvalue fatigue 
+set fatiguebase to player.getbaseactorvalue fatigue 
+set fatiguepercent to ( fatigue/fatiguebase ) 
+
+if ( fatiguepercent <= .75 ) && ( fatiguepercent >= .45 )
+playsound aabreathspeedmodquiet
+ return
+endif
+
+if ( fatiguepercent < .45 ) && ( fatiguepercent >= 0 )
+playsound aabreathspeedmodorigonal
+endif
+
+if ( fatiguepercent < .075 ) && ( fatiguepercent >= 0 )
+playsound aabreathrealisticfatiguequiet
+endif
+
+end
+
