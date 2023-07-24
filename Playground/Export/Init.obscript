@@ -1,11 +1,8 @@
 scn Init
 
 begin _Function { }
-	if eval Call InitPostLoad2
-		Call CFDebugSetModThreshold 6
-		if eval !Qst.fQuestDelayTime
-			Let Qst.fQuestDelayTime := 0.0001
-			StartQuest Qst
-		endif
+	if eval GetGameLoaded
+		Call LogPG "GetGameLoaded"
+		Let PGQst.fQuestDelayTime := 0.0001
 	endif
 end

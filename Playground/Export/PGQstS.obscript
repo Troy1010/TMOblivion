@@ -1,0 +1,20 @@
+scn PGQstS
+
+float fQuestDelayTime
+
+begin _GameMode
+	Call Init
+	if eval (OnKeyDown 64) && (!(IsKeyPressed3 42)) ;F6, LShift
+		Call LogPG "F6"
+	elseif eval (OnKeyDown 65) && (!(IsKeyPressed3 42)) ;F7, LShift
+		Call LogPG "F7"
+	elseif eval (OnKeyDown 66) && (!(IsKeyPressed3 42)) ;F8, LShift
+		Call LogPG "F8"
+	elseif eval (OnKeyDown 67) && (!(IsKeyPressed3 42)) ;F9, LShift
+		Call LogPG "F9"
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end
