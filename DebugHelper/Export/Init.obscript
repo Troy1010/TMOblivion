@@ -35,7 +35,7 @@ begin _Function {}
 			Call Logd "DebugHelper`bFeatureStartNewGame"
 			Let Qst.bClickNextNewGame := 1
 			Let Qst.bClickNextYes := 1
-			Let Qst.bExitNextRaceMenu := 1
+			Let Qst.bExitNextChargenMenu := 1
 			Let Qst.bSkipIntroVideo := 1
 		endif
 		if eval Qst.bStartMode_Continue
