@@ -1,0 +1,29 @@
+scn HeartbeatBreathSharedQstS
+
+short bShouldLogFLOODING
+short bShouldPrintToConsole
+float fStartHeartbeatHealthPercent
+
+short bInit
+
+begin _GameMode
+	if eval !bInit
+		Let bInit := 1
+		RunBatchScript "Data\ini\HeartbeatBreath.ini"
+		if eval bShouldLogFLOODING
+			Call LogWithPrefix "bShouldLogFLOODING:"+$bShouldLogFLOODING
+			Call LogWithPrefix "bShouldPrintToConsole:"+$bShouldPrintToConsole
+		endif
+	endif
+end
+
+begin _MenuMode
+	if eval !bInit
+		Let bInit := 1
+		RunBatchScript "Data\ini\HeartbeatBreath.ini"
+		if eval bShouldLogFLOODING
+			Call LogWithPrefix "bShouldLogFLOODING:"+$bShouldLogFLOODING
+			Call LogWithPrefix "bShouldPrintToConsole:"+$bShouldPrintToConsole
+		endif
+	endif
+end

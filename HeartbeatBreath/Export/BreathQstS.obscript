@@ -1,0 +1,36 @@
+scn BreathQstS
+
+float fatigue 
+float fatigueMax 
+float fatiguepercent 
+float fQuestDelayTime
+
+begin _GameMode 
+	if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+		Call LogWithPrefix "==== BreathQstS"
+	endif
+
+	set fQuestDelayTime to 0.1
+
+	set fatigue to Call CFGetAVCurrent PlayerRef avcFatigue
+	set fatigueMax to Call CFGetAVMax PlayerRef avcFatigue
+	if (fatigueMax == 0)
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "fatigueMax is 0, returning."
+		endif
+		return
+	endif
+	set fatiguepercent to ( fatigue/fatigueMax ) 
+
+	if eval ( 0.75 <= fatiguepercent )
+		; do nothing
+	elseif eval ( 0.45 <= fatiguepercent )
+		PlaySound aabreathspeedmodquiet
+	else
+		PlaySound aabreathspeedmodorigonal
+	endif
+
+	if eval ( 0 <= fatiguepercent ) && ( fatiguepercent < .075 )
+		PlaySound aabreathrealisticfatiguequiet
+	endif
+end

@@ -1,0 +1,55 @@
+scn HeartbeatQstS
+
+float health
+float healthMax
+float healthpercent
+float fQuestDelayTime
+
+begin _GameMode
+	if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+		Call LogWithPrefix "==== HeartbeatQstS"
+	endif
+
+	set fQuestDelayTime to 0.1 
+
+	set health to Call CFGetAVCurrent PlayerRef avcHealth
+	set healthMax to Call CFGetAVMax PlayerRef avcHealth
+	if (healthMax == 0)
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "healthMax is 0, returning."
+		endif
+		return
+	endif
+	set healthpercent to ( health/healthMax )
+	if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+		Call LogWithPrefix "healthpercent:"+$healthpercent + " health:"+$health+" healthMax:"+$healthMax
+	endif
+
+	if eval ( HeartbeatBreathSharedQst.fStartHeartbeatHealthPercent <= healthpercent )
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "Health was near full, not playing any sound."
+		endif
+		;do nothing
+	elseif eval ( 0.45 <= healthpercent )
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "aaheartbeatquiet2"
+		endif
+		PlaySound aaheartbeatquiet2
+	elseif eval ( 0.30 <= healthpercent )
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "aaheartbeatquiet"
+		endif
+		PlaySound aaheartbeatquiet
+	elseif eval ( 0.15 <= healthpercent )
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "aaheartbeatorigonal"
+		endif
+		PlaySound aaheartbeatorigonal
+	else
+		if eval HeartbeatBreathSharedQst.bShouldLogFLOODING
+			Call LogWithPrefix "aaheartbeatloud"
+		endif
+		PlaySound aaheartbeatloud
+	endif
+
+end

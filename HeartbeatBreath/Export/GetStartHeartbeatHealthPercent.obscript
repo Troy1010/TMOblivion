@@ -1,0 +1,6 @@
+scn GetStartHeartbeatHealthPercent
+;This allows other mods to weakly access fStartHeartbeatHealthPercent
+
+begin Function { }
+	SetFunctionValue HeartbeatBreathSharedQst.fStartHeartbeatHealthPercent
+end

@@ -1,0 +1,7 @@
+scn LogWithPrefix
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`" + s, HeartbeatBreathSharedQst.bShouldPrintToConsole
+end
