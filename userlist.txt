@@ -147,3 +147,6 @@ BEFORE: Bashed Patch, 0.esp
 
 ADD: Fog Clip Fix.esp
 BEFORE: Bashed Patch, 0.esp
+
+ADD: HeartbeatBreath.esp
+BEFORE: Bashed Patch, 0.esp
