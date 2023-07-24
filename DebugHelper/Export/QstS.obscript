@@ -10,6 +10,7 @@ short bFeatureStartNewGame
 short bQuitOnStartIfSpaceDown
 short bStartMode1
 short bStartMode2
+short bStartMode_Continue
 
 float fQuestDelayTime
 ref rCrosshairRef
@@ -17,6 +18,7 @@ ref rCrosshairRef
 string_var svPosComplete
 array_var Iter
 
+short bClickNextContinue
 short bClickNextNewGame
 short bClickNextYes
 short bExitNextRaceMenu
@@ -79,6 +81,10 @@ begin _MenuMode 1044
 	if eval bClickNextNewGame
 		Let bClickNextNewGame := 0
 		ClickMenuButton "#3" 1044
+	endif
+	if eval bClickNextContinue
+		Let bClickNextContinue := 0
+		ClickMenuButton "#2" 1044
 	endif
 end
 

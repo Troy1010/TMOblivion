@@ -38,6 +38,9 @@ begin _Function {}
 			Let Qst.bExitNextRaceMenu := 1
 			Let Qst.bSkipIntroVideo := 1
 		endif
+		if eval Qst.bStartMode_Continue
+			Let Qst.bClickNextContinue := 1
+		endif
 		Call Logd "DebugHelper`InitOnStart2"
 	endif
 	if eval Call InitPostLoad2
