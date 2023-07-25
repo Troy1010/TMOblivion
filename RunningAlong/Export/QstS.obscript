@@ -76,17 +76,17 @@ begin _GameMode
 		TapControl ControlIDToggleRunWalk
 	endif
 	; # No Backwards Running
-	if eval PlayerRef.IsMovingBackward
-		if eval PlayerRef.IsRunning
-			Logd "Running backwards, so tapping ToggleRunWalk"
-			TapControl ControlIDToggleRunWalk
-			Let bShouldRunAfterNotMovingBackwards := 1
-		endif
-	elseif eval bShouldRunAfterNotMovingBackwards
-		if eval !PlayerRef.IsRunning
+	if eval bShouldRunAfterNotMovingBackwards
+		if eval (!PlayerRef.IsRunning) && (!PlayerRef.IsMovingBackward)
 			Logd "No longer running backwards, so tapping ToggleRunWalk"
 			TapControl ControlIDToggleRunWalk
 			Let bShouldRunAfterNotMovingBackwards := 0
+		endif
+	else
+		if eval PlayerRef.IsRunning && PlayerRef.IsMovingBackward
+			Logd "Running backwards, so tapping ToggleRunWalk"
+			TapControl ControlIDToggleRunWalk
+			Let bShouldRunAfterNotMovingBackwards := 1
 		endif
 	endif
 	; # Speed Adjustments
