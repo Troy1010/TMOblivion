@@ -2,4 +2,4 @@ Frost Atronarch - smaller (so they can fit in the caves they live in)
 Rat - smaller, faster
 Staff Effects (Oblivion War Cry) - DmgHealth instead of DrainHealth (So enemies don't just keep casting drain health at you like morons)
 Ingredients (Cobl Main, OOO, MMM, Better Cities) - Removed effects from most edibles. Replaced a lot of useless effects. Made a few edits.
-StartNoChains - Player starts without easily unequippable chains around their wrists
+FatigueJump - changes how much fatigue jumping costs
