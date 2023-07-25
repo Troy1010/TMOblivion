@@ -1,0 +1,16 @@
+scn CFSetAVCurrent
+;This methods sets the current value of an ActorValue.
+;There might be other methods that do this, but I could not find them.
+
+ref rTarget
+short avc
+float fAmount
+
+
+begin _Function { rTarget avc fAmount }
+	if eval rTarget
+		rTarget.SetAVModC avc "Damage" (fAmount - Call CFGetAVMax rTarget avc)
+	else
+		Scribe (GetFormIDString CFSetAVCurrent) + "Not implemented", 1
+	endif
+end
