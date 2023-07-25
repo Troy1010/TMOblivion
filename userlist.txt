@@ -82,6 +82,12 @@ AFTER: Oblivion.esm
 ADD: Tminus1010_^CommonFunctionsChild.esp
 BEFORE: Bashed Patch, 0.esp
 
+ADD: CounteractAthletics_BashableTweaks.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
+ADD: TMBashableTweaks_FatigueJump.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
 ADD: TMBashableTweaks_FrostAtronach.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
