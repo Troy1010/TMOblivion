@@ -1,0 +1,27 @@
+scn CAQstS
+
+float fQuestDelayTime
+short bPrintToConsole
+short bShouldLogFlooding
+
+float athleticsMult
+float speedAdjustment
+float previousSpeedAdjustment
+
+float unadjustedSpeed
+
+begin _GameMode
+	Call Init
+	PlayerRef.ModAVMod avcSpeed "Max" (-speedAdjustment)
+	Let unadjustedSpeed := PlayerRef.GetAVC avcSpeed
+	Let athleticsMult := PlayerRef.Call GetAthleticsMult
+	Let speedAdjustment := PlayerRef.Call CalcSpeedAdjustment (1 / athleticsMult)
+	PlayerRef.ModAVMod avcSpeed "Max" speedAdjustment
+	if eval (bShouldLogFlooding)
+		Call LogCA "speedAdjustment:"+$speedAdjustment+" athleticsMult:"+$athleticsMult+" currentSpeed:"+$(PlayerRef.GetAVC avcSpeed)+" unadjustedSpeed:"+$unadjustedSpeed
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end

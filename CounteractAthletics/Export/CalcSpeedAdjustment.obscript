@@ -1,0 +1,30 @@
+scn CalcSpeedAdjustment
+; Example usage:
+;		PlayerRef.Call CalcSpeedAdjustment 1.5
+
+float mult
+
+float fMoveCharWalkMin
+float fMoveCharWalkMax
+
+; Formula docs:
+;		https://en.uesp.net/wiki/Oblivion:Movement_Formulas
+; Original formula:
+;		BaseSpeed = fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * Speed / 100
+; Formula with mult:
+;		BaseSpeed = fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * (Speed + multAdjustment) / 100
+;		multAdjustment = ???
+; Equation which helps us solve for multAdjustment:
+;		(fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * Speed / 100) * mult = fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * (Speed + multAdjustment) / 100
+; Solving for multAdjustment:
+;		(fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * Speed / 100) * mult = fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * (Speed + multAdjustment) / 100
+;		fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * (Speed + multAdjustment) / 100 = (fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * Speed / 100) * mult
+;		(fMoveCharWalkMax - fMoveCharWalkMin) * (Speed + multAdjustment) / 100 = ((fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * Speed / 100) * mult) - fMoveCharWalkMin
+;		multAdjustment = ((((fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * Speed / 100) * mult) - fMoveCharWalkMin) / (fMoveCharWalkMax - fMoveCharWalkMin)) * 100 - Speed
+
+begin _Function { mult }
+	;I'm not sure how to get these values, so they are hardcoded, for now.
+	Let fMoveCharWalkMin := 90
+	Let fMoveCharWalkMax := 130
+	SetFunctionValue ((((fMoveCharWalkMin + (fMoveCharWalkMax - fMoveCharWalkMin) * (GetAVC avcSpeed) / 100) * mult) - fMoveCharWalkMin) / (fMoveCharWalkMax - fMoveCharWalkMin)) * 100 - (GetAVC avcSpeed)
+end

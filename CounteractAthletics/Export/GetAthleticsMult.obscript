@@ -1,0 +1,43 @@
+scn GetAthleticsMult
+; Example usage:
+;		PlayerRef.Call GetAthleticsMult
+; Returns a number >= 1.
+
+float fMoveSwimRunAthleticsMult
+float fMoveSwimWalkAthleticsMult
+float fMoveRunAthleticsMult
+
+float fMoveSwimRunBase
+float fMoveSwimWalkBase
+float fMoveRunMult
+
+; Formula docs:
+;		https://en.uesp.net/wiki/Oblivion:Movement_Formulas
+; Original formula..
+;		MoveTypeModifier = base + athleticsAdjustment
+; Counteracted formula..
+;		MoveTypeModifier = (base + athleticsAdjustment) * (base / base + athleticsAdjustment)
+; AthleticsMult formula..
+;		AthleticsMult = (base + athleticsAdjustment / base)
+begin _Function { }
+	;I'm not sure how to get these values, so they are hardcoded, for now.
+	Let fMoveSwimRunAthleticsMult := 0.1
+	Let fMoveSwimWalkAthleticsMult := 0.02
+	Let fMoveRunAthleticsMult := 1
+	Let fMoveSwimRunBase := 0.5
+	Let fMoveSwimWalkBase := 0.5
+	Let fMoveRunMult := 3
+	if eval IsSwimming
+		if eval IsRunning
+			SetFunctionValue (fMoveSwimRunBase + (fMoveSwimRunAthleticsMult * (GetAVC avcAthletics) / 100)) / fMoveSwimRunBase
+		else
+			SetFunctionValue (fMoveSwimWalkBase + (fMoveSwimWalkAthleticsMult * (GetAVC avcAthletics) / 100)) / fMoveSwimWalkBase
+		endif
+	else
+		if eval IsRunning
+			SetFunctionValue (fMoveRunMult + (fMoveRunAthleticsMult * (GetAVC avcAthletics) / 100)) / fMoveRunMult
+		else
+			SetFunctionValue 1
+		endif
+	endif
+end
