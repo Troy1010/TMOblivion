@@ -1,0 +1,13 @@
+# Summary
+This mod makes it so that Athletics does not affect movespeed for the player.
+It does this because a multiplicative factor in the speed equation has some **undesirable** effects:
+	- vulnerable to reaching extreme values.
+	- the same Speed buff does not affect everyone in the same way. Characters with high athletics will see a bigger movespeed increase from the same buff.
+Unlike other similar mods, it does this only for the player, so that NPCs are not unintentionally slower than they were originally calibrated to be.
+It achieves this by adjusting the player's Speed.
+
+# Install
+Extract the mod's zip into Oblivion/
+
+#
+Feel free to make edits and re-release something similar.
