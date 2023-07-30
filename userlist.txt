@@ -167,4 +167,4 @@ ADD: Tminus1010_^CommonFunctionsChild_TorchControl.esp
 AFTER: Bashed Patch, 0.esp
 
 ADD: TorchControl.esp
-BEFORE: Tminus1010_^CommonFunctionsChild_TorchControl.esp
+AFTER: Tminus1010_^CommonFunctionsChild_TorchControl.esp
