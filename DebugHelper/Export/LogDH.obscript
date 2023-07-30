@@ -1,0 +1,7 @@
+scn LogDH
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`" + s, 1
+end

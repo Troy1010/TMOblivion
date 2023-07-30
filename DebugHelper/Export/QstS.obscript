@@ -48,6 +48,7 @@ begin _GameMode
 			Call Logd "PlayerPosition"+(Call NarrateSL &(Call GetPosComplete PlayerRef))
 		endif
 		if eval (OnKeyDown 65) && (IsKeyPressed3 42) ;F7, LShift
+			Call LogDH "F7, LShift. Teleporting to spot 1.."
 			Call SetPosComplete PlayerRef ar_List 47073.3 82958.1 294.203 47.0626 Tamriel
 		endif
 		if eval (OnKeyDown 66) && (IsKeyPressed3 42) ;F8, LShift
@@ -65,10 +66,10 @@ begin _GameMode
 	if eval bStartTeleportToSpot1
 		Let fTeleportToSpot1Timer := 10
 	endif
-	if eval fTeleportToSpot1Timer >= 0
+	if eval fTeleportToSpot1Timer > 0
 		Let fTeleportToSpot1Timer -= GetSecondsPassed
-		if eval fTeleportToSpot1Timer < 0
-			Logd "Teleporting to spot 1.."
+		if eval fTeleportToSpot1Timer <= 0
+			Call LogDH "fTeleportToSpot1Timer < 0. Teleporting to spot 1.."
 			Call SetPosComplete PlayerRef ar_List 47073.3 82958.1 294.203 47.0626 Tamriel
 			; TODO: Shouldn't do this if not Oblivion
 			; Set the stage of CharGen forward so that it doesn't teleport us back to the original start.
@@ -122,6 +123,7 @@ begin _MenuMode
 					PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "017829" 25
 				endif
 				if eval bStartMode1 || bStartMode2
+					
 					Let bStartTeleportToSpot1 := 1
 				endif
 			endif
