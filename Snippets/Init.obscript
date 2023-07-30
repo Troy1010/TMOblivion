@@ -1,0 +1,9 @@
+scn Init
+
+begin _Function { }
+	if eval GetGameLoaded
+		Let CAQst.fQuestDelayTime := 0.0001
+		RunBatchScript "Data\ini\CounteractAthletics.ini"
+		Call LogCA "Init"
+	endif
+end

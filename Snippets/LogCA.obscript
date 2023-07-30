@@ -1,0 +1,7 @@
+scn LogCA
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`" + s, CAQst.bPrintToConsole
+end
