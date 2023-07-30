@@ -1,0 +1,24 @@
+scn GetVanillaFatigueRegen
+
+float athleticsMult
+ref self
+
+begin _Function { }
+	Let self := GetSelf
+	if self.IsRunning && (self.IsMovingForward || self.IsMovingBackward || self.IsMovingLeft || self.IsMovingRight)
+		if eval ((self.getAVC avcAthletics) >= 100)
+			Let athleticsMult := 0
+		elseif eval ((self.getAVC avcAthletics) >= 75)
+			Let athleticsMult := 0.25 ; TODO: We might be able to get this value from a GameSetting instead
+		elseif eval ((self.getAVC avcAthletics) >= 50)
+			Let athleticsMult := 0.50 ; TODO: We might be able to get this value from a GameSetting instead
+		elseif eval ((self.getAVC avcAthletics) >= 25)
+			Let athleticsMult := 0.75 ; TODO: We might be able to get this value from a GameSetting instead
+		else
+			Let athleticsMult := 1 ; TODO: We might be able to get this value from a GameSetting instead
+		endif
+	else
+		Let athleticsMult := 0
+	endif
+	SetFunctionValue GetSecondsPassed * ((GetGameSetting "fFatigueReturnBase") - ((GetGameSetting "fFatigueRunBase") * athleticsMult))
+end

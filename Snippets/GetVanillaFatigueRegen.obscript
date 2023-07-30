@@ -1,0 +1,24 @@
+scn GetVanillaFatigueRegen
+
+float fFatigueRegen
+float athleticsMult
+
+begin _Function { }
+	Let fFatigueRegen := 0
+	if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
+		if eval ((PlayerRef.getAVC avcAthletics) >= 100)
+			Let athleticsMult := 0
+		elseif eval ((PlayerRef.getAVC avcAthletics) >= 75)
+			Let athleticsMult := 0.25
+		elseif eval ((PlayerRef.getAVC avcAthletics) >= 50)
+			Let athleticsMult := 0.50
+		elseif eval ((PlayerRef.getAVC avcAthletics) >= 25)
+			Let athleticsMult := 0.75
+		else
+			Let athleticsMult := 1
+		endif
+		Let fFatigueRegen -= GetSecondsPassed * ((GetGameSetting "fFatigueReturnBase") - ((GetGameSetting "fFatigueRunBase") * athleticsMult))
+	else
+		Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
+	endif
+end

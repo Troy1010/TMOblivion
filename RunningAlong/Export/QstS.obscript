@@ -12,6 +12,7 @@ float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
+float athleticsWeightFraction
 float secondsUntilFullRegen
 float fFatigueRegen
 int iPreviousAVBase
@@ -25,6 +26,10 @@ short bShouldRunAfterNotMovingBackwards
 short bInit
 float secondsPassed
 short bAdjustedFatigueMax2
+
+float x
+float y
+float difference
 
 begin _GameMode
 	SetModLogLevel logLevel
@@ -69,6 +74,13 @@ begin _GameMode
 	if eval PlayerRef.IsJumping && SB.bSprinting
 		let fRecentlyJumpedWhileSprintingTimer := 2
 	endif
+	;I'm not sure if SetAVModC is the best way to adjust Speed
+	;Using a flat value instead of % to prevent multiplicativeness
+	if eval SB.bSprinting
+		PlayerRef.SetAVModC avcSpeed "script" 100
+	else
+		PlayerRef.SetAVModC avcSpeed "script" 0
+	endif
 	; # No Walking while Sprinting
 	if eval (iCountDownAfterMenuMode >=0) ;This is a workaround to solve an issue where the control would be tapped when coming out of MenuMode and control is pressed
 		Let iCountDownAfterMenuMode -= 1
@@ -89,14 +101,6 @@ begin _GameMode
 			TapControl ControlIDToggleRunWalk
 			Let bShouldRunAfterNotMovingBackwards := 1
 		endif
-	endif
-	; # Speed Adjustments
-	;I'm not sure if SetAVModC is the best way to adjust Speed
-	;Using a flat value instead of % to prevent multiplicativeness
-	if eval SB.bSprinting
-		PlayerRef.SetAVModC avcSpeed "script" 100
-	else
-		PlayerRef.SetAVModC avcSpeed "script" 0
 	endif
 	; # Define fPhysicalityFraction
 	Logf "====== Define fPhysicalityFraction ======"
@@ -152,23 +156,25 @@ begin _GameMode
 		elseif SB.bRunning
 			Let secondsUntilFullRegen := secondsUntilFullRegenWhileRunningIfCompletelyNotFit + (secondsUntilFullRegenWhileRunningIfCompletelyFit - secondsUntilFullRegenWhileRunningIfCompletelyNotFit) * SB.fPhysicalityFraction
 		elseif SB.bSprinting
-			Let secondsUntilFullRegen := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit + (secondsUntilFullRegenWhileSprintingIfCompletelyFit - secondsUntilFullRegenWhileSprintingIfCompletelyNotFit) * SB.fPhysicalityFraction
+			;Drain value should move from sprint to running, depending on athletics and athleticsWeightFraction.
+			Let x := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit + (secondsUntilFullRegenWhileSprintingIfCompletelyFit - secondsUntilFullRegenWhileSprintingIfCompletelyNotFit) * SB.fPhysicalityFraction
+			Let y := secondsUntilFullRegenWhileRunningIfCompletelyNotFit + (secondsUntilFullRegenWhileRunningIfCompletelyFit - secondsUntilFullRegenWhileRunningIfCompletelyNotFit) * SB.fPhysicalityFraction
+			Let secondsUntilFullRegen := x - ((x - y) * Call WithinRange 0 (((Call CFGetAVCurrent PlayerRef avcAthletics)/100)*athleticsWeightFraction) 1)
+			if eval (ShouldLog LogLevelFlooding)
+				Logf "Sprint calculation. athleticsWeightFraction:"+$athleticsWeightFraction+" originalSecondsUntilFullRegen:" +$x+" runningSecondsUntilFullRegen:"+$y+" secondsUntilFullRegen:"+$secondsUntilFullRegen
+			endif
 		else ; SB.bStanding
 			Let secondsUntilFullRegen := secondsUntilFullRegenWhileStandingIfCompletelyNotFit + (secondsUntilFullRegenWhileStandingIfCompletelyFit - secondsUntilFullRegenWhileStandingIfCompletelyNotFit) * SB.fPhysicalityFraction
 		endif
 		Let fFatigueRegen += (Call CFGetAVBase PlayerRef 10) * secondsPassed / secondsUntilFullRegen
 		if eval (ShouldLog LogLevelFlooding)
-			Logf "Before adjustments. fFatigueRegen:" +$fFatigueRegen
+			Logf "Before VanillaFatigueRegen adjustments. fFatigueRegen:" +$fFatigueRegen+" secondsUntilFullRegen:"+$secondsUntilFullRegen
 		endif
 		;Need to compensate for fFatigueReturnBase, fFatigueRunBase
 		;(Those GameSettings cannot be adjusted without affecting NPCs.)
+		Let fFatigueRegen -= PlayerRef.Call GetVanillaFatigueRegen
 		if eval (ShouldLog LogLevelFlooding)
-			Logf "After fFatigueReturnBase adjustment. fFatigueRegen:" +$fFatigueRegen
-		endif
-		if PlayerRef.IsRunning && (PlayerRef.IsMovingForward || PlayerRef.IsMovingBackward || PlayerRef.IsMovingLeft || PlayerRef.IsMovingRight)
-			Let fFatigueRegen -= GetSecondsPassed * (((GetGameSetting "fFatigueReturnBase") - (GetGameSetting "fFatigueRunBase")) +2); I'm not sure why +2 is required here.
-		else
-			Let fFatigueRegen -= GetSecondsPassed * (GetGameSetting "fFatigueReturnBase")
+			Logf "After VanillaFatigueRegen adjustment. fFatigueRegen:" +$fFatigueRegen
 		endif
 	endif
 	if eval (ShouldLog LogLevelFlooding)
@@ -179,7 +185,7 @@ begin _GameMode
 	;The above regen formula usually reduces regen. This compensates by increasing the max while secondsUntilFullRegen is maintained.
 	if eval (!bAdjustedFatigueMax2) || GetGameLoaded
 		Let bAdjustedFatigueMax2 := 1
-		PlayerRef.ModAVModC avcFatigue "Max" 200
+		PlayerRef.AddSpell RABonusFatigue
 	endif
 end
 

@@ -10,6 +10,7 @@ float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
 float secondsMult
+float athleticsWeightFraction
 
 begin OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
@@ -24,6 +25,7 @@ begin OnActivate
 		Let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
 		Let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
 		Let secondsMult := 1.0
+		Let athleticsWeightFraction := 0.05
 		; Read ini
 		RunBatchScript "Data\ini\RunningAlong.ini" 1
 		; Pass ini
@@ -37,5 +39,6 @@ begin OnActivate
 		Let RAQst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 		Let RAQst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
 		Let RAQst.secondsMult := secondsMult
+		Let RAQst.athleticsWeightFraction := athleticsWeightFraction
 	endif
 end
