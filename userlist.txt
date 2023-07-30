@@ -162,3 +162,6 @@ BEFORE: Bashed Patch, 0.esp
 
 ADD: CounteractAthletics.esp
 BEFORE: Bashed Patch, 0.esp
+
+ADD: TMBackstab.esp
+BEFORE: Bashed Patch, 0.esp
