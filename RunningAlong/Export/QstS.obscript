@@ -24,6 +24,7 @@ float fRecentlyJumpedWhileSprintingTimer
 short bShouldRunAfterNotMovingBackwards
 short bInit
 float secondsPassed
+short bAdjustedFatigueMax2
 
 begin _GameMode
 	SetModLogLevel logLevel
@@ -92,9 +93,8 @@ begin _GameMode
 	; # Speed Adjustments
 	;I'm not sure if SetAVModC is the best way to adjust Speed
 	;Using a flat value instead of % to prevent multiplicativeness
-	;You might need AVUncapper so that values above 100 have an effect
 	if eval SB.bSprinting
-		PlayerRef.SetAVModC avcSpeed "script" 200
+		PlayerRef.SetAVModC avcSpeed "script" 100
 	else
 		PlayerRef.SetAVModC avcSpeed "script" 0
 	endif
@@ -175,6 +175,12 @@ begin _GameMode
 		Logf "fFatigueRegen:" +$fFatigueRegen
 	endif
 	PlayerRef.ModAVModC avcFatigue "Damage" fFatigueRegen
+	; # Fatigue max
+	;The above regen formula usually reduces regen. This compensates by increasing the max while secondsUntilFullRegen is maintained.
+	if eval (!bAdjustedFatigueMax2) || GetGameLoaded
+		Let bAdjustedFatigueMax2 := 1
+		PlayerRef.ModAVModC avcFatigue "Max" 200
+	endif
 end
 
 begin _MenuMode
