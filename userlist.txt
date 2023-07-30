@@ -139,11 +139,8 @@ BEFORE: Bashed Patch, 0.esp
 ADD: NoTutorial.esp
 BEFORE: Bashed Patch, 0.esp
 
-ADD: TMWeaponPatcher.esp
-BEFORE: Bashed Patch, 0.esp
-
 ADD: Synthesis.esp
-AFTER: TMWeaponPatcher.esp
+AFTER: Bashed Patch, 0.esp
 
 ADD: Better Cities Leyawiin - Unofficial Oblivion Patch.esp
 AFTER: Better Cities Full - OOO.esp
