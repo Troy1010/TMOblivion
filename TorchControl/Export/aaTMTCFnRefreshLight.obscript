@@ -1,0 +1,27 @@
+scn aaTMTCFnRefreshLight
+
+ref rLightRef
+short sRadius
+float fFade
+ref rCell
+float xPos
+float yPos
+float zPos
+
+ref oLightBase
+
+begin _Function { rLightRef sRadius fFade rCell xPos yPos zPos }
+; Updating Radius and Fade
+let oLightBase := aaTMTCQ.aSpawnLightRegistry[(Call aaTMTCFnAdjustToSpawnLightMapValue fFade)]
+SetLightRadius sRadius oLightBase
+rLightRef.SetBaseForm oLightBase
+; Refreshing and positioning light
+if SB.bGetGameLoaded
+	rLightRef.Update3D
+endif
+rLightRef.MoveTo CFSpareCellPositionRef
+;The reason why aaTMTCPositionerRef is required here is unknown. Without it, issues arrise on exterior cell change.
+aaTMTCPositionerRef.Call SetPosition ar_List xPos yPos zPos 0 rCell
+rLightRef.MoveTo aaTMTCPositionerRef
+Call Reposition rLightRef xPos yPos zPos
+end

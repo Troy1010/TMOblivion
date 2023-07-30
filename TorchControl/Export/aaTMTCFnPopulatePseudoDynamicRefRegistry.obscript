@@ -1,0 +1,37 @@
+scn aaTMTCFnPopulatePseudoDynamicRefRegistry
+
+begin Function { }
+let aaTMTCQ.aPseudoDynamicRefRegistry := ar_Construct array
+ar_Resize aaTMTCQ.aPseudoDynamicRefRegistry 31
+let aaTMTCQ.aPseudoDynamicRefRegistry[0] := ar_List 1 0 0 0 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[1] := ar_List 0 0 aaTMTCTorchRef001 aaTMTCLightRef001 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[2] := ar_List 0 0 aaTMTCTorchRef002 aaTMTCLightRef002 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[3] := ar_List 0 0 aaTMTCTorchRef003 aaTMTCLightRef003 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[4] := ar_List 0 0 aaTMTCTorchRef004 aaTMTCLightRef004 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[5] := ar_List 0 0 aaTMTCTorchRef005 aaTMTCLightRef005 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[6] := ar_List 0 0 aaTMTCTorchRef006 aaTMTCLightRef006 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[7] := ar_List 0 0 aaTMTCTorchRef007 aaTMTCLightRef007 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[8] := ar_List 0 0 aaTMTCTorchRef008 aaTMTCLightRef008 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[9] := ar_List 0 0 aaTMTCTorchRef009 aaTMTCLightRef009 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[10] := ar_List 0 0 aaTMTCTorchRef010 aaTMTCLightRef010 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[11] := ar_List 0 0 aaTMTCTorchRef011 aaTMTCLightRef011 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[12] := ar_List 0 0 aaTMTCTorchRef012 aaTMTCLightRef012 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[13] := ar_List 0 0 aaTMTCTorchRef013 aaTMTCLightRef013 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[14] := ar_List 0 0 aaTMTCTorchRef014 aaTMTCLightRef014 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[15] := ar_List 0 0 aaTMTCTorchRef015 aaTMTCLightRef015 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[16] := ar_List 0 0 aaTMTCTorchRef016 aaTMTCLightRef016 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[17] := ar_List 0 0 aaTMTCTorchRef017 aaTMTCLightRef017 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[18] := ar_List 0 0 aaTMTCTorchRef018 aaTMTCLightRef018 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[19] := ar_List 0 0 aaTMTCTorchRef019 aaTMTCLightRef019 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[20] := ar_List 0 0 aaTMTCTorchRef020 aaTMTCLightRef020 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[21] := ar_List 0 0 aaTMTCTorchRef021 aaTMTCLightRef021 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[22] := ar_List 0 0 aaTMTCTorchRef022 aaTMTCLightRef022 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[23] := ar_List 0 0 aaTMTCTorchRef023 aaTMTCLightRef023 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[24] := ar_List 0 0 aaTMTCTorchRef024 aaTMTCLightRef024 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[25] := ar_List 0 0 aaTMTCTorchRef025 aaTMTCLightRef025 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[26] := ar_List 0 0 aaTMTCTorchRef026 aaTMTCLightRef026 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[27] := ar_List 0 0 aaTMTCTorchRef027 aaTMTCLightRef027 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[28] := ar_List 0 0 aaTMTCTorchRef028 aaTMTCLightRef028 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[29] := ar_List 0 0 aaTMTCTorchRef029 aaTMTCLightRef029 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[30] := ar_List 0 0 aaTMTCTorchRef030 aaTMTCLightRef030 0
+end

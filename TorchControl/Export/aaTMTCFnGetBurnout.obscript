@@ -1,0 +1,11 @@
+scn aaTMTCFnGetBurnout
+
+float fLightupTimeStamp
+
+begin _Function { fLightupTimeStamp }
+if eval (fLightupTimeStamp := ((fLightupTimeStamp - GameHour)*3600 + (GetLightDuration aaTMTCQ.oTorchBase))) > 24*3600
+	;We are passing midnight
+	let fLightupTimeStamp -= 24*3600
+endif
+SetFunctionValue fLightupTimeStamp
+end

@@ -1,0 +1,6 @@
+scn aaTMTCFnTakeTimerFromPlayer
+
+begin Function { }
+SetFunctionValue aaTMTCQ.aPlayerBurnoutTimers[(ar_size aaTMTCQ.aPlayerBurnoutTimers)-1]
+ar_Erase aaTMTCQ.aPlayerBurnoutTimers ((ar_size aaTMTCQ.aPlayerBurnoutTimers)-1)
+end

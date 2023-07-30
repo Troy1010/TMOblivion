@@ -1,0 +1,7 @@
+scn aaTMTCFnAdjustToSpawnLightMapValue
+
+float fArgument ;should be between 0 and 2.
+
+begin Function { fArgument }
+SetFunctionValue (Call WithinRange 0 (Call Round (fArgument*50)) 100)
+end

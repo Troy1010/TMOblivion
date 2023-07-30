@@ -1,0 +1,25 @@
+scn aaTMTCFnGetFreePseudoDynamicRefKey
+
+array_var aKeyAndValue
+short sDynamicVar
+
+begin Function { }
+ForEach aKeyAndValue <- aaTMTCQ.aPseudoDynamicRefRegistry
+	if eval aKeyAndValue["value"][0] ==0
+		SetFunctionValue aKeyAndValue["key"]
+		let aaTMTCQ.aPseudoDynamicRefRegistry[aKeyAndValue["key"]][4] := GameDaysPassed*24 + GameHour
+		let sDynamicVar := 1
+		break
+	endif
+loop
+if eval !sDynamicVar ;If there was no free ref, grab the oldest one.
+	ForEach aKeyAndValue <- aaTMTCQ.aPseudoDynamicRefRegistry
+		if eval (aKeyAndValue["value"][4] < aaTMTCQ.aPseudoDynamicRefRegistry[sDynamicVar][4]) && aKeyAndValue["key"] !=0
+			let sDynamicVar := aKeyAndValue["key"]
+		endif
+	loop
+	Call aaTMTCFnResetPseudoDynamicGroup sDynamicVar
+	let aaTMTCQ.aPseudoDynamicRefRegistry[sDynamicVar][4] := GameDaysPassed*24 + GameHour
+	SetFunctionValue sDynamicVar
+endif
+end

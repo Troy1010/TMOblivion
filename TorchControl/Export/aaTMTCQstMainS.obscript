@@ -1,0 +1,100 @@
+scn aaTMTCQstMainS
+
+float fQuestDelayTime
+short bSeathWeaponFlag
+short bModifier1Flag
+float fHoldingTimer
+short bMonitorForDropByDrawingWeapon
+ref oTorchBase
+short sTemporaryLightFrameCount
+array_var aPlayerBurnoutTimers ;necessary because there is no other way to keep timers when dropping a used torch.
+array_var aSpawnLightRegistry ;necessary because there is no other way to change a light's fade value.
+array_var aPseudoDynamicRefRegistry
+short bLightIsOn
+short bLightNextDroppedTorch
+
+;ini options
+float fWeight
+short sGold
+
+begin _GameMode
+if eval Call OnControlDown2 "SeathWeapon"
+	let bSeathWeaponFlag := 1
+	let bModifier1Flag := Call IsEngaged "Modifier1"
+	let fHoldingTimer := 0.75
+endif
+if bSeathWeaponFlag
+	if eval Call IsEngaged "SeathWeapon"
+		if eval (fHoldingTimer -= GetSecondsPassed) <0
+			let bSeathWeaponFlag :=0
+			if playerRef.IsTorchOut
+				; Unequip Torch
+				playerRef.UnequipItemNS (playerRef.GetEquippedObject 14)
+			else
+				; Equip Torch
+				if eval (playerRef.GetItemCount oTorchBase) <= 0 && (playerRef.GetItemCount aaTMTCUsedTorch) <= 0
+					message "I do not have any torches"
+				else
+					if playerRef.isweaponout && (playerRef.GetWeaponAnimType >1 || (playerRef.GetWeaponAnimType ==1 && playerRef.IsShieldOut))
+						tapControl 8
+						let bMonitorForDropByDrawingWeapon := 0
+					endif
+					if eval !(playerRef.GetItemCount aaTMTCUsedTorch)
+						playerRef.RemoveItemNS oTorchBase 1
+						playerRef.AddItemNS aaTMTCUsedTorch 1
+						Call aaTMTCFnGiveTimerToPlayer (GetLightDuration oTorchBase)
+					endif
+					playerRef.EquipItemNS aaTMTCUsedTorch 1
+				endif
+				; END Equip Torch
+			endif
+		endif
+	else
+		let bSeathWeaponFlag :=0
+		if playerRef.IsTorchOut ==0 || bModifier1Flag
+			; Seath/unseath weapon
+			TapControl 8
+		elseif playerRef.GetEquipped aaTMTCUsedTorch
+			; Drop lit torch
+			playerRef.UnequipItemNS aaTMTCUsedTorch 1
+			playerRef.Drop aaTMTCUsedTorch 1
+			let sTemporaryLightFrameCount := (Call Max 2 sTemporaryLightFrameCount)
+		endif
+	endif
+endif
+if bMonitorForDropByDrawingWeapon
+	if playerRef.IsTorchOut ==0 && playerRef.GetEquipped aaTMTCUsedTorch
+		; Drop lit torch
+		playerRef.UnequipItemNS aaTMTCUsedTorch 1
+		playerRef.Drop aaTMTCUsedTorch 1
+		let sTemporaryLightFrameCount := (Call Max 2 sTemporaryLightFrameCount)
+	endif
+elseif playerRef.IsTorchOut
+	let bMonitorForDropByDrawingWeapon := 1
+endif
+if eval (playerRef.IsTorchOut && playerRef.GetEquipped aaTMTCUsedTorch) || sTemporaryLightFrameCount
+	if ar_HasKey aPlayerBurnoutTimers 0
+		Call aaTMTCFnRefreshLight aaTMTCPlayerLightRef (200+556*((aPlayerBurnoutTimers[(ar_size aPlayerBurnoutTimers)-1]/(GetLightDuration oTorchBase))^0.4)) (0.4 + 0.6*((aPlayerBurnoutTimers[(ar_size aPlayerBurnoutTimers)-1]/(GetLightDuration oTorchBase))^0.4)) (playerRef.GetParentCell) (playerRef.GetPos "x") (playerRef.GetPos "y") ((playerRef.GetPos "z") + 150*(playerRef.GetScale))
+	endif
+	let bLightIsOn := 1
+	if eval (playerRef.IsTorchOut && playerRef.GetEquipped aaTMTCUsedTorch)
+		let sTemporaryLightFrameCount := 0
+		if eval (aPlayerBurnoutTimers[(ar_size aPlayerBurnoutTimers)-1] -= GetSecondsPassed) <0
+			playerRef.UnequipItemNS aaTMTCUsedTorch 1
+			playerRef.RemoveItemNS aaTMTCUsedTorch 1
+		endif
+	endif
+	let sTemporaryLightFrameCount := (Call Max 0 (sTemporaryLightFrameCount -1))
+elseif bLightIsOn
+	let bLightIsOn := 0
+	aaTMTCPlayerLightRef.MoveTo CFSpareCellPositionRef
+	aaTMTCPlayerLightRef.Update3D
+endif
+if eval (playerRef.IsTorchOut && playerRef.GetEquipped aaTMTCUsedTorch)
+	let bLightNextDroppedTorch := 1
+elseif bLightNextDroppedTorch ==1 || bLightNextDroppedTorch ==2 || bLightNextDroppedTorch ==3
+	let bLightNextDroppedTorch += 1
+else
+	let bLightNextDroppedTorch := 0
+endif
+end

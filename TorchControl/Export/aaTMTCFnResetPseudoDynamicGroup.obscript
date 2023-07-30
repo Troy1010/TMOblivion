@@ -1,0 +1,17 @@
+scn aaTMTCFnResetPseudoDynamicGroup
+
+short sKey
+
+ref rTemp
+
+begin Function { sKey }
+let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][0] := 0
+let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][1] := 0
+let rTemp := aaTMTCQ.aPseudoDynamicRefRegistry[sKey][2]
+rTemp.MoveTo CFSpareCellPositionRef
+rTemp.Update3D
+let rTemp := aaTMTCQ.aPseudoDynamicRefRegistry[sKey][3]
+rTemp.MoveTo CFSpareCellPositionRef
+rTemp.Update3D ;lights leave behind a ghost light if not updated
+let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][4] := 0
+end

@@ -1,0 +1,12 @@
+scn aaTMTCFnGetMyPseudoDynamicRefKey
+
+array_var aKeyAndValue
+
+begin _Function { }
+ForEach aKeyAndValue <- aaTMTCQ.aPseudoDynamicRefRegistry
+	if eval aKeyAndValue["value"][2] == (GetSelf)
+		SetFunctionValue aKeyAndValue["key"]
+		break
+	endif
+loop
+end

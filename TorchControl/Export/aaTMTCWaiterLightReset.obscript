@@ -1,0 +1,7 @@
+scn aaTMTCWaiterLightReset
+
+array_var aArguments
+
+begin Function { aArguments }
+Call aaTMTCFnResetPseudoDynamicGroup aArguments[0]
+end

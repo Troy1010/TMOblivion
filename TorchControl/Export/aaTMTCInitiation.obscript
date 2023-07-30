@@ -1,0 +1,47 @@
+scn aaTMTCInitiation
+
+begin _Function { }
+Call InitiateOnFrame2
+if aaTMTCQ.fQuestDelayTime != 0.00001
+	let aaTMTCQ.fQuestDelayTime := 0.00001
+	StartQuest aaTMTCQ
+	Call NoFlagDisable "SeathWeapon"
+	if eval !zzTMCompleteControlQ.bOverride
+		DisableControl 8
+	endif
+	
+	; Register possible LightBases for SpawnLight
+	Call aaTMTCFnPopulateSpawnLightRegistry
+	; Register possible TorchRefs for PsudoDynamicTorch
+	Call aaTMTCFnPopulatePseudoDynamicRefRegistry
+	
+	; Construct arrays
+	let aaTMTCQ.aPlayerBurnoutTimers := ar_Construct "array"
+endif
+
+; Find the TorchBase (I may want to add these options into an ini)
+if IsModLoaded "Oblivion.esm"
+	let aaTMTCQ.oTorchBase := GetFormFromMod "Oblivion.esm" "02CF9F"
+endif
+if IsModLoaded "Nehrim.esm"
+	let aaTMTCQ.oTorchBase := GetFormFromMod "Nehrim.esm" "02CF9F"
+endif
+; Fix some of its attributes
+RunBatchScript "Data\ini\Torch Control.ini"
+SetScript aaTMTCObjTorchBaseS aaTMTCQ.oTorchBase
+SetWeight aaTMTCQ.fWeight aaTMTCQ.oTorchBase
+SetGoldValue aaTMTCQ.sGold aaTMTCQ.oTorchBase
+
+; Set our UsedTorch to have alike attributes
+SetWeight (GetWeight aaTMTCQ.oTorchBase) aaTMTCUsedTorch
+SetGoldValue (0.33*(GetGoldValue aaTMTCQ.oTorchBase)) aaTMTCUsedTorch
+SetLoopSound (GetLoopSound aaTMTCQ.oTorchBase) aaTMTCUsedTorch
+SetModelPath (GetModelPath aaTMTCQ.oTorchBase) aaTMTCUsedTorch
+SetIconPath (GetIconPath aaTMTCQ.oTorchBase) aaTMTCUsedTorch
+; Set our DroppedTorch to have alike attributes
+SetWeight (GetWeight aaTMTCQ.oTorchBase) aaTMTCDroppedTorch
+SetGoldValue (0.33*(GetGoldValue aaTMTCQ.oTorchBase)) aaTMTCDroppedTorch
+SetLoopSound (GetLoopSound aaTMTCQ.oTorchBase) aaTMTCDroppedTorch
+SetModelPath (GetModelPath aaTMTCQ.oTorchBase) aaTMTCDroppedTorch
+SetIconPath (GetIconPath aaTMTCQ.oTorchBase) aaTMTCDroppedTorch
+end

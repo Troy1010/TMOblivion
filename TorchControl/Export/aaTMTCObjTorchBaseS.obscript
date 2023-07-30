@@ -1,0 +1,5 @@
+scn aaTMTCObjTorchBaseS
+
+begin OnLoad
+RemoveFlames
+end

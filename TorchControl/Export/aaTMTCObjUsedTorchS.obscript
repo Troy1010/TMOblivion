@@ -1,0 +1,22 @@
+scn aaTMTCObjUsedTorchS
+
+float fBurnoutTimer
+
+begin OnDrop playerRef
+let fBurnoutTimer := Call aaTMTCFnTakeTimerFromPlayer
+end
+
+begin OnLoad
+if eval !fBurnoutTimer
+	let fBurnoutTimer := Call aaTMTCFnTakeTimerFromPlayer
+endif
+Call aaTMTCFnDropTorch fBurnoutTimer aaTMTCQ.bLightNextDroppedTorch (GetPos "x") (GetPos "y") ((GetPos "z")+80*(playerRef.GetScale))
+let aaTMTCQ.bLightNextDroppedTorch := 0
+Call DeleteReference (Call FindClosestReferenceWithBase aaTMTCUsedTorch (GetPos "x") (GetPos "y") (GetPos "z") )
+end
+
+begin _OnAdd playerRef
+if eval fBurnoutTimer
+	Call aaTMTCFnGiveTimerToPlayer fBurnoutTimer
+endif
+end

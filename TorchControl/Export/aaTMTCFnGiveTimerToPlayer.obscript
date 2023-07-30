@@ -1,0 +1,8 @@
+scn aaTMTCFnGiveTimerToPlayer
+
+float fTimerToGive
+
+begin Function { fTimerToGive }
+ar_append aaTMTCQ.aPlayerBurnoutTimers fTimerToGive
+let aaTMTCQ.aPlayerBurnoutTimers := ar_Sort aaTMTCQ.aPlayerBurnoutTimers 1 ; <-bDecending
+end

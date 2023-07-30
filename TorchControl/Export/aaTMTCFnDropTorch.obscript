@@ -1,0 +1,30 @@
+scn aaTMTCFnDropTorch
+
+float x
+float y
+float z
+float fBurnoutToGive
+short bLit
+
+short sKey
+ref rTemp
+
+begin Function { fBurnoutToGive bLit x y z }
+let sKey := Call aaTMTCFnGetFreePseudoDynamicRefKey
+if eval !bLit
+	let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][0] := 1
+	let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][1] := fBurnoutToGive
+else
+	let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][0] := 2
+	let aaTMTCQ.aPseudoDynamicRefRegistry[sKey][1] := Call aaTMTCFnGetLightupTimeStamp fBurnoutToGive
+	; Keep the temporary light on until the dropped torch is lit
+	let aaTMTCQ.sTemporaryLightFrameCount := Call Max 1 aaTMTCQ.sTemporaryLightFrameCount
+endif
+let rTemp := aaTMTCQ.aPseudoDynamicRefRegistry[sKey][2]
+; Must use Drop or torch will be suspended midair.
+rTemp.Activate playerRef
+playerRef.Drop aaTMTCDroppedTorch 1
+rTemp.SetPos "x" x
+rTemp.SetPos "y" y
+rTemp.SetPos "z" z
+end

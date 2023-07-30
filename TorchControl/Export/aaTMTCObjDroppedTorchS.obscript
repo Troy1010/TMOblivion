@@ -1,0 +1,79 @@
+scn aaTMTCObjDroppedTorchS
+
+short sMyKey
+ref rTemp
+
+begin _OnLoad
+let sMyKey := Call aaTMTCFnGetMyPseudoDynamicRefKey
+if eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] == 2 ;(Oblivion does not always accurately remember if torch should have flames or not)
+	AddFlames
+else
+	RemoveFlames
+endif
+end
+
+begin _OnActivate
+if GetActionRef != playerRef ;should always be false
+	Call aaTMTCFnResetPseudoDynamicGroup sMyKey
+elseif eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] != 3
+	; Give timer
+	if eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] == 2
+		Call aaTMTCFnGiveTimerToPlayer (Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1])
+	else
+		Call aaTMTCFnGiveTimerToPlayer aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1]
+	endif
+	; Give torch
+	playerRef.AddItemNS aaTMTCUsedTorch 1
+	; If the player doesn't already have an equipped torch, force him/her to equip one.
+	if eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] ==2 && !(playerRef.GetEquippedObject 14)
+		if playerRef.isweaponout && (playerRef.GetWeaponAnimType >1 || (playerRef.GetWeaponAnimType ==1 && playerRef.IsShieldOut))
+			tapControl 8
+			let aaTMTCQ.bMonitorForDropByDrawingWeapon := 0
+		endif
+		playerRef.EquipItem2NS aaTMTCUsedTorch 1
+		; Turn on the temporary light until this torch is equipped and lit.
+		let aaTMTCQ.sTemporaryLightFrameCount := 36000
+		; Boost turning on the temporary light by 1 frame
+		Call aaTMTCFnRefreshLight aaTMTCPlayerLightRef (200+556*(((Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1])/(GetLightDuration aaTMTCQ.oTorchBase))^0.4)) (0.4 + 0.6*(((Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1])/(GetLightDuration aaTMTCQ.oTorchBase))^0.4)) (playerRef.GetParentCell) (playerRef.GetPos "x") (playerRef.GetPos "y") ((playerRef.GetPos "z") + 150*(playerRef.GetScale))
+		let aaTMTCQ.bLightIsOn := 1
+		; Wait 1 frame before resetting this torch group
+		let aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] := 3 ;So that this can't be activated again on this waited frame
+		Call Wait -1 aaTMTCWaiterLightReset 2 ar_list sMyKey
+	else
+		; Reset this torch group
+		Call aaTMTCFnResetPseudoDynamicGroup sMyKey
+	endif
+endif
+end
+
+begin _GameMode
+if eval !sMyKey
+	let sMyKey := Call aaTMTCFnGetMyPseudoDynamicRefKey
+	if eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] == 2 ;(Oblivion does not always accurately remember if torch should have flames or not)
+		AddFlames
+	else
+		RemoveFlames
+	endif
+endif
+if eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] == 1
+	if eval HasFlames ;Lit by a fireball or something (by another mod's functionality)
+		let aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1] := Call aaTMTCFnGetLightupTimeStamp aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1]
+		let aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] := 2
+	endif
+endif
+if eval aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] == 2
+	if eval !HasFlames ;Fell into water
+		let aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1] := Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1]
+		let aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][0] := 1
+		let rTemp := aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][3]
+		rTemp.MoveTo CFSpareCellPositionRef
+		rTemp.Update3D
+	else
+		if eval (Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1]) <= 0
+			Call aaTMTCFnResetPseudoDynamicGroup sMyKey
+		else
+			Call aaTMTCFnRefreshLight aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][3] (200+556*(((Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1])/(GetLightDuration aaTMTCQ.oTorchBase))^0.4)) (0.4 + 0.6*(((Call aaTMTCFnGetBurnout aaTMTCQ.aPseudoDynamicRefRegistry[sMyKey][1])/(GetLightDuration aaTMTCQ.oTorchBase))^0.4)) (GetParentCell) (GetPos "x") (GetPos "y") ((GetPos "z")+40)		
+		endif
+	endif
+endif
+end
