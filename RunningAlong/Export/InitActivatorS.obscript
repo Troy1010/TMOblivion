@@ -9,8 +9,17 @@ float secondsUntilFullRegenWhileStandingIfCompletelyNotFit
 float secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 float secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 float secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
-float secondsMult
 float athleticsWeightFraction
+short bPrintToConsole
+short bShouldLogFlooding
+short featureFallOnLowFatigue
+short bShouldLogPhysicalityCalculation
+short bShouldLogFatigueRegenCalculation
+short featureNoBackwardsRunning
+short sprintKey
+short featureFatigue
+short featureSprint
+float neutralizefGlobalTimeMultiplier
 
 begin OnActivate
 	if eval (Call InitPostLoad2) || (Call InitOnStart1)
@@ -24,8 +33,17 @@ begin OnActivate
 		Let secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := 60 * 1.2
 		Let secondsUntilFullRegenWhileRunningIfCompletelyNotFit := -300
 		Let secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := -20
-		Let secondsMult := 1.0
 		Let athleticsWeightFraction := 0.05
+		Let bPrintToConsole := 0
+		Let bShouldLogFlooding := 0
+		Let featureFallOnLowFatigue := 1
+		Let bShouldLogPhysicalityCalculation := 0
+		Let bShouldLogFatigueRegenCalculation := 0
+		Let featureNoBackwardsRunning := 1
+		Let sprintKey := 42;LShift
+		Let featureFatigue := 1
+		Let featureSprint := 1
+		Let neutralizefGlobalTimeMultiplier := 0
 		; Read ini
 		RunBatchScript "Data\ini\RunningAlong.ini" 1
 		; Pass ini
@@ -38,7 +56,18 @@ begin OnActivate
 		Let RAQst.secondsUntilFullRegenWhileWalkingIfCompletelyNotFit := secondsUntilFullRegenWhileWalkingIfCompletelyNotFit
 		Let RAQst.secondsUntilFullRegenWhileRunningIfCompletelyNotFit := secondsUntilFullRegenWhileRunningIfCompletelyNotFit
 		Let RAQst.secondsUntilFullRegenWhileSprintingIfCompletelyNotFit := secondsUntilFullRegenWhileSprintingIfCompletelyNotFit
-		Let RAQst.secondsMult := secondsMult
+		Let RAQst.neutralizefGlobalTimeMultiplier := neutralizefGlobalTimeMultiplier
 		Let RAQst.athleticsWeightFraction := athleticsWeightFraction
+		Let RAQst.bPrintToConsole := bPrintToConsole
+		Let RAQst.bShouldLogFlooding := bShouldLogFlooding
+		Let RAQst.featureFallOnLowFatigue := featureFallOnLowFatigue
+		Let RAQst.bShouldLogPhysicalityCalculation := bShouldLogPhysicalityCalculation
+		Let RAQst.bShouldLogFatigueRegenCalculation := bShouldLogFatigueRegenCalculation
+		Let RAQst.featureNoBackwardsRunning := featureNoBackwardsRunning
+		Let RAQst.sprintKey := sprintKey
+		Let RAQst.featureFatigue := featureFatigue
+		Let RAQst.featureSprint := featureSprint
+		Call LogRA "InitActivatorS. bPrintToConsole:"+$RAQst.bPrintToConsole+" logLevel:"+$RAQst.logLevel+" bShouldLogFlooding:"+$RAQst.bShouldLogFlooding+" bShouldLogPhysicalityCalculation:"+$RAQst.bShouldLogPhysicalityCalculation+" bShouldLogFatigueRegenCalculation:"+$RAQst.bShouldLogFatigueRegenCalculation+" featureNoBackwardsRunning:"+$RAQst.featureNoBackwardsRunning+" sprintKey:"+$RAQst.sprintKey+" featureFatigue:"+$RAQst.featureFatigue+" featureSprint:"+$RAQst.featureSprint
+		Call LogRA "neutralizefGlobalTimeMultiplier:"+$RAQst.neutralizefGlobalTimeMultiplier
 	endif
 end

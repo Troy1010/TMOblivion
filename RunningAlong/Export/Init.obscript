@@ -7,5 +7,6 @@ begin _Function { }
 			StartQuest RAQst
 		endif
 		InitActRef.Activate2 PlayerRef 1
+		Call LogRA "Init."
 	endif
 end
