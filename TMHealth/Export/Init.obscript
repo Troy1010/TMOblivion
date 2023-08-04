@@ -1,1 +1,31 @@
 scn Init
+
+ref rTemp
+
+begin _Function { }
+	if eval GetGameLoaded || !TMHealthQst.bInit
+		Let TMHealthQst.bInit := 1
+		RunBatchScript "Data\ini\TMHealth.ini", 0, 1
+		Let TMHealthQst.startBleedHealthFraction := TMHealthQst.startBleedHealthPercentage / 100
+		Let rTemp := (GetFormFromMod "HeartbeatBreath.esp" "00085C")
+		if eval (IsFormValid rTemp)
+			if eval TMHealthQst.bShouldLogDebug
+				Call LogTH "Form is valid"
+			endif
+			Let TMHealthQst.startRegenHealthFraction := Call rTemp
+			if eval TMHealthQst.bShouldLogDebug
+				Call LogTH "Setting startRegenHealthFraction from HeartbeatBreath. startRegenHealthFraction:" +$TMHealthQst.startRegenHealthFraction
+			endif
+		else
+			if eval TMHealthQst.bShouldLogDebug
+				Call LogTH "Form is NOT valid"
+			endif
+			Let TMHealthQst.startRegenHealthFraction := TMHealthQst.startRegenHealthPercentage / 100
+		endif
+		if eval TMHealthQst.bShouldLogDebug
+			Call LogTH "featureBleed:" +$TMHealthQst.featureBleed+" featureRegen:" +$TMHealthQst.featureRegen+"bShouldLogWarning:" +$TMHealthQst.bShouldLogWarning+" bShouldLogDebug:" +$TMHealthQst.bShouldLogDebug+ " bShouldLogFlooding:" +$TMHealthQst.bShouldLogFlooding
+			Call LogTH "startBleedHealthFraction:" + $TMHealthQst.startBleedHealthFraction+ " startRegenHealthFraction:" + $TMHealthQst.startRegenHealthFraction
+			Call LogTH "secondsUntilDeathFromBleedHealthPercentage:" + $TMHealthQst.secondsUntilDeathFromBleedHealthPercentage+ " secondsUntilFullHealthFromRegenHealthPercentage:" + $TMHealthQst.secondsUntilFullHealthFromRegenHealthPercentage+ " neutralizefGlobalTimeMultiplier:" + $TMHealthQst.neutralizefGlobalTimeMultiplier
+		endif
+	endif
+end

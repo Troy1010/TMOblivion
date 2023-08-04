@@ -1,0 +1,7 @@
+scn LogTH
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`TMHealth`" + s, TMHealthQst.bPrintToConsole
+end
