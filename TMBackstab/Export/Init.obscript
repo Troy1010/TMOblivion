@@ -1,0 +1,10 @@
+scn Init
+
+begin _Function { }
+	if eval GetGameLoaded || !BSQst.bInit
+		Let BSQst.bInit := 1
+		RunBatchScript "Data\ini\TMBackstab.ini", 0, 1
+		SetEventHandler "OnHit" HandlerOnHit
+		Call LogBS "Init"
+	endif
+end

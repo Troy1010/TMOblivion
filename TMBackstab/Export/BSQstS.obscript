@@ -1,0 +1,20 @@
+scn BSQstS
+
+short featurePlaySoundOnBackstab
+short featureDamageOnBackstab
+float fFlatDmg
+float fDmgPerLevel
+float fPercentHealthDmg
+
+short bPrintToConsole
+short bShouldLogFlooding
+
+short bInit
+
+begin _GameMode
+	Call Init
+end
+
+begin _MenuMode
+	Call Init
+end

@@ -1,0 +1,26 @@
+scn HandlerOnHit
+
+ref target
+ref attacker
+float angleDifference
+short bIsBackstab
+float backstabDmg
+
+begin _Function { target attacker }
+	if eval BSQst.bShouldLogFlooding
+		Let angleDifference := Abs ((target.GetAngle "Z") - (attacker.GetAngle "Z"))
+		Let bIsBackstab := eval (angleDifference < 60) && ((target.GetDistance attacker) < 150)
+		if eval bIsBackstab
+			if eval BSQst.featurePlaySoundOnBackstab && attacker == PlayerRef
+				PlaySound Backstab
+			endif
+			if eval BSQst.featureDamageOnBackstab
+				let backstabDmg := BSQst.fFlatDmg + (BSQst.fDmgPerLevel * attacker.GetLevel) + (BSQst.fPercentHealthDmg * Call CFGetAVMax target avcHealth)
+				target.ModAVModC avcHealth "Damage" backstabDmg
+			endif
+		endif
+		if eval BSQst.bShouldLogFlooding
+			Call LogBS "HandlerOnHit. attacker:"+$attacker+" target:"+$target+" targetZ:"+$(target.GetAngle "Z")+" attackerZ:"+$(attacker.GetAngle "Z")+" angleDifference:"+$angleDifference+" distance:"+$(target.GetDistance attacker)+" bIsBackstab:"+$bIsBackstab+" backstabDmg:"+$backstabDmg
+		endif
+	endif
+end
