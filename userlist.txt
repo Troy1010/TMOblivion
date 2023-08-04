@@ -103,6 +103,9 @@ BEFORE: Tminus1010_^CommonFunctionsChild.esp
 ADD: TMBashableTweaks_NoTorchInFirstTunnel.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
+ADD: TMBackstab_GameSettings.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
 ADD: TMArchery.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
