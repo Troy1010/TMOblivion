@@ -16,7 +16,7 @@ begin _Function { target attacker }
 			endif
 			if eval BSQst.featureDamageOnBackstab
 				let backstabDmg := BSQst.fFlatDmg + (BSQst.fDmgPerLevel * attacker.GetLevel) + (BSQst.fPercentHealthDmg * Call CFGetAVMax target avcHealth)
-				target.ModAVModC avcHealth "Damage" backstabDmg
+				target.ModAVModC avcHealth "Damage" (-backstabDmg)
 			endif
 		endif
 		if eval BSQst.bShouldLogFlooding

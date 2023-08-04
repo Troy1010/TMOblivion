@@ -3,5 +3,5 @@ scn LogBS
 string_var s
 
 begin _Function { s }
-	Scribe (GetFormIDString GetCallingScript) + "`" + s, BSQst.bPrintToConsole
+	Scribe (GetFormIDString GetCallingScript) + "`TMBackstab`" + s, BSQst.bPrintToConsole
 end
