@@ -14,16 +14,13 @@ ADD: Book Jackets DLC Misc.esp
 AFTER: Falling Leaves.esp
 
 ADD: PotionReplacer.esp
-AFTER: Book Jackets DLC Misc.esp
+AFTER: tbskGuardsFeatures.esp
 
 ADD: Diverse Effect Icons OBSE.esp
 AFTER: PotionReplacer.esp
 
-ADD: SGP Interior Draw Distance Fix.esp
-AFTER: Diverse Effect Icons OBSE.esp
-
 ADD: DistinctAyleidBossChests.esp
-AFTER: SGP Interior Draw Distance Fix.esp
+AFTER: Diverse Effect Icons OBSE.esp
 
 ADD: GreyPrince.esp
 AFTER: DistinctAyleidBossChests.esp
@@ -42,9 +39,6 @@ AFTER: lLet there be Flowers.esp
 
 ADD: KvGuardFeaturesDevastationReduxPatch.esp
 AFTER: Devastation of Kvatch Redux.esp
-
-ADD: WaterFPS.esp
-AFTER: KvGuardFeaturesDevastationReduxPatch.esp
 
 ADD: WaterFPS.esp
 AFTER: GreyPrince.esp
@@ -164,6 +158,12 @@ ADD: CounteractAthletics.esp
 BEFORE: Bashed Patch, 0.esp
 
 ADD: TMBackstab.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: Custom Autosave.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: Dungeon Actors Have Torches 1.6 DT.esp
 BEFORE: Bashed Patch, 0.esp
 
 ADD: Tminus1010_^CommonFunctionsChild_TorchControl.esp
