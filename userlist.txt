@@ -171,3 +171,6 @@ AFTER: Bashed Patch, 0.esp
 
 ADD: TorchControl.esp
 AFTER: Tminus1010_^CommonFunctionsChild_TorchControl.esp
+
+ADD: ToggleNighteye.esp
+BEFORE: Bashed Patch, 0.esp
