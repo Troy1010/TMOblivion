@@ -174,3 +174,6 @@ AFTER: Tminus1010_^CommonFunctionsChild_TorchControl.esp
 
 ADD: ToggleNighteye.esp
 BEFORE: Bashed Patch, 0.esp
+
+ADD: HealthAndDamageScaling2.esp
+BEFORE: Bashed Patch, 0.esp
