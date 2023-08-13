@@ -55,10 +55,14 @@
 		<!-- default crosshair image -->
 		<image name="hudreticle_reticle_crosshair">
 			<locus> &true; </locus>
+			<!-- TMEdit -->
+			<!--
 			<visible>
 				<copy src="parent()" trait="user5" />
 				<eq> 0 </eq>
 			</visible>
+			-->
+			<visible> &false; </visible>
 			<depth>
 				<copy> 100 </copy>
 				<onlyif src="HUDReticle" trait="_settings_mode" />
