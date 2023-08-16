@@ -177,3 +177,9 @@ BEFORE: Bashed Patch, 0.esp
 
 ADD: HealthAndDamageScaling2.esp
 BEFORE: Bashed Patch, 0.esp
+
+ADD: Av Latta Magicka - Rebalance Complete.esp
+BEFORE: No Starting Spells True.esp
+
+ADD: Av Latta Magicka.esp
+BEFORE: No Starting Spells True.esp
