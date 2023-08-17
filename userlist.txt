@@ -183,3 +183,12 @@ BEFORE: No Starting Spells True.esp
 
 ADD: Av Latta Magicka.esp
 BEFORE: No Starting Spells True.esp
+
+ADD: xulCorboloRiver.esp
+AFTER: xulTheEasternPeaks.esp
+
+ADD: ULE UnofficialOblivionPatch-CorboloRiver patch.esp
+AFTER: xulCorboloRiver.esp
+
+ADD: ULE DarkBrotherhoodCemetery-CheydinhalFalls patch.esp
+AFTER: DBC.esp
