@@ -160,6 +160,9 @@ BEFORE: Bashed Patch, 0.esp
 ADD: TMBackstab.esp
 BEFORE: Bashed Patch, 0.esp
 
+ADD: TMEqualizer.esp
+BEFORE: Bashed Patch, 0.esp
+
 ADD: Custom Autosave.esp
 BEFORE: Bashed Patch, 0.esp
 
