@@ -192,3 +192,6 @@ AFTER: xulCorboloRiver.esp
 
 ADD: ULE DarkBrotherhoodCemetery-CheydinhalFalls patch.esp
 AFTER: DBC.esp
+
+ADD: TMBlock_GameSettings.esp
+BEFORE: Bashed Patch, 0.esp
