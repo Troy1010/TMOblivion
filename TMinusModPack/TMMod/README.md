@@ -1,0 +1,3 @@
+Unlike the other mods, TMMod is meant to have a lot of unrelated features, instead of lots of small mods.
+TMChildMod is like TMMod except it has TMCommonFunctions as a master. (I want to avoid making TMMod have TMCommonFunctions as a master, because it might be problematic.)
+TMOblivionMod has Oblivion as a master. (I want to avoid making TMMod have Oblivion as a master, because it takes forever to load.)

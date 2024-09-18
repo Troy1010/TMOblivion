@@ -97,6 +97,9 @@ BEFORE: Tminus1010_^CommonFunctionsChild.esp
 ADD: TMBashableTweaks_NoTorchInFirstTunnel.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
+ADD: TMBashableTweaks_MMM.esp
+BEFORE: Tminus1010_^CommonFunctionsChild.esp
+
 ADD: TMBackstab_GameSettings.esp
 BEFORE: Tminus1010_^CommonFunctionsChild.esp
 
@@ -161,6 +164,15 @@ ADD: TMBackstab.esp
 BEFORE: Bashed Patch, 0.esp
 
 ADD: TMEqualizer.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: TMOblivionMod.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: TMMod.esp
+BEFORE: Bashed Patch, 0.esp
+
+ADD: TMChildMod.esp
 BEFORE: Bashed Patch, 0.esp
 
 ADD: Custom Autosave.esp
