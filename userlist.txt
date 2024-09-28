@@ -1,15 +1,6 @@
 OVERRIDE: tbskGuardsFeatures.esp
 AFTER: NPC Hair Matches Beard.esp
 
-OVERRIDE: tbskGuardsFeaturesKvatchAddon.esp
-AFTER: tbskGuardsFeatures.esp
-
-OVERRIDE: tbskGuardsFeaturesSutchAddon.esp
-AFTER: tbskGuardsFeatures.esp
-
-OVERRIDE: tbskGuardsFeaturesThornAddon.esp
-AFTER: tbskGuardsFeatures.esp
-
 ADD: Book Jackets DLC Misc.esp
 AFTER: Falling Leaves.esp
 
@@ -35,10 +26,7 @@ ADD: lLet there be Flowers.esp
 AFTER: Magic Visuals Overhaul.esp
 
 ADD: Devastation of Kvatch Redux.esp
-AFTER: lLet there be Flowers.esp
-
-ADD: KvGuardFeaturesDevastationReduxPatch.esp
-AFTER: Devastation of Kvatch Redux.esp
+BEFORE: tbskGuardsFeatures.esp
 
 ADD: WaterFPS.esp
 AFTER: GreyPrince.esp
@@ -46,29 +34,35 @@ AFTER: GreyPrince.esp
 ADD: Bashed Patch, 0.esp
 AFTER: WaterFPS.esp
 
-ADD: Devastation of Kvatch Redux.esp
-AFTER: GreyPrince.esp
-
-ADD: KvGuardFeaturesDevastationReduxPatch.esp
-AFTER: GreyPrince.esp
-
 ADD: NAO-Brighter-Nights-Sam.esp
 AFTER: GreyPrince.esp
 
 ADD: NAO.esp
 AFTER: GreyPrince.esp
 
-ADD: OCO Cleaned - Vanilla Hair.esp
-AFTER: GreyPrince.esp
+OVERRIDE: tbskGuardsFeaturesKvatchAddon.esp
+AFTER: tbskGuardsFeatures.esp
 
-ADD: OCO_Eyes_Fix.esp
-AFTER: GreyPrince.esp
+OVERRIDE: tbskGuardsFeaturesSutchAddon.esp
+AFTER: tbskGuardsFeatures.esp
+
+OVERRIDE: tbskGuardsFeaturesThornAddon.esp
+AFTER: tbskGuardsFeatures.esp
+
+ADD: KvGuardFeaturesDevastationReduxPatch.esp
+AFTER: tbskGuardsFeaturesKvatchAddon.esp
 
 ADD: tbskGuardsFeatures-NoGreatHelmets.esp
-AFTER: GreyPrince.esp
+AFTER: tbskGuardsFeaturesKvatchAddon.esp
 
 ADD: Tropical Gold Coast.esp
 AFTER: GreyPrince.esp
+
+ADD: OCO Cleaned - Vanilla Hair.esp
+AFTER: Oblivion_Character_Overhaul.esp
+
+ADD: OCO_Eyes_Fix.esp
+AFTER: Oblivion_Character_Overhaul.esp
 
 ADD: Tminus1010_^CommonFunctions.esm
 AFTER: Oblivion.esm
