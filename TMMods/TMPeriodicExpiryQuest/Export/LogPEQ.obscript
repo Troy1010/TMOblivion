@@ -1,0 +1,7 @@
+﻿scn LogPEQ
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`TMPeriodicExpiryQuest`" + s, PEQQst.bPrintToConsole
+end

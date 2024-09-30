@@ -1,0 +1,60 @@
+﻿scn PEQQstS
+
+; Assigned by ini
+short featurePeriodicExpiryQuest
+short bPrintToConsole
+short bShouldLogFlooding
+;
+short bInit
+float fQuestDelayTime
+; Used in this script
+long day
+array_var aPossibleTargets
+ref rCurrentTarget
+short iRandomInt
+float distance
+
+begin _GameMode
+	Call Init
+	if eval featurePeriodicExpiryQuest
+		; Detect expiration
+		if eval day != GameDay
+			set day to GameDay
+			Call LogPEQ "Day has changed to:" + $day
+			; Remove or add Curse
+			if eval bShowPEQTarget
+				Call LogPEQ "Cursing player."
+				PlayerRef.AddSpell DivineCurse
+			else
+				Call LogPEQ "Removing curse from player."
+				PlayerRef.RemoveSpell DivineCurse
+			endif
+			; Move QstTarget
+			Call LogPEQ "Moving QstTarget."
+			Let iRandomInt := Call RandomI 0 (ar_Size aPossibleTargets)
+			Let rCurrentTarget := aPossibleTargets[iRandomInt]
+			Call LogPEQ "rCurrentTarget:" + $(Call NarrateSL &rCurrentTarget) + " iRandomInt:" + $iRandomInt
+			PEQQstTargetRef.MoveToMarker rCurrentTarget
+			; Reset Quest to stage 10
+			Call LogPEQ "Resetting quest to stage 10"
+			SetStage PEQQst 10
+			Let bShowPEQTarget := 1
+		endif
+		; Detect when player is close to target
+		if eval bShowPEQTarget && (PlayerRef.GetInSameCell PEQQstTargetRef)
+			Let distance := PlayerRef.GetDistance PEQQstTargetRef
+			if eval (distance < 300)
+				Call LogPEQ "Player is close to QstTarget. distance:" + $distance
+				SetStage PEQQst 20
+				Let bShowPEQTarget := 0
+			endif
+		endif
+	else
+		SetStage PEQQst 0
+		PlayerRef.RemoveSpell DivineCurse
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end
