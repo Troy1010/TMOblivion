@@ -1,35 +1,25 @@
 ﻿scn Init
 
-ref rTemp
+array_var iter
 
 begin _Function { }
 	if eval GetGameLoaded || !PEQQst.bInit
 		Let PEQQst.bInit := 1
 		Let PEQQst.fQuestDelayTime := 0.0001
-		Let PEQQst.aPossibleTargets := ar_list (Call GetFormFromID "0003130C") (Call GetFormFromID "00030C1B") (Call GetFormFromID "00030849") (Call GetFormFromID "00010491")
-		; This also wasn't working: (Call GetFormFromID "00027DBE")
-		; These 2 do not seem to be working: (Call GetFormFromID "000309BA") (Call GetFormFromID "00030FA2")
-		;00010491:Chorrol 00027DBE:Skingrad 000309BA:Anvil 00030FA2:Leyawiin
+		Let PEQQst.aPossibleTargets := ar_Construct "Array"
 		RunBatchScript "Data\ini\TMPeriodicExpiryQuest.ini", 0, 1
-
-		Let rTemp := (Call GetFormFromID "0003130C")
-		Call LogPEQ "0003130C rTemp:" + (Call NarrateSL &rTemp)
-		Let rTemp := (Call GetFormFromID "00030C1B")
-		Call LogPEQ "00030C1B rTemp:" + (Call NarrateSL &rTemp)
-		Let rTemp := (Call GetFormFromID "00030849")
-		Call LogPEQ "00030849 rTemp:" + (Call NarrateSL &rTemp)
-		Let rTemp := (Call GetFormFromID "00010491")
-		Call LogPEQ "00010491 rTemp:" + (Call NarrateSL &rTemp)
-		Let rTemp := (Call GetFormFromID "00027DBE")
-		Call LogPEQ "00027DBE rTemp:" + (Call NarrateSL &rTemp)
-		Let rTemp := (Call GetFormFromID "000309BA")
-		Call LogPEQ "000309BA rTemp:" + (Call NarrateSL &rTemp)
-		;Let rTemp := (Call GetFormFromID "00030FA2")
-		;Call LogPEQ "00030FA2 rTemp:" + (Call NarrateSL &rTemp)
-
-		;Let rTemp := (Call GetFormFromMod "Oblivion.esm" "030FA2")
-		Call LogPEQ "00030FA2 GetFormFromMod rTemp:" + (Call NarrateSL &rTemp)
-		
+		forEach iter <- ar_list (Call GetFormFromID "0003130C") (Call GetFormFromID "00030C1B") (Call GetFormFromID "00030849") (Call GetFormFromID "00010491") (Call GetFormFromID "00027DBE") (Call GetFormFromID "000309BA") (Call GetFormFromID "00030FA2")
+			if eval IsFormValid iter["Value"]
+				ar_Append PEQQst.aPossibleTargets iter["Value"]
+			else
+				Call LogPEQ "Warning, possible target was null. Key:" + $iter["Key"]
+			endif
+		loop
+		Call LogPEQ "PEQQst.aPossibleTargets size:" + $(ar_Size PEQQst.aPossibleTargets)
+		if eval 1 > ar_Size PEQQst.aPossibleTargets
+		Call LogPEQ "Error. Disabling featurePeriodicExpiryQuest because PEQQst.aPossibleTargets size:" + $(ar_Size PEQQst.aPossibleTargets)
+			Let PEQQst.featurePeriodicExpiryQuest := 0
+		endif
 		Call LogPEQ "Init"
 	endif
 end
