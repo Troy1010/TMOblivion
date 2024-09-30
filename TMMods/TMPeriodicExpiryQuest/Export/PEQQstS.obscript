@@ -24,10 +24,14 @@ begin _GameMode
 			; Remove or add Curse
 			if eval bShowPEQTarget
 				Call LogPEQ "Cursing player."
-				PlayerRef.AddSpell DivineCurse
+				PlayerRef.AddSpell DaedricCurse
 			else
-				Call LogPEQ "Removing curse from player."
-				PlayerRef.RemoveSpell DivineCurse
+				if eval PlayerRef.HasSpell DaedricCurse
+					Call LogPEQ "Removing curse from player."
+					PlayerRef.RemoveSpell DaedricCurse
+				else
+					Call LogPEQ "Player already did not have curse. Doing nothing."
+				endif
 			endif
 			; Move QstTarget
 			Call LogPEQ "Moving QstTarget."
@@ -51,7 +55,7 @@ begin _GameMode
 		endif
 	else
 		SetStage PEQQst 0
-		PlayerRef.RemoveSpell DivineCurse
+		PlayerRef.RemoveSpell DaedricCurse
 	endif
 end
 
