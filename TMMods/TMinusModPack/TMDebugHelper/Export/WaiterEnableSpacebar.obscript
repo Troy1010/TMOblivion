@@ -1,4 +1,4 @@
-scn WaiterEnableSpacebar
+﻿scn WaiterEnableSpacebar
 
 array_var args
 

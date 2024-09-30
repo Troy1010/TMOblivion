@@ -1,7 +1,7 @@
-scn LogDH
+﻿scn LogDH
 
 string_var s
 
 begin _Function { s }
-	Scribe (GetFormIDString GetCallingScript) + "`" + s, 1
+	Scribe (GetFormIDString GetCallingScript) + "`DebugHelper`" + s, Qst.bPrintToConsole
 end

@@ -1,4 +1,4 @@
-scn QstS
+﻿scn QstS
 
 short bFeatureUnlock
 short bFeaturePrintMenuIdentifiers
@@ -10,7 +10,10 @@ short bFeatureStartNewGame
 short bQuitOnStartIfSpaceDown
 short bStartMode1
 short bStartMode2
+short bStartMode3
 short bStartMode_Continue
+
+short bPrintToConsole
 
 float fQuestDelayTime
 ref rCrosshairRef
@@ -23,17 +26,23 @@ short bClickNextNewGame
 short bClickNextYes
 short bExitNextChargenMenu
 short bSkipIntroVideo
+short bDoOnce
 
 short bNextSpacebarTCL
 float fCloseAllMenusFrameTimer
 short bStartTeleportToSpot1
 float fTeleportToSpot1Timer
+short bStartTeleportToSpot2
+float fTeleportToSpot2Timer
 ref rTemp
+array_var aTemp
+short bIsSuperSpeedyPlayerToggled
 
 begin _GameMode
-	if eval bSkipIntroVideo
+	if eval bSkipIntroVideo && !bDoOnce
+		Call LogDH "Skipping intro video"
 		TapKey 1
-		Let bSkipIntroVideo := 0
+		Let bDoOnce := 1
 	endif
 	if eval bFeatureUnlock
 		Let rCrosshairRef := GetCrosshairRef
@@ -45,13 +54,22 @@ begin _GameMode
 	endif
 	if eval bFeatureTransport
 		if eval (OnKeyDown 64) && (IsKeyPressed3 42) ;F6, LShift
-			Call Logd "PlayerPosition"+(Call NarrateSL &(Call GetPosComplete PlayerRef))
+			Call LogDH "PlayerPosition:"+(Call NarrateSL &(Call GetPosComplete PlayerRef))
 		endif
 		if eval (OnKeyDown 65) && (IsKeyPressed3 42) ;F7, LShift
 			Call LogDH "F7, LShift. Teleporting to spot 1.."
 			Call SetPosComplete PlayerRef ar_List 47073.3 82958.1 294.203 47.0626 Tamriel
 		endif
 		if eval (OnKeyDown 66) && (IsKeyPressed3 42) ;F8, LShift
+			if eval bIsSuperSpeedyPlayerToggled
+				Call LogDH "F8, LShift. bIsSuperSpeedyPlayerToggled:" + $bIsSuperSpeedyPlayerToggled + " . Removing speed"
+				Let bIsSuperSpeedyPlayerToggled := 0
+				PlayerRef.ModAVModC 4 "Max" (-1000) ;Speed
+			else
+				Call LogDH "F8, LShift. bIsSuperSpeedyPlayerToggled:" + $bIsSuperSpeedyPlayerToggled + " . Adding speed"
+				Let bIsSuperSpeedyPlayerToggled := 1
+				PlayerRef.ModAVModC 4 "Max" (1000) ;Speed
+			endif
 		endif
 		if eval (OnKeyDown 67) && (IsKeyPressed3 42) ;F9, LShift
 		endif
@@ -65,12 +83,30 @@ begin _GameMode
 	endif
 	if eval bStartTeleportToSpot1
 		Let fTeleportToSpot1Timer := 10
+		Let bStartTeleportToSpot1 := 0
+	endif
+	if eval bStartTeleportToSpot2
+		Let fTeleportToSpot2Timer := 10
+		Let bStartTeleportToSpot2 := 0
 	endif
 	if eval fTeleportToSpot1Timer > 0
 		Let fTeleportToSpot1Timer -= GetSecondsPassed
 		if eval fTeleportToSpot1Timer <= 0
 			Call LogDH "fTeleportToSpot1Timer < 0. Teleporting to spot 1.."
 			Call SetPosComplete PlayerRef ar_List 47073.3 82958.1 294.203 47.0626 Tamriel
+			; TODO: Shouldn't do this if not Oblivion
+			; Set the stage of CharGen forward so that it doesn't teleport us back to the original start.
+			SetStage (Call GetFormFromID "0002466E") 10
+		endif
+	endif
+	if eval fTeleportToSpot2Timer > 0
+		Let fTeleportToSpot2Timer -= GetSecondsPassed
+		if eval fTeleportToSpot2Timer <= 0
+			Call LogDH "fTeleportToSpot2Timer < 0. Teleporting to spot 2.."
+			PlayerRef.MoveTo (Call GetFormFromID "0006BE12")
+			;Let aTemp := ar_List -162603 -16573 6371.22 241.181 Tamriel
+			;let aTemp[3] *= 0.01745 ;Convert from degrees to radians as PositionCell requires
+			;PlayerRef.PositionWorld aTemp[0] aTemp[1] aTemp[2] aTemp[3] aTemp[4]
 			; TODO: Shouldn't do this if not Oblivion
 			; Set the stage of CharGen forward so that it doesn't teleport us back to the original start.
 			SetStage (Call GetFormFromID "0002466E") 10
@@ -98,13 +134,14 @@ begin _MenuMode
 			Let bExitNextChargenMenu := 0
 			Let fCloseAllMenusFrameTimer := 10
 		endif
-		if eval fCloseAllMenusFrameTimer >= 0
+		if eval fCloseAllMenusFrameTimer > 0
 			Let fCloseAllMenusFrameTimer -= 1
-			if eval fCloseAllMenusFrameTimer < 0
+			if eval fCloseAllMenusFrameTimer <= 0
+				Call LogDH "Closing race menu"
 				CloseAllMenus
 				ToggleFirstPerson 1
 				PlayerRef.SetName "Mr. NoName"
-				if eval bStartMode2
+				if eval bStartMode2 || bStartMode3
 					PlayerRef.SetAVC avcMarksman 25
 					PlayerRef.SetAVC avcConjuration 25
 					PlayerRef.SetAVC avcAthletics 25
@@ -120,11 +157,14 @@ begin _MenuMode
 					PlayerRef.AddSpell GetFormFromMod (GetNthModName 0) "0A981A"
 					PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "00000f" 1000
 					PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "03A860" 1
-					PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "017829" 25
+					PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "017829" 15
+					PlayerRef.AddItem GetFormFromMod (GetNthModName 0) "098496" 5 ;Health potion
 				endif
 				if eval bStartMode1 || bStartMode2
-					
 					Let bStartTeleportToSpot1 := 1
+				endif
+				if eval bStartMode3
+					Let bStartTeleportToSpot2 := 1
 				endif
 			endif
 		endif

@@ -1,4 +1,4 @@
-scn Init
+﻿scn Init
 
 ref rTemp
 short iMenuID
@@ -24,15 +24,15 @@ begin _Function {}
 		endif
 		if eval Qst.bQuitOnStartIfSpaceDown
 			if eval IsKeyPressed3 57 ;Spacebar
-				Call Logd "DebugHelper`Quitting because spacebar was held down"
+				Call LogDH "DebugHelper`Quitting because spacebar was held down"
 				con_QuitGame
 				return
 			else
-				Call Logd "DebugHelper`Not quitting because spacebar was not held down"
+				Call LogDH "DebugHelper`Not quitting because spacebar was not held down"
 			endif
 		endif
-		if eval Qst.bFeatureStartNewGame || Qst.bStartMode2 || Qst.bStartMode1
-			Call Logd "DebugHelper`bFeatureStartNewGame"
+		if eval Qst.bFeatureStartNewGame || Qst.bStartMode3 || Qst.bStartMode2 || Qst.bStartMode1
+			Call LogDH "DebugHelper`bFeatureStartNewGame"
 			Let Qst.bClickNextNewGame := 1
 			Let Qst.bClickNextYes := 1
 			Let Qst.bExitNextChargenMenu := 1
@@ -41,7 +41,7 @@ begin _Function {}
 		if eval Qst.bStartMode_Continue
 			Let Qst.bClickNextContinue := 1
 		endif
-		Call Logd "DebugHelper`InitOnStart2"
+		Call LogDH "DebugHelper`InitOnStart2"
 	endif
 	if eval Call InitPostLoad2
 		DHInitActRef.Activate DummyNPCRef 1
