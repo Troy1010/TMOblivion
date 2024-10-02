@@ -1,4 +1,4 @@
-scn ActorValueComparator
+﻿scn ActorValueComparator
 
 array_var arg1
 array_var arg2

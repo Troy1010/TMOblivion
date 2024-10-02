@@ -1,4 +1,4 @@
-scn Init
+﻿scn Init
 
 begin _Function { }
 	if eval Call InitPostLoad2

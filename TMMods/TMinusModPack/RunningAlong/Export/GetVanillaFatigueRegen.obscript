@@ -1,4 +1,4 @@
-scn GetVanillaFatigueRegen
+﻿scn GetVanillaFatigueRegen
 
 float athleticsMult
 ref self

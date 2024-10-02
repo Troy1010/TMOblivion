@@ -1,4 +1,4 @@
-scn InitActivatorS
+﻿scn InitActivatorS
 
 short logLevel
 float secondsUntilFullRegenWhileStandingIfCompletelyFit
@@ -13,7 +13,7 @@ float athleticsWeightFraction
 short bPrintToConsole
 short bShouldLogFlooding
 short featureFallOnLowFatigue
-short bShouldLogPhysicalityCalculation
+short bShouldLogNonMagicSkillFractionCalculation
 short bShouldLogFatigueRegenCalculation
 short featureNoBackwardsRunning
 short sprintKey
@@ -37,7 +37,7 @@ begin OnActivate
 		Let bPrintToConsole := 0
 		Let bShouldLogFlooding := 0
 		Let featureFallOnLowFatigue := 1
-		Let bShouldLogPhysicalityCalculation := 0
+		Let bShouldLogNonMagicSkillFractionCalculation := 0
 		Let bShouldLogFatigueRegenCalculation := 0
 		Let featureNoBackwardsRunning := 1
 		Let sprintKey := 42;LShift
@@ -61,13 +61,13 @@ begin OnActivate
 		Let RAQst.bPrintToConsole := bPrintToConsole
 		Let RAQst.bShouldLogFlooding := bShouldLogFlooding
 		Let RAQst.featureFallOnLowFatigue := featureFallOnLowFatigue
-		Let RAQst.bShouldLogPhysicalityCalculation := bShouldLogPhysicalityCalculation
+		Let RAQst.bShouldLogNonMagicSkillFractionCalculation := bShouldLogNonMagicSkillFractionCalculation
 		Let RAQst.bShouldLogFatigueRegenCalculation := bShouldLogFatigueRegenCalculation
 		Let RAQst.featureNoBackwardsRunning := featureNoBackwardsRunning
 		Let RAQst.sprintKey := sprintKey
 		Let RAQst.featureFatigue := featureFatigue
 		Let RAQst.featureSprint := featureSprint
-		Call LogRA "InitActivatorS. bPrintToConsole:"+$RAQst.bPrintToConsole+" logLevel:"+$RAQst.logLevel+" bShouldLogFlooding:"+$RAQst.bShouldLogFlooding+" bShouldLogPhysicalityCalculation:"+$RAQst.bShouldLogPhysicalityCalculation+" bShouldLogFatigueRegenCalculation:"+$RAQst.bShouldLogFatigueRegenCalculation+" featureNoBackwardsRunning:"+$RAQst.featureNoBackwardsRunning+" sprintKey:"+$RAQst.sprintKey+" featureFatigue:"+$RAQst.featureFatigue+" featureSprint:"+$RAQst.featureSprint
+		Call LogRA "InitActivatorS. bPrintToConsole:"+$RAQst.bPrintToConsole+" logLevel:"+$RAQst.logLevel+" bShouldLogFlooding:"+$RAQst.bShouldLogFlooding+" bShouldLogNonMagicSkillFractionCalculation:"+$RAQst.bShouldLogNonMagicSkillFractionCalculation+" bShouldLogFatigueRegenCalculation:"+$RAQst.bShouldLogFatigueRegenCalculation+" featureNoBackwardsRunning:"+$RAQst.featureNoBackwardsRunning+" sprintKey:"+$RAQst.sprintKey+" featureFatigue:"+$RAQst.featureFatigue+" featureSprint:"+$RAQst.featureSprint
 		Call LogRA "neutralizefGlobalTimeMultiplier:"+$RAQst.neutralizefGlobalTimeMultiplier
 	endif
 end
