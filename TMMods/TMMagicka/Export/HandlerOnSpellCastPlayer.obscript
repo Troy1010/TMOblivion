@@ -1,0 +1,9 @@
+﻿scn HandlerOnSpellCastPlayer
+
+ref caster
+ref spell
+
+begin _Function { caster spell }
+	Let MAGQst.fExtraToRemove += MAGQst.extraMagickaCostOnCast
+	Call LogMAG "HandlerOnSpellCastPlayer`Close. fExtraToRemove:" + $MAGQst.fExtraToRemove
+end

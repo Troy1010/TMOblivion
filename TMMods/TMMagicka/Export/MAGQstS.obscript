@@ -1,0 +1,65 @@
+﻿scn MAGQstS
+
+; # Define by ini
+short featureMagicka
+short bPrintToConsole
+short bShouldLogFlooding
+short bShouldLogExtraToRemove
+float neutralizefGlobalTimeMultiplier
+float secondsUntilOneHundredRegenIfOneHundredWillpower
+float secondsUntilOneHundredRegenIfZeroWillpower
+float extraMagickaCostOnCast
+;
+float fQuestDelayTime
+float secondsPassed
+short bInit
+float fMagickaRegen
+float fVanillaMagickaRegen
+float fExtraToRemove
+float fAboutToSubtract
+
+begin _GameMode
+	Call Init
+	Let secondsPassed := GetSecondsPassed / neutralizefGlobalTimeMultiplier
+	if eval featureMagicka
+		; # Magicka Regen
+		Let fMagickaRegen := 0
+		Let fMagickaRegen += (100 * secondsPassed / (secondsUntilOneHundredRegenIfZeroWillpower + ((secondsUntilOneHundredRegenIfOneHundredWillpower - secondsUntilOneHundredRegenIfZeroWillpower) * (Call CFGetAVMax PlayerRef avcWillpower) / 100)))
+		if eval bShouldLogFlooding
+			Call LogMAG "Before VanillaMagickaRegen adjustments. fMagickaRegen:" +$fMagickaRegen+" secondsUntilOneHundredRegenIfZeroWillpower:"+$secondsUntilOneHundredRegenIfZeroWillpower
+		endif
+		;Need to compensate for VanillaMagickaRegen
+		;(We do not want to adjust this globally, because we want NPC regen to remain as it was.)
+		Let fVanillaMagickaRegen := PlayerRef.Call GetVanillaMagickaRegen
+		if eval bShouldLogFlooding
+			Call LogMAG "fVanillaMagickaRegen:" + $fVanillaMagickaRegen
+		endif
+		Let fMagickaRegen -= fVanillaMagickaRegen
+		if eval bShouldLogFlooding
+			Call LogMAG "fMagickaRegen:" +$fMagickaRegen
+		endif
+		PlayerRef.ModAVModC avcMagicka "Damage" fMagickaRegen
+		if eval fExtraToRemove > 0
+			Let fAboutToSubtract := Call CFWithinRange 0 (Call CFGetAVCurrent PlayerRef avcMagicka) fExtraToRemove
+			if eval bShouldLogExtraToRemove
+				Call LogMAG "There was a fExtraToRemove:" + $fExtraToRemove + " fAboutToSubtract:" + $fAboutToSubtract
+			endif
+			Let fExtraToRemove -= fAboutToSubtract
+			PlayerRef.ModAVModC avcMagicka "Damage" (-fAboutToSubtract)
+		endif
+		; # Boost Magicka Max
+		if eval !PlayerRef.HasSpell MagickaBoost
+			PlayerRef.AddSpellNS MagickaBoost
+		endif
+	else
+		; # Undo mod changes
+		if eval PlayerRef.HasSpell MagickaBoost
+			;(This might not be necessary)
+			PlayerRef.RemoveSpell MagickaBoost
+		endif
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end

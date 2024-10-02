@@ -1,0 +1,11 @@
+﻿scn Init
+
+begin _Function { }
+	if eval GetGameLoaded || !MAGQst.bInit
+		Let MAGQst.bInit := 1
+		Let MAGQst.fQuestDelayTime := 0.0001
+		RunBatchScript "Data\ini\TMMagicka.ini", 0, 1
+		SetEventHandler "OnSpellCast" HandlerOnSpellCastPlayer ref::PlayerRef
+		Call LogMAG "Init"
+	endif
+end

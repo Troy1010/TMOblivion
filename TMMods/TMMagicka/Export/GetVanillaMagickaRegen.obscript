@@ -1,0 +1,23 @@
+﻿scn GetVanillaMagickaRegen
+
+ref self
+
+;MagickaRegenRate = 0.01 * (fMagickaReturnBase + fMagickaReturnMult * Willpower) * TotalMagicka.
+float fMagickaReturnBase
+float fMagickaReturnMult
+float willpower
+float magickaMax
+float secondsPassed
+
+begin _Function { }
+	Let self := GetSelf
+	Let fMagickaReturnBase := (GetGameSetting "fMagickaReturnBase")
+	Let fMagickaReturnMult := (GetGameSetting "fMagickaReturnMult")
+	Let willpower := (self.GetActorValueC avcWillpower)
+	Let magickaMax := Call CFGetAVMax self avcMagicka
+	Let secondsPassed := GetSecondsPassed
+	if eval MAGQst.bShouldLogFlooding
+		Call LogMAG "fMagickaReturnBase:" + $fMagickaReturnBase + " fMagickaReturnMult:"+$fMagickaReturnMult + " willpower:" + $willpower + " magickaMax:" + $magickaMax + " secondsPassed:" + $secondsPassed
+	endif
+	SetFunctionValue secondsPassed * ( (fMagickaReturnBase + (fMagickaReturnMult * willpower)) * magickaMax) * 0.01
+end

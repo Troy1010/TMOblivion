@@ -1,0 +1,7 @@
+﻿scn README
+
+;This mod is meant to make magicka more scarce.
+;It is supposed to be used alongside other mods that give more access to mana potions and such.
+;It also can make spell costs more uniform. (Am I sure I want that?)
+;
+;Known bug: When casting at low mana, the spell might fizzle, even after subtracting mana.
