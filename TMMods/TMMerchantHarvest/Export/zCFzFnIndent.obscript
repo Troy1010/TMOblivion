@@ -1,0 +1,14 @@
+﻿scn zCFzFnIndent
+
+int iIndentCount
+
+string_var svReturning
+
+Begin Function { iIndentCount }
+	while (iIndentCount-=1)>=0
+		Let svReturning := svReturning+"-"
+	loop
+	SetFunctionValue svReturning
+	; Close
+	sv_Destruct svReturning
+end

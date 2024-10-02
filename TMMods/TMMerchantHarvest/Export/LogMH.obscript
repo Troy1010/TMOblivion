@@ -1,0 +1,7 @@
+﻿scn LogMH
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`TMMerchantHarvest`" + s, MHQst.bPrintToConsole
+end

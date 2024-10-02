@@ -1,0 +1,57 @@
+﻿scn GenerateCheapItems
+
+;Intended to be called on actor.
+;Assumes that GetBaseObject is "stable".
+; Example
+;rActor.Call GenerateCheapItems
+array_var aCheapItemsInMerchantCategories
+array_var iter
+short numItemsToAdd
+ref rTemp
+
+Begin _Function { }
+	Call LogMH "GenerateCheapItems`Open"
+	; Clear
+	ForEach iter <- ar_List MHQst.rCheapMagickaPotion MHQst.rCheapRepairHammer MHQst.rCheapArrow MHQst.rMagickaIngredient MHQst.rHealthIngredient
+		RemoveItem iter["Value"] 100
+	loop
+	; Define aCheapItemsInMerchantCategories
+	Let aCheapItemsInMerchantCategories := ar_Construct "Array"
+	if eval (GetServicesMask GetBaseObject) & 1 ; Weapons
+		if eval MHQst.bShouldLogMore
+			Call LogMH "Merchant has category: Weapons"
+		endif
+		ar_Append aCheapItemsInMerchantCategories MHQst.rCheapArrow
+	endif
+	if eval (GetServicesMask GetBaseObject) & (64 | 8192) ; Ingredients | Potions. (For some reason, Merchants with only Potion category also sell Ingredients)
+		if eval MHQst.bShouldLogMore
+			Call LogMH "Merchant has category: Ingredients"
+		endif
+		ar_Append aCheapItemsInMerchantCategories MHQst.rMagickaIngredient
+		ar_Append aCheapItemsInMerchantCategories MHQst.rHealthIngredient
+	endif
+	if eval (GetServicesMask GetBaseObject) & 1024 ; Miscellaneous
+		if eval MHQst.bShouldLogMore
+			Call LogMH "Merchant has category: Miscellaneous"
+		endif
+		ar_Append aCheapItemsInMerchantCategories MHQst.rCheapRepairHammer
+	endif
+	if eval (GetServicesMask GetBaseObject) & 8192 ; Potion
+		if eval MHQst.bShouldLogMore
+			Call LogMH "Merchant has category: Potion"
+		endif
+		ar_Append aCheapItemsInMerchantCategories MHQst.rCheapMagickaPotion
+	endif
+	Call LogMH "aCheapItemsInMerchantCategories:" + $(Call ToLogStrSL &aCheapItemsInMerchantCategories)
+	; Add randomly between 1 and 3 items, randomly selected from aCheapItemsInMerchantCategories
+	Let numItemsToAdd := Call CFRandomI 1 3
+	Call LogMH "numItemsToAdd:" + $numItemsToAdd
+	ForEach iter <- ar_List 1, 2, 3
+		if eval(iter["Value"] > numItemsToAdd)
+			break
+		endif
+		Let rTemp := Call ArGetRandom aCheapItemsInMerchantCategories
+		AddItem rTemp 1
+		Call LogMH "Adding item:" + $rTemp
+	loop
+end

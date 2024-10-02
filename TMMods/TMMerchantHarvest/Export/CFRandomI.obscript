@@ -1,0 +1,8 @@
+﻿scn CFRandomI
+
+long iMin
+long iMax
+
+begin _Function { iMin, iMax }
+	SetFunctionValue (Call CFRound (Rand iMin iMax))
+end

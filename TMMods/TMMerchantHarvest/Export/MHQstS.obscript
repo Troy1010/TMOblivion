@@ -1,0 +1,55 @@
+﻿scn MHQstS
+
+; Assigned by ini
+short featureMerchantHarvest
+short bPrintToConsole
+short bShouldLogFlooding
+short bShouldLogMore
+;
+ref rCheapMagickaPotion
+ref rCheapRepairHammer
+ref rCheapArrow
+ref rMagickaIngredient
+ref rHealthIngredient
+short bInit
+ref rLastCrosshairRef
+ref rTemp
+float fQuestDelayTime
+short iNumToAdd
+short iNarrateCollectionRecursionLevel
+
+begin _GameMode
+	Call Init
+	if eval featureMerchantHarvest
+		; Detect Merchants
+		if eval rLastCrosshairRef != (rTemp := GetCrosshairRef)
+			Let rLastCrosshairRef := rTemp
+			if eval rTemp
+				if eval (Call IsMerchant rTemp) && !rTemp.GetDead
+					if eval bShouldLogMore
+						Call LogMH "Detected Alive Merchant:" + $rTemp
+					endif
+					; Detect if token exists
+					if eval ((rTemp.GetItemCount MHToken) == 0)
+						Call LogMH "Merchant did not have token. Adding it now."
+						rTemp.AddItem MHToken 1
+						; Add items
+						rTemp.Call GenerateCheapItems
+					else
+						if eval bShouldLogMore
+							Call LogMH "Merchant already had a token."
+						endif
+					endif
+				else
+					if eval bShouldLogFlooding
+						Call LogMH "Not an alive merchant:" + $rTemp
+					endif
+				endif
+			endif
+		endif
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end

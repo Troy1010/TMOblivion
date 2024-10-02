@@ -1,0 +1,7 @@
+﻿scn ArGetRandom
+
+array_var aArray
+
+begin _Function { aArray }
+	SetFunctionValue aArray[Call CFRandomI 0 ((ar_Size aArray) - 1)]
+end

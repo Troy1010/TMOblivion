@@ -1,0 +1,16 @@
+﻿scn IsMerchant
+
+;Detects if the npc sells items, but ignores if they recharge items, sell spells, etc.
+;Should be used on a reference, not a base. (I have not tried to do an "either" implementation, yet)
+
+ref rActor
+ref rActorBase
+
+begin _Function { rActor }
+	if eval (IsFormValid rActor)
+		Let rActorBase := rActor.GetBaseObject
+		if eval (IsFormValid rActorBase)
+			SetFunctionValue eval (GetServicesMask rActorBase) & (1 | 2 | 4 | 8 | 64 | 128 | 256 | 1024 | 4096 | 8192)
+		endif
+	endif
+end

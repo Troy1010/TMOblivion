@@ -1,0 +1,33 @@
+﻿scn MHTokenS
+
+ref rContainer
+float timer
+short bInit
+short day
+
+begin _GameMode
+	if eval !Call CFIsTokenStable
+		return
+	else
+		Let rContainer := GetContainer
+		if eval rContainer.GetDead
+			Call LogMH "Removing MHToken because merchant is dead"
+			RemoveMe
+		endif
+	endif
+	
+	if eval !bInit
+		Let bInit := 1
+		Let timer := GameHour + 4
+		Let day := GameDaysPassed
+	endif
+	if eval day != GameDaysPassed
+		Let day := GameDaysPassed
+		Let timer -= 24
+		Call LogMH "Day changed. Adjusting timer to:" + $timer
+	endif
+    if (GameHour >= timer)
+		Call LogMH "Removing MHToken because timer:" + $timer + " >= GameHour:" + $GameHour
+        RemoveMe
+    endif
+end

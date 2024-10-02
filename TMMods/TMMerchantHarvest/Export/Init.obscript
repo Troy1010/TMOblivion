@@ -1,0 +1,44 @@
+﻿scn Init
+
+begin _Function { }
+	if eval GetGameLoaded || !MHQst.bInit
+		Let MHQst.bInit := 1
+		Let MHQst.fQuestDelayTime := 0.0001
+		RunBatchScript "Data\ini\TMMerchantHarvest.ini", 0, 1
+		Call LogMH "featureSomething:" + $MHQst.featureSomething
+		
+		; # Try to get the Cheap Magicka Potion from TMOblivionMod, otherwise fallback to normal magicka potion.
+		Let MHQst.rCheapMagickaPotion := GetFormFromMod "TMOblivionMod.esp" "000801" ;Cheap Magicka Potion
+		if eval !(IsFormValid MHQst.rCheapMagickaPotion)
+			Let MHQst.rCheapMagickaPotion := GetFormFromMod (GetNthModName 0) "00931A" ;Potion of Sorcery
+			Call LogMH "Form was not valid. Falling back to:" + $MHQst.rCheapMagickaPotion
+		endif
+		Call LogMH "MHQst.rCheapMagickaPotion:" + $MHQst.rCheapMagickaPotion
+		
+		; # Try to get the Cheap Repair Hammer from TMOblivionMod, otherwise fallback to normal one.
+		Let MHQst.rCheapRepairHammer := GetFormFromMod "TMOblivionMod.esp" "000802" ;Cheap Repair Hammer
+		if eval !(IsFormValid MHQst.rCheapRepairHammer)
+			Let MHQst.rCheapRepairHammer := GetFormFromMod (GetNthModName 0) "00000C" ;Repair Hammer
+			Call LogMH "Form was not valid. Falling back to:" + $MHQst.rCheapRepairHammer
+		endif
+		Call LogMH "MHQst.rCheapRepairHammer:" + $MHQst.rCheapRepairHammer
+		
+		; # Try to get the Cheap Steel Arrow from TMOblivionMod, otherwise fallback to normal one.
+		Let MHQst.rCheapArrow := GetFormFromMod "TMOblivionMod.esp" "000804" ;Cheap Steel Arrow
+		if eval !(IsFormValid MHQst.rCheapArrow)
+			Let MHQst.rCheapArrow := GetFormFromMod (GetNthModName 0) "0229C1" ;Steel Arrow
+			Call LogMH "Form was not valid. Falling back to:" + $MHQst.rCheapArrow
+		endif
+		Call LogMH "MHQst.rCheapArrow:" + $MHQst.rCheapArrow
+		
+		;
+		Let MHQst.rHealthIngredient := GetFormFromMod (GetNthModName 0) "06251E" ;Cairn Bolete Cap
+		Call LogMH "MHQst.rHealthIngredient:" + $MHQst.rHealthIngredient
+		
+		;
+		Let MHQst.rMagickaIngredient := GetFormFromMod (GetNthModName 0) "08446C" ;Bog Beacon Asco Cap
+		Call LogMH "MHQst.rMagickaIngredient:" + $MHQst.rMagickaIngredient
+		
+		Call LogMH "Init"
+	endif
+end
