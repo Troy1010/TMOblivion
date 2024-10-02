@@ -1,34 +1,36 @@
-scn HandlerCellChanged
+﻿scn HandlerCellChanged
+; TODO: Pass in normal variables instead of argumentArr
 
 array_var argumentArr
-ref rTemp
 array_var aTemp
-short bDarkCell
+short isDarkCell
 
-Begin Function { argumentArr }
-	Call CFDebug 2 "Lighting`HandlerCellChanged`Open"
-	Call CFDebug 4 "argumentArr:"+$Call Narrate &argumentArr
-	let bDarkCell := 0
-	if eval argumentArr["bInterior"]
-		let rTemp := argumentArr["rNewCell"]
-		Call CFDebug 4 "New Cell ID:"+(GetFormIDString rTemp)
-		if eval ar_HasKey Qst.CellsWithDarkLightingRegistry (GetFormIDString rTemp)
-			let bDarkCell := 1
+Begin _Function { argumentArr }
+	Let isDarkCell := ar_HasKey TLQst.CellsWithDarkLightingRegistry (GetFormIDString argumentArr["rNewCell"])
+	;==== Contrast
+	if eval TLQst.featureShaderInDarkCells
+		Call LogTL "Setting Shader. isDarkCell:"+$isDarkCell
+		ORSetExtraEffectEnabled "TMLighting" isDarkCell
+	endif
+	;==== Ambient Light
+	if eval TLQst.featureSetDarkCellAmbientLighting
+		if eval isDarkCell
+			Let aTemp := ar_Construct "stringmap"
+			Let aTemp["ambient"] := ar_List TLQst.fAmbientLighting TLQst.fAmbientLighting TLQst.fAmbientLighting
+			SetCellLighting argumentArr["rNewCell"] aTemp
+			Call LogTL "Setting cell lighting. aTemp:"+$(Call ToLogStr &aTemp)
 		endif
 	endif
-	
-	if bDarkCell
-		Call CFDebug 4 "Dark Cell"
-		; Contrast
-		ORSetExtraEffectEnabled "TMLighting" 1
-		; Ambient Light
-		let aTemp := ar_Construct "stringmap"
-		let aTemp["ambient"] := ar_List 15 15 15
-		let rTemp := argumentArr["rNewCell"]
-		SetCellLighting rTemp aTemp
-	else
-		Call CFDebug 4 "Light Cell"
-		; Contrast
-		ORSetExtraEffectEnabled "TMLighting" 0
+	;==== Distance Fog
+	if eval TLQst.featureNoDistanceFogInDarkCells
+		if eval isDarkCell
+			Let aTemp := ar_Construct "stringmap"
+			Let aTemp["fog"] := ar_List 0 0 0
+			Let aTemp["clip"] := 9999999
+			SetCellLighting argumentArr["rNewCell"] aTemp
+			Call LogTL "Setting DistantFog. aTemp:"+$(Call ToLogStr &aTemp)
+		endif
 	endif
+	;
+	Call LogTL "TMLighting`HandlerCellChanged`Close. argumentArr:"+$(Call ToLogStr &argumentArr)+" isDarkCell:"+$isDarkCell+" newCellID:"+$(GetFormIDString argumentArr["rNewCell"])+" lighting:"+$(Call ToLogStr (&((GetCellLighting argumentArr["rNewCell"])["ambient"])))
 end

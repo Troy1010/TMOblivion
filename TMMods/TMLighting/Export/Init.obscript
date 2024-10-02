@@ -1,14 +1,20 @@
-scn Init
+﻿scn Init
 
 begin _Function { }
-	if eval Call InitPostLoad2
-		Call CFDebugSetModThreshold 0
-		let Qst.CellsWithDarkLightingRegistry := ar_Construct "stringmap"
+	if eval GetGameLoaded || !TLQst.bInit
+		Let TLQst.bInit := 1
+		Let TLQst.fQuestDelayTime := 0.0001
+		RunBatchScript "Data\ini\TMLighting.ini", 0, 1
+
+		if eval !TLQst.featureShaderInDarkCells
+			ORSetExtraEffectEnabled "TMLighting" 0
+		endif
+
+		Let TLQst.CellsWithDarkLightingRegistry := ar_Construct "stringmap"
 		Call RegisterVanilla
 		Call RegisterShiveringIsles
 		Call RegisterNonMasters
-		
-		Call SetEventHandler2 EVENTCellChanged HandlerCellChanged
-		Call CFDebug 2 "Lighting Init"
+
+		Call LogTL "TMLighting Init. featureShaderInDarkCells:"+$TLQst.featureShaderInDarkCells+" featureSetDarkCellAmbientLighting:"+$TLQst.featureSetDarkCellAmbientLighting
 	endif
 end

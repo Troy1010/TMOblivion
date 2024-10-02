@@ -1,0 +1,7 @@
+﻿scn LogTL
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`" + s, TLQst.bPrintToConsole
+end

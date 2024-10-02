@@ -1,0 +1,31 @@
+﻿scn ToLogStr
+
+;**Don't forget to box the argument! (Box me with &)
+;(Without boxing, there's no way to pass in any type.)
+
+array_var bvBoxedVariable ;bvBoxedVariable. (Box me with &)
+
+string_var svTypeOf
+
+Begin Function { bvBoxedVariable }
+	; Filter
+	if eval !bvBoxedVariable
+		SetFunctionValue "ToLogStr`Error. ToLogStr was passed an UnconstructedCollection by "+$GetCallingScript+". Make sure to box ToLogStr's arguments with a &."
+		return
+	endif
+	;
+	let svTypeOf := TypeOf *bvBoxedVariable
+	if eval Call IsCollection2 bvBoxedVariable ;"Proper" syntax would be (&(*bvBoxedVariable))
+		SetFunctionValue "<Collection>["+(Call zCFzFnNarrateCollection2 (*bvBoxedVariable) 1 1)+"]"
+	elseif eval svTypeOf == "String" || svTypeOf == "Number"
+		SetFunctionValue $(*bvBoxedVariable)
+	elseif eval svTypeOf == "Form"
+		SetFunctionValue Call zCFzFnNarrateForm2 (*bvBoxedVariable) 1
+	elseif eval svTypeOf == "<Bad Array>"
+		SetFunctionValue "<Collection(Unconstructed)>"
+	else
+		SetFunctionValue "<Unknown>"
+	endif
+	; Close
+	sv_Destruct svTypeOf
+end

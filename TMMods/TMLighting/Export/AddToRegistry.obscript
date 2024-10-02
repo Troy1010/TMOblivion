@@ -1,12 +1,12 @@
-scn AddToRegistry
+﻿scn AddToRegistry
 
 array_var mapToAddTo
 array_var arrayToGetFrom
 
 array_var keyAndValue
 
-begin Function { mapToAddTo arrayToGetFrom }
-ForEach keyAndValue <- arrayToGetFrom
-	let mapToAddTo[GetRawFormIDString keyAndValue["value"]] := 0
-loop
+begin _Function { mapToAddTo arrayToGetFrom }
+	ForEach keyAndValue <- arrayToGetFrom
+		Let mapToAddTo[GetRawFormIDString keyAndValue["value"]] := 0
+	loop
 end

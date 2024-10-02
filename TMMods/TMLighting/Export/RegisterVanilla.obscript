@@ -1,122 +1,122 @@
-scn RegisterVanilla
+﻿scn RegisterVanilla
 
 array_var tempA
 
-begin Function { }
-let tempA := ar_List PalePass01 MS13OblivionCitadel Ondo CrayfishCave FingerbowlCave02 TheBeastsMaw02 CollapsedMine02 QuickwaterCave02 OblivionRDCitadel04Hall02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List HrotandaVale Veyond04 WindCave SidewaysCaveNew02 Nenalata02 ShatteredMine02 UnmarkedCave01b FortStrand02 LakeArriusShrineDagon KingscrestCavern
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FortHastrel02 OblivionRDCavesEnd01 WellspringCave SerpentsTrail PillagedMine UnmarkedCave01 OblivionRd007Cave01 CrayfishCave04 GlademistCave LeafrotCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List DasekMoor FyrelightCave RockmilkCave04 OblivionRDCitadel02 PalePass03 TimberscarHollow FortRayles AbandonedMine SidewaysCaveNEW SancreTor02 PalePass
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List DerelictMine FortMagia SwampyCave FortNomore02 SidewaysCave02 Piukanda03 VeyondCave03 BloodmayneCave02 NonwyllCavern Welke ImperialSewerSystemTG11a2
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRDCavesEnd03 ShadowsRestCavern02 OblivionRDCavesMiddleA03 FatbackCave02 UnderpallCave03 RedguardValleyCave Piukanda UndertowCavern
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ImperialSewerSystemTG11a Atatar ImperialSewers03 Varondo NewtCave Emptymine02 DesertedMine02 Bawn BramblepointCave Malada02 FortHorunn02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Nenalata03 OblivionRDCavesMiddleA06 SquanderedMine02 BrumaCaverns HornCave OblivionRDCitadel01 UnmarkedCave01c ForsakenMine02 HuntersRun01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List RedwaterSlough OblivionRDCavesStart05 CrayfishCave05 DAPeryiteCaves01 FortAlessia GrayrockCave OblivionRDCitadel02Hall01 PalePass04 CrackedWoodCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FortAurus CollapsedMine FrostFireCave FortNomore ExhaustedMine LipsandTarn02 OblivionRD004CitadelRight MQ14OblivionCaveInterior FortHastrel01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List WindCave03 Rielle02 VeyondCave04 FortDoublecross02 OblivionRD004Caves ParadiseAnaxesCave LakeArriusShrineAntechamber01 Moranda ArrowshaftCavern02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List GoblinJimsCave02 OblivionRD004CitadelMainHall03 OblivionRDCitadel04 Fanacasecul SerpentHollowCave ImperialSewerSystemTG11b DarkFissure03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRD002Hall01 FloodedMine Beldaburo PotholeCaverns Niryastare02 Emptymine03 CursedMine02 RobbersGlenCave Trumbe ArrowshaftCavern FortTeleman02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FortHorunn03 OblivionRDCavesMiddleA07 JakbenTombInterior GarlasAgea SquanderedMine03 FortBlueBlood BleakFlatsCave ImperialDungeon01 DarkFissure
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRD002Hall02Lava FortCuptor02 TempleMothCatacombs MQ10BrumaCitadel OblivionRD002Citadel RockBottomCaverns FortDirich OblivionRDCavesStart06
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ImperialSewerSystemMarketDistrict SardavarLeed02 DAPeryiteCaves02 FortScinia01 SandstoneCavern ToadstoolHollow02 FortSejanus02 FortRoebeck01 DesertedMine
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FortEmpire CursedMine BrittlerockCave Nornalhorst02 DasekMoor02 MQ14OblivionCitadel BloodRunCave ParadiseGrotto02 FortVlastarus BreakneckCave02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Nonungalo OblivionRDCitadel05Hall01 DarkFissure02 KindredCavern03 Mackamentain HaynoteCave03 FortRedwater02 Wenyandawik02 FieldhouseCave02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List UnderpallCave04 FortMagia03 ParadiseGrotto01 Narfinsel MingoCave ImperialSewerSystemTG11c KingscrestCavern02 OblivionRD002Hall02 Hame02 LakeArriusShrineAntechamber02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Belda LostBoyCaverns AmelionFamilyTomb Ceyatatar02 ExhaustedMine02 CursedMine03 Kemen SidewaysCave Nagastani Miscarcand01 SmokeHoleCave TempleMothCatacombs02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List BlackRockCaverns02 FortUrasek RockmilkCave OblivionRDCavesEnd04 OblivionRDCavesStart07 ImperialSewerSystemArena LakeArriusShrine FortWariel FingerbowlCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ToadStoolHollow03 FortAsh02 FortEntius01 SquanderedMine OblivionRDCitadel03 FortAsh02 FortEntius01 SquanderedMine OblivionRDCitadel03 FortVariela
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ShatteredMine BloodcrustCavern DasekMoor03 Wendelbek03 ParadiseGrotto03 FortNaso BreakneckCave03 Nonungalo02 Varondo02 FortIstirus02 FortTeleman
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List HackdirtCaverns Veyond03 Culotte ArrowshaftCavern03 GrayrockCave02 FieldhouseCave03 FortMagia02 AbandonedMine02 ImperialDungeon03 Vilverin NisinCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ImperialSewerSystemTG11d KingscrestCavern03 Ceyatatar ShinboneCave BlackRockCavernsLight7 Ceyatatar03 BlackRockCaverns03 ExhaustedMine03 DerelictMine02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List UndertowCavern02 BrittlerockCave02 Nornalhorst ShadowsRestCavern FortBlueBlood02Backup Nagastani02 BorealStoneCave LeafrotCave02 Miscarcand02 UnderpallCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List NewtCave02 MQ10BrumaHall01 FortLinchal02 ImperialDungeon05 WenderbekCave FortWoodenHand01 OblivionRDCavesEnd05 ImperialSewerSystemTalosPlaza
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ImperialSewerSystemN02 FortDoublecross03 KindredCavern02 MuckValleyCavern FortCedrian01 MossRockCavern ImperialSewersElvenGardens01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List LostBoyCaverns02 Hame03 SancreTor01 FortSejanus01 RicketyMine NonwyllCavern02 FortLinchal EchoMine ParadiseGrotto04OLD Nornal FortRedwater01 FortRedman01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FortUrasek02 ReedstandCave02 Ondo02 TempleMothCatacombs03 ImperialSewersElvenGardens03 FortIstirus03 OblivionRDCitadel01Hall01 FortOntus02 Vahtacen02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRD004CitadelMain Arpenia Talwinque Wendir GreenmeadCave02 Welke02 ShinboneCave02 Moranda02 FortFacian02 Crowhaven02 Rielle QuickwaterCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Atatar02 KingscrestCavern04 MS13OblivionHall01 Morahame BreakneckCave FortUrasek02DUPLICATE000 HauntedMine02 DerelictMine03 OblivionRD004CitadelLeftHall01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionMqKvatchCitadel LipsandTarn BedrockBreak EchoCave02 SancreTorTomb FortAlessia02 Miscarcand03 GreenmeadCave NewtCave03 MQ10BrumaHall02 FortLinchal03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ImperialSewerSystemImperialPalace ImperialSewerSystemSE FortSutchInterior FortCarmala DzonotCave ImperialSewersElvenGardens02 OblivionRDCavesStart03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List LostBoyCaverns03 FortScinia02 OutlawEndresCave02 FortIrony InfestedMine02 FortRayles02 OblivionRDCavesStart02 OblivionRDCitadel03Hall01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List HrotandaVale02 FortCuptor DoomedMine FortRoebeck02 FyrelightCave02 Vahtacen FortColdcorn RedrubyCave02 TempleMothCatacombs04 OblivionRDCitadel01Hall02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRD004CitadelMainHall01 Talwinque02 Ninendava Anutwyll SidewaysCaveNew03 WindCave02 BrokenPromisesCave Welke03 SageGlenHollow02 Moranda03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Sercen ShatteredScalesCave Atatar03 SmokeHoleCave02 OblivionRD004CitadelRightHall01 OblivionRD004CitadelLeft DarkfathomCave DesolateMine
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Silorn03 TheBeastsMaw Lindai02 DreamofCourage InfestedMine03 OblivionRD004CitadelLeftHall02 OblivionMqKvatchCitadelHall01 BlackRockCaverns
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List MongrelsToothCave CapstoneCave02 Bawn02 SancreTor04 EchoCave03 CharcoalCave03 SinkholeCave02 FortHomestead01 HowlingCave02 ImperialSewerSystemN01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List HrotaCave FortBlackBoot OblivionRDCavesStart04 LostBoyCaverns05 FortWoodenHand02 OblivionRD001Caves OblivionMqKvatchCave FortFlecia PlunderedMine
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRDCavesEnd02 OblivionRDCitadel03Hall02 Vilverin02 LakeArriusCaverns FortIstirus CrumblingMine OnyxCaverns FyrelightCave03 Malada01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Vindasel SandstoneCavern02 FortVariela02 OblivionRDCitadel01Hall03 UnderpallCave02 Talwinque03 Fanacas OutlawEndresCave GoblinJimsCave03 Silorn02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Telepe FatbackCave Atatar04 SmokeHoleCave03 FortCedrian02 OblivionRD004CitadelRightHall02 OblivionRDCitadel05 FortHomestead03 Mackamentain03 Wendelbek
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ReedstandCave FortRayles02DUPLICATE000 FortEntius02 Varondo03 PillagedMine02 SilverToothCave FortFarragut ToadstoolHollow CharcoalCave02 Crowhaven01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List TidewaterCave ImperialSewerSystemSW SerpentHollowCave02 DzonotCave02 FortDoublecross GuttedMine HowlingCave FortBlueBlood02 Belda02 FortAsh01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List BelletorsFolly OblivionRD002LavaCave EchoCave OblivionRDCavesMiddleA02 OblivionRDCitadel03Hall03 Vilverin03 BarrenMine OnyxCaverns02 HornCave02 Nornal03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ParadiseCamoranFortress Veyond BramblePointCave02 OblivionRDCavesMiddleA04 YellowTickCave02 ImperialDungeon02 Anga SinkholeCave OblivionRD002CitadelLava
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FelgageldtCave02 Silorn MS13OblivionCave01 FieldhouseCave FingerbowlCave03 BelletorsFolly02 Nornal04 Beldaburo02 MS13OblivionHall02 FortHomestead02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Mackamentain02 Hame RedRubyCave OblivionRD003CavesA PlunderedMine02 HuntersRun02 RockmilkCave02 CharcoalCave OblivionRDCavesStart01 Bawn03 BarrenCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List FortCaractacus DAperyiteCave01 CrayfishCave02 SancreTor03 FortNikel ShatteredScalesCave02 FortChalman BleakMine FortOntus AmelionFamilyTomb02 HauntedMine
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionMqKvatchCitadelHall02 Vilverin04 FortVirtue HornCave03 Wendelbek04 KindredCavern SardavarLeed Sedor OblivionRD004CitadelMainHall02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRDCavesEnd07 HaynoteCave02 FatbackCave03 SwampyCave02 UnderpallCave05 Lindai01 CapstoneCave MS13OblivionCave02 NenyondTwyll YellowTickCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List OblivionRDCitadel04Hall01 FingerbowlCave04 BelletorsFolly03 SancreTorHub Niryastare Veyond02 HaynoteCave OblivionRDCavesEnd06 InfestedMine RicketyMine02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List VeyondCave OblivionRDCavesMiddleA01 Kemen02 MemorialCave NenyondTwyll02 CrayfishCave03 FortStrand01 BloodmayneCave MQ14OblivionCitadelHall01 RockmilkCave03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List ImperialSewerSystemTempleDistrict PalePass02 ForsakenMine ImperialDungeon04 FortGoldThroat Anutwyll02 FortHorunn EmptyMine FortRedman02 Wendelbek02 FallenRockCave
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Nornal02 FortFacian FortEmpire02 GreenmeadCave03 Piukanda02 VeyondCave02 Wenyandawik OblivionRDCavesMiddleA05 BramblePointCave03 Wendir02 SilverToothCave02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List Nenalata FelgageldtCave GoblinJimsCave Elenglynn SageGlenHollow
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
+begin _Function { }
+	Let tempA := ar_List PalePass01 MS13OblivionCitadel Ondo CrayfishCave FingerbowlCave02 TheBeastsMaw02 CollapsedMine02 QuickwaterCave02 OblivionRDCitadel04Hall02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List HrotandaVale Veyond04 WindCave SidewaysCaveNew02 Nenalata02 ShatteredMine02 UnmarkedCave01b FortStrand02 LakeArriusShrineDagon KingscrestCavern
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FortHastrel02 OblivionRDCavesEnd01 WellspringCave SerpentsTrail PillagedMine UnmarkedCave01 OblivionRD007Cave01 CrayfishCave04 GlademistCave LeafrotCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List DasekMoor FyrelightCave RockmilkCave04 OblivionRDCitadel02 PalePass03 TimberscarHollow FortRayles AbandonedMine SidewaysCaveNEW SancreTor02 PalePass
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List DerelictMine FortMagia SwampyCave FortNomore02 SidewaysCave02 Piukanda03 VeyondCave03 BloodmayneCave02 NonwyllCavern Welke ImperialSewerSystemTG11a2
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRDCavesEnd03 ShadowsRestCavern02 OblivionRDCavesMiddleA03 FatbackCave02 UnderpallCave03 RedguardValleyCave Piukanda UndertowCavern
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ImperialSewerSystemTG11a Atatar ImperialSewers03 Varondo NewtCave Emptymine02 DesertedMine02 Bawn BramblepointCave Malada02 FortHorunn02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Nenalata03 OblivionRDCavesMiddleA06 SquanderedMine02 BrumaCaverns HornCave OblivionRDCitadel01 UnmarkedCave01c ForsakenMine02 HuntersRun01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List RedwaterSlough OblivionRDCavesStart05 CrayfishCave05 DAPeryiteCaves01 FortAlessia GrayrockCave OblivionRDCitadel02Hall01 PalePass04 CrackedWoodCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FortAurus CollapsedMine FrostFireCave FortNomore ExhaustedMine LipsandTarn02 OblivionRD004CitadelRight MQ14OblivionCaveInterior FortHastrel01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List WindCave03 Rielle02 VeyondCave04 FortDoublecross02 OblivionRD004Caves ParadiseAnaxesCave LakeArriusShrineAntechamber01 Moranda ArrowshaftCavern02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List GoblinJimsCave02 OblivionRD004CitadelMainHall03 OblivionRDCitadel04 Fanacasecul SerpentHollowCave ImperialSewerSystemTG11b DarkFissure03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRD002Hall01 FloodedMine Beldaburo PotholeCaverns Niryastare02 Emptymine03 CursedMine02 RobbersGlenCave Trumbe ArrowshaftCavern FortTeleman02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FortHorunn03 OblivionRDCavesMiddleA07 JakbenTombInterior GarlasAgea SquanderedMine03 FortBlueBlood BleakFlatsCave ImperialDungeon01 DarkFissure
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRD002Hall02Lava FortCuptor02 TempleMothCatacombs MQ10BrumaCitadel OblivionRD002Citadel RockBottomCaverns FortDirich OblivionRDCavesStart06
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ImperialSewerSystemMarketDistrict SardavarLeed02 DAPeryiteCaves02 FortScinia01 SandstoneCavern ToadstoolHollow02 FortSejanus02 FortRoebeck01 DesertedMine
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FortEmpire CursedMine BrittlerockCave Nornalhorst02 DasekMoor02 MQ14OblivionCitadel BloodRunCave ParadiseGrotto02 FortVlastarus BreakneckCave02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Nonungalo OblivionRDCitadel05Hall01 DarkFissure02 KindredCavern03 Mackamentain HaynoteCave03 FortRedwater02 Wenyandawik02 FieldhouseCave02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List UnderpallCave04 FortMagia03 ParadiseGrotto01 Narfinsel MingoCave ImperialSewerSystemTG11c KingscrestCavern02 OblivionRD002Hall02 Hame02 LakeArriusShrineAntechamber02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Belda LostBoyCaverns AmelionFamilyTomb Ceyatatar02 ExhaustedMine02 CursedMine03 Kemen SidewaysCave Nagastani Miscarcand01 SmokeHoleCave TempleMothCatacombs02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List BlackRockCaverns02 FortUrasek RockmilkCave OblivionRDCavesEnd04 OblivionRDCavesStart07 ImperialSewerSystemArena LakeArriusShrine FortWariel FingerbowlCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ToadstoolHollow03 FortAsh02 FortEntius01 SquanderedMine OblivionRDCitadel03 FortAsh02 FortEntius01 SquanderedMine OblivionRDCitadel03 FortVariela
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ShatteredMine BloodcrustCavern DasekMoor03 Wendelbek03 ParadiseGrotto03 FortNaso BreakneckCave03 Nonungalo02 Varondo02 FortIstirus02 FortTeleman
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List HackdirtCaverns Veyond03 Culotte ArrowshaftCavern03 GrayrockCave02 FieldhouseCave03 FortMagia02 AbandonedMine02 ImperialDungeon03 Vilverin NisinCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ImperialSewerSystemTG11d KingscrestCavern03 Ceyatatar ShinboneCave BlackRockCavernsLight7 Ceyatatar03 BlackRockCaverns03 ExhaustedMine03 DerelictMine02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List UndertowCavern02 BrittlerockCave02 Nornalhorst ShadowsRestCavern FortBlueBlood02Backup Nagastani02 BorealStoneCave LeafrotCave02 Miscarcand02 UnderpallCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List NewtCave02 MQ10BrumaHall01 FortLinchal02 ImperialDungeon05 WenderbekCave FortWoodenHand01 OblivionRDCavesEnd05 ImperialSewerSystemTalosPlaza
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ImperialSewerSystemN02 FortDoublecross03 KindredCavern02 MuckValleyCavern FortCedrian01 MossRockCavern ImperialSewersElvenGardens01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List LostBoyCaverns02 Hame03 SancreTor01 FortSejanus01 RicketyMine NonwyllCavern02 FortLinchal EchoMine ParadiseGrotto04OLD Nornal FortRedwater01 FortRedman01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FortUrasek02 ReedstandCave02 Ondo02 TempleMothCatacombs03 ImperialSewersElvenGardens03 FortIstirus03 OblivionRDCitadel01Hall01 FortOntus02 Vahtacen02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRD004CitadelMain Arpenia Talwinque Wendir GreenmeadCave02 Welke02 ShinboneCave02 Moranda02 FortFacian02 Crowhaven02 Rielle QuickwaterCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Atatar02 KingscrestCavern04 MS13OblivionHall01 Morahame BreakneckCave FortUrasek02DUPLICATE000 HauntedMIne02 DerelictMine03 OblivionRD004CitadelLeftHall01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionMqKvatchCitadel LipsandTarn BedrockBreak EchoCave02 SancreTorTomb FortAlessia02 Miscarcand03 GreenmeadCave NewtCave03 MQ10BrumaHall02 FortLinchal03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ImperialSewerSystemImperialPalace ImperialSewerSystemSE FortSutchInterior FortCarmala DzonotCave ImperialSewersElvenGardens02 OblivionRDCavesStart03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List LostBoyCaverns03 FortScinia02 OutlawEndresCave02 FortIrony InfestedMine02 FortRayles02 OblivionRDCavesStart02 OblivionRDCitadel03Hall01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List HrotandaVale02 FortCuptor DoomedMine FortRoebeck02 FyrelightCave02 Vahtacen FortColdcorn RedrubyCave02 TempleMothCatacombs04 OblivionRDCitadel01Hall02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRD004CitadelMainHall01 Talwinque02 Ninendava Anutwyll SidewaysCaveNew03 WindCave02 BrokenPromisesCave Welke03 SageGlenHollow02 Moranda03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Sercen ShatteredScalesCave Atatar03 SmokeHoleCave02 OblivionRD004CitadelRightHall01 OblivionRD004CitadelLeft DarkfathomCave DesolateMine
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Silorn03 TheBeastsMaw Lindai02 DreamofCourage InfestedMine03 OblivionRD004CitadelLeftHall02 OblivionMqKvatchCitadelHall01 BlackRockCaverns
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List MongrelsToothCave CapstoneCave02 Bawn02 SancreTor04 EchoCave03 CharcoalCave03 SinkholeCave02 FortHomestead01 HowlingCave02 ImperialSewerSystemN01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List HrotaCave FortBlackBoot OblivionRDCavesStart04 LostBoyCaverns05 FortWoodenHand02 OblivionRD001Caves OblivionMqKvatchCave FortFlecia PlunderedMine
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRDCavesEnd02 OblivionRDCitadel03Hall02 Vilverin02 LakeArriusCaverns FortIstirus CrumblingMine OnyxCaverns FyrelightCave03 Malada01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Vindasel SandstoneCavern02 FortVariela02 OblivionRDCitadel01Hall03 UnderpallCave02 Talwinque03 Fanacas OutlawEndresCave GoblinJimsCave03 Silorn02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Telepe FatbackCave Atatar04 SmokeHoleCave03 FortCedrian02 OblivionRD004CitadelRightHall02 OblivionRDCitadel05 FortHomestead03 Mackamentain03 Wendelbek
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ReedstandCave FortRayles02DUPLICATE000 FortEntius02 Varondo03 PillagedMine02 SilverToothCave FortFarragut ToadstoolHollow CharcoalCave02 Crowhaven01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List TidewaterCave ImperialSewerSystemSW SerpentHollowCave02 DzonotCave02 FortDoublecross GuttedMine HowlingCave FortBlueBlood02 Belda02 FortAsh01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List BelletorsFolly OblivionRD002LavaCave EchoCave OblivionRDCavesMiddleA02 OblivionRDCitadel03Hall03 Vilverin03 BarrenMine OnyxCaverns02 HornCave02 Nornal03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ParadiseCamoranFortress Veyond BramblePointCave02 OblivionRDCavesMiddleA04 YellowTickCave02 ImperialDungeon02 Anga SinkholeCave OblivionRD002CitadelLava
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FelgageldtCave02 Silorn MS13OblivionCave01 FieldhouseCave FingerbowlCave03 BelletorsFolly02 Nornal04 Beldaburo02 MS13OblivionHall02 FortHomestead02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Mackamentain02 Hame RedRubyCave OblivionRD003CavesA PlunderedMine02 HuntersRun02 RockmilkCave02 CharcoalCave OblivionRDCavesStart01 Bawn03 BarrenCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List FortCaractacus DAPeryiteCave01 CrayfishCave02 SancreTor03 FortNikel ShatteredScalesCave02 FortChalman BleakMine FortOntus AmelionFamilyTomb02 HauntedMine
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionMqKvatchCitadelHall02 Vilverin04 FortVirtue HornCave03 Wendelbek04 KindredCavern SardavarLeed Sedor OblivionRD004CitadelMainHall02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRDCavesEnd07 HaynoteCave02 FatbackCave03 SwampyCave02 UnderpallCave05 Lindai01 CapstoneCave MS13OblivionCave02 NenyondTwyll YellowTickCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List OblivionRDCitadel04Hall01 FingerbowlCave04 BelletorsFolly03 SancreTorHub Niryastare Veyond02 HaynoteCave OblivionRDCavesEnd06 InfestedMine RicketyMine02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List VeyondCave OblivionRDCavesMiddleA01 Kemen02 MemorialCave NenyondTwyll02 CrayfishCave03 FortStrand01 BloodmayneCave MQ14OblivionCitadelHall01 RockmilkCave03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List ImperialSewerSystemTempleDistrict PalePass02 ForsakenMine ImperialDungeon04 FortGoldThroat Anutwyll02 FortHorunn EmptyMine FortRedman02 Wendelbek02 FallenRockCave
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Nornal02 FortFacian FortEmpire02 GreenmeadCave03 Piukanda02 VeyondCave02 Wenyandawik OblivionRDCavesMiddleA05 BramblePointCave03 Wendir02 SilverToothCave02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List Nenalata FelgageldtCave GoblinJimsCave Elenglynn SageGlenHollow
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
 end

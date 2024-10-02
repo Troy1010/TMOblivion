@@ -1,0 +1,50 @@
+﻿scn zCFzFnNarrateCollection2
+
+array_var cCollection
+int bAlwaysFormID
+int bSingleLine
+
+short bDoOnce
+array_var Iter
+string_var svReturning
+
+Begin _Function {cCollection bAlwaysFormID bSingleLine}
+	; Filter
+	if eval !cCollection
+		SetFunctionValue "<Collection(Unconstructed)>"
+		return
+	elseif eval !(ar_Size cCollection)
+		SetFunctionValue "<Collection(Empty)>"
+		return
+	endif
+	;
+	ForEach Iter <- cCollection
+		if eval !bDoOnce
+			Let bDoOnce := 1
+		else
+			if eval bSingleLine
+				Let svReturning := svReturning+","
+			else
+				Call LogTL "Not Implemented"
+				;Let svReturning := svReturning+"%r"
+			endif
+		endif
+		;Let CF.iNarrateCollectionRecursionLevel+=1
+		if eval bAlwaysFormID && bSingleLine
+			Let svReturning := svReturning+$Iter["Key"]+":"+Call ToLogStr Iter
+		elseif eval bSingleLine
+			Call LogTL "Not Implemented"
+			;Let svReturning := svReturning+$Iter["Key"]+":"+Call ToLogStr Iter
+		elseif eval bAlwaysFormID
+			Call LogTL "Not Implemented"
+			;Let svReturning := svReturning+(Call zCFzFnIndent (CF.iNarrateCollectionRecursionLevel))+$Iter["Key"]+":"+Call NarrateFID Iter
+		else
+			Call LogTL "Not Implemented"
+			;Let svReturning := svReturning+(Call zCFzFnIndent (CF.iNarrateCollectionRecursionLevel))+$Iter["Key"]+":"+Call Narrate Iter
+		endif
+		;Let CF.iNarrateCollectionRecursionLevel-=1
+	loop
+	SetFunctionValue svReturning
+	; Close
+	sv_Destruct svReturning
+end

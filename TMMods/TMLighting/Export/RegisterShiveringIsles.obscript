@@ -1,28 +1,28 @@
-scn RegisterShiveringIsles
+﻿scn RegisterShiveringIsles
 
 array_var tempA
 
-begin Function { }
-let tempA := ar_List XPRottenDen01 XPPinnacleRock03Extra XPDunrootBurrow01 XPXeddefen05 XPHowlingHalls05 XPKnifepointHollow01 XPXedilian02 XPPinnacleRock02 XPMilchar02aSub
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPKnotboneChamber05 XPCylarne01Altar XPXirethard03 XPVitharn02 XPXeddefen02 XPKnotboneChamber01 XPEbrocca02 XPDunrootBurrow05 XPCann02 XPVitharn01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPBrellach01 XPSwampgasHole02 XPXaselm04 XPEbrocca04 XPGloomstonePassage04 XPMilchar01 XPKnotboneChamber04 XPXirethard02 XPEbrocca05 XPCann01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPCorpserotPassage01 XPMilchar02b XPBlackrootLair02 XPBrellach05 XPXavara01 XPDireWarren02 XPXirethard01 XPEbrocca06 XPSwampgasHole01 XPVitharn04
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPGardens01 XPCylarne02 XPKnottyBramble01 XPHowlingHalls04 XPBlackrootLair01 XPMilchar03 XPFetidGrove02 XPRottenDen04 XPXeddefen04 XPFetidGrove01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPXirethard05 XPDunrootBurrow03 XPDunrootBurrow04 XPXaselm03 XPBrellach03Extra XPCann05 XPXiditte02 XPEbrocca01 XPDunrootBurrow02 XPXaselm02
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPXeddefenRearDestroyed XPCann04 XPXedilianWarehouse XPHowlingHalls02 XPXirethard04 XPRottenDen03 XPBlackrootLair05 XPMilchar02c XPGloomstonePassage01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPBrellach02 XPRottenDen05 XPFain01 XPKnotboneChamber03 XPPinnacleRock04 XPXedilian01 XPXaselm01 XPDireWarren01 XPXedilian03 XPGardens03 XPBrellach04
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPXeddefenDestroyed01 XPGardens04 XPHowlingHalls01 XPXiditte01 XPRottenDen02 XPKnotboneChamber02 XPPinnacleRock05 XPGardens05 XPVitharn03 XPBlackrootLair03
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPXeddefen03 XPXeddefen01 XPBlackrootLair04 XPCann03 XPHowlingHalls03 XPKnottyBramble02 XPCylarne01 XPPinnacleRock01 XPKnottyBramble03 XPKnifepointHollow02new
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
-let tempA := ar_List XPVitharn05 XPEbrocca03 XPGloomstonePassage03 XPMilchar02a XPXeddefen03spire XPGloomstonePassage02 XPSwampgasHole03 XPAichan01
-Call AddToRegistry Qst.CellsWithDarkLightingRegistry tempA
+begin _Function { }
+	Let tempA := ar_List XPRottenDen01 XPPinnacleRock03Extra XPDunrootBurrow01 XPXeddefen05 XPHowlingHalls05 XPKnifepointHollow01 XPXedilian02 XPPinnacleRock02 XPMilchar02aSub
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPKnotboneChamber05 XPCylarne01Altar XPXirethard03 XPVitharn02 XPXeddefen02 XPKnotboneChamber01 XPEbrocca02 XPDunrootBurrow05 XPCann02 XPVitharn01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPBrellach01 XPSwampgasHole02 XPXaselm04 XPEbrocca04 XPGloomstonePassage04 XPMilchar01 XPKnotboneChamber04 XPXirethard02 XPEbrocca05 XPCann01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPCorpserotPassage01 XPMilchar02b XPBlackrootLair02 XPBrellach05 XPXavara01 XPDireWarren02 XPXirethard01 XPEbrocca06 XPSwampgasHole01 XPVitharn04
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPGardens01 XPCylarne02 XPKnottyBramble01 XPHowlingHalls04 XPBlackrootLair01 XPMilchar03 XPFetidGrove02 XPRottenDen04 XPXeddefen04 XPFetidGrove01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPXirethard05 XPDunrootBurrow03 XPDunrootBurrow04 XPXaselm03 XPBrellach03Extra XPCann05 XPXiditte02 XPEbrocca01 XPDunrootBurrow02 XPXaselm02
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPXeddefenRearDestroyed XPCann04 XPXedilianWarehouse XPHowlingHalls02 XPXirethard04 XPRottenDen03 XPBlackrootLair05 XPMilchar02c XPGloomstonePassage01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPBrellach02 XPRottenDen05 XPFain01 XPKnotboneChamber03 XPPinnacleRock04 XPXedilian01 XPXaselm01 XPDireWarren01 XPXedilian03 XPGardens03 XPBrellach04
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPXeddefenDestroyed01 XPGardens04 XPHowlingHalls01 XPXiditte01 XPRottenDen02 XPKnotboneChamber02 XPPinnacleRock05 XPGardens05 XPVitharn03 XPBlackrootLair03
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPXeddefen03 XPXeddefen01 XPBlackrootLair04 XPCann03 XPHowlingHalls03 XPKnottyBramble02 XPCylarne01 XPPinnacleRock01 XPKnottyBramble03 XPKnifepointHollow02new
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
+	Let tempA := ar_List XPVitharn05 XPEbrocca03 XPGloomstonePassage03 XPMilchar02a XPXeddefen03spire XPGloomstonePassage02 XPSwampgasHole03 XPAichan01
+	Call AddToRegistry TLQst.CellsWithDarkLightingRegistry tempA
 end

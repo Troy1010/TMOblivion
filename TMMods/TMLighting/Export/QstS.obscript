@@ -1,3 +1,29 @@
-scn QstS
+﻿scn QstS
+
+short bPrintToConsole
+short featureSetDarkCellAmbientLighting
+float fAmbientLighting
+short featureShaderInDarkCells
+short featureNoDistanceFogInDarkCells
 
 array_var CellsWithDarkLightingRegistry
+short bInit
+float fQuestDelayTime
+ref rOldCell
+short shouldHandleCellChanged
+
+begin _GameMode
+	Call Init
+	if eval GetCellChanged
+		Let shouldHandleCellChanged := 1
+	endif
+	if eval shouldHandleCellChanged && PlayerRef.GetParentCell != 0
+		Let shouldHandleCellChanged := 0
+		Call HandlerCellChanged ar_Map "rOldCell"::rOldCell "rNewCell"::PlayerRef.GetParentCell "bInterior"::playerRef.IsInInterior
+		Let rOldCell := PlayerRef.GetParentCell
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end
