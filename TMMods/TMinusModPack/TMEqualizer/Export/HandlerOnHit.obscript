@@ -1,0 +1,25 @@
+﻿scn HandlerOnHit
+
+ref target
+ref attacker
+float dmg
+float weaponSpeed
+float dmgWithoutWeaponSpeedAdjustment
+float fTemp
+
+begin _Function { target attacker }
+	if eval EQQst.featureDamage
+		Let dmgWithoutWeaponSpeedAdjustment := EQQst.fPercentHealthDmg * Call CFGetAVMax target avcHealth
+		Let weaponSpeed := GetWeaponSpeed (attacker.GetEquippedObject 16)
+		if eval weaponSpeed == 0
+			Let dmg := dmgWithoutWeaponSpeedAdjustment
+		else
+			Let dmg := dmgWithoutWeaponSpeedAdjustment * (1 + EQQst.fWeaponSpeedAdjustmentMult *((1 / weaponSpeed) - 1))
+		endif
+		target.ModAVModC avcHealth "Damage" (-dmg)
+		if eval EQQst.bShouldLogFlooding
+			Let fTemp := Call CFGetAVMax target avcHealth
+			Call LogEQ "HandlerOnHit. attacker:"+$attacker+" target:"+$target+" targetMaxHealth:"+$fTemp+" dmg:"+$dmg+" weaponSpeed:"+$weaponSpeed+" dmgWithoutWeaponSpeedAdjustment:"+$dmgWithoutWeaponSpeedAdjustment+" fWeaponSpeedAdjustmentMult:"+$EQQst.fWeaponSpeedAdjustmentMult
+		endif
+	endif
+end

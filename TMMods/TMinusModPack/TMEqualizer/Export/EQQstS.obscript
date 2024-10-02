@@ -1,0 +1,25 @@
+﻿scn EQQstS
+
+; Defined by ini
+short featureDamage
+float fPercentHealthDmg
+short fWeaponSpeedAdjustmentMult
+short bPrintToConsole
+short bShouldLogFlooding
+;
+short bInit
+array_var aSpellCasts
+array_var aKeysToRemove
+array_var iter
+
+begin _GameMode
+	Call Init
+	ForEach iter <- aSpellCasts
+		;if eval (iter[value][2] > GameHour
+	loop
+	Let aKeysToRemove := ar_Construct "Array"
+end
+
+begin _MenuMode
+	Call Init
+end

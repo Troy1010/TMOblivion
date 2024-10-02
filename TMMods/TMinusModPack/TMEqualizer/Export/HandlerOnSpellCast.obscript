@@ -1,0 +1,28 @@
+﻿scn HandlerOnSpellCast
+
+ref caster
+ref spell
+array_var value
+array_var aKeysToRemove
+array_var iter
+
+begin _Function { caster spell }
+	Call LogEQ "HandlerOnSpellCast`Open. caster:" + $caster + " spell:" + $spell + " GameHour:" + $GameHour
+	if eval (IsSpellHostile spell)
+		; Remove all entries from same caster
+		Let aKeysToRemove := ar_Construct "Array"
+		ForEach iter <- EQQst.aSpellCasts
+			if eval (iter["Value"][0] == caster)
+				ar_Append aKeysToRemove iter["Key"]
+			endif
+		loop
+		ForEach iter <- aKeysToRemove
+			Call LogEQ "Removing spell cast entry because there is already a spell cast entry from this caster:" + $caster
+			ar_Erase EQQst.aSpellCasts iter["Value"]
+		loop
+		;
+		Let value := ar_List caster, spell, GameHour
+		ar_Append EQQst.aSpellCasts, value
+		Call Delay 3 WaiterRemoveSpellcastEntry value
+	endif
+end

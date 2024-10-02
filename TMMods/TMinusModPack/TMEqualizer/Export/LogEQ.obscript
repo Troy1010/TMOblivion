@@ -1,0 +1,7 @@
+﻿scn LogEQ
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`TMEqualizer`" + s, EQQst.bPrintToConsole
+end

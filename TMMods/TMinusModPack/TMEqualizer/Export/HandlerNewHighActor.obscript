@@ -1,0 +1,11 @@
+﻿scn HandlerNewHighActor
+
+array_var args
+ref rActor
+
+begin _Function { args }
+	Let rActor := args["rActor"]
+	if eval 0 == rActor.GetItemCount EQToken
+		rActor.AddItemNS EQToken 1
+	endif
+end

@@ -1,0 +1,49 @@
+﻿scn EQTokenS
+
+array_var iter
+ref self2
+float dmg
+ref caster
+ref spell
+array_var aKeysToRemove
+short bFoundHosileSpell
+
+Begin _GameMode
+	if eval !Call IsTokenStable
+		return
+	elseif eval Call StandardTokenRemovalCheck
+		RemoveMe
+	endif
+
+	if eval EQQst.featureDamage
+		Let self2 := GetContainer
+		; Detect if self2 has been hit by a hostile spell cast by someone else
+		;Assumes spells in EQQst.aSpellCasts are hostile.
+		Let aKeysToRemove := ar_Construct "Array"
+		Let bFoundHosileSpell := 0
+		if eval 0 < ar_Size EQQst.aSpellCasts ;Might not be necessary
+			ForEach iter <- EQQst.aSpellCasts
+				Let caster := iter["Value"][0]
+				Let spell := iter["Value"][1]
+				if eval (caster != self2 && self2.IsSpellTarget spell) ; TODO: This might have a false negative if the spell has 0 duration. TODO: This will have a false positive if a caster hits a spell with a long duration, and then misses the next spell cast. TODO: I think this can also fail in a number of other ways.
+					Let bFoundHosileSpell := 1
+					ar_Append aKeysToRemove iter["Key"] ; TODO: Maybe should use filter instead.
+					Call LogEQ "bFoundHosileSpell:" + $bFoundHosileSpell
+					break
+				endif
+			loop
+		endif
+		if eval 0 < ar_Size aKeysToRemove ;Might not be necessary
+			ForEach iter <- aKeysToRemove
+				Call LogEQ "Removing spell cast entry because a hit was detected"
+				ar_Erase EQQst.aSpellCasts iter["Value"]
+			loop
+		endif
+		; Apply dmg
+		if eval bFoundHosileSpell ;TODO: Maybe should find and apply dmg from all hostile spells at once, instead of one at a time.
+			Let dmg := EQQst.fPercentHealthDmg * Call CFGetAVMax self2 avcHealth
+			self2.ModAVModC avcHealth "Damage" (-dmg)
+			Call LogEQ "Damaging. self2:"+$self2+" dmg:"+$dmg
+		endif
+	endif
+end

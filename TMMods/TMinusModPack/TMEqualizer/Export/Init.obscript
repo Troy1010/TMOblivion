@@ -1,0 +1,13 @@
+﻿scn Init
+
+begin _Function { }
+	if eval GetGameLoaded || !EQQst.bInit
+		Let EQQst.bInit := 1
+		RunBatchScript "Data\ini\TMEqualizer.ini", 0, 1
+		Let EQQst.aSpellCasts := ar_Construct "Array"
+		SetEventHandler "OnHit" HandlerOnHit
+		SetEventHandler "OnSpellCast" HandlerOnSpellCast
+		Call SetEventHandler2 EVENTNewHighActor HandlerNewHighActor
+		Call LogEQ "Init"
+	endif
+end

@@ -1,0 +1,18 @@
+﻿scn WaiterRemoveSpellcastEntry
+
+array_var args
+array_var aKeysToRemove
+array_var iter
+
+begin _Function { args }
+	Let aKeysToRemove := ar_Construct "Array"
+	ForEach iter <- EQQst.aSpellCasts
+		if eval (iter["Value"][0] == args[0] && iter["Value"][1] == args[1] && iter["Value"][2] == args[2])
+			ar_Append aKeysToRemove iter["Key"]
+		endif
+	loop
+	ForEach iter <- aKeysToRemove
+		Call LogEQ "Removing spell cast entry because time expired"
+		ar_Erase EQQst.aSpellCasts iter["Value"]
+	loop
+end
