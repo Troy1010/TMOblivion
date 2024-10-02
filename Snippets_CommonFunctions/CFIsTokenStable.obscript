@@ -2,7 +2,7 @@ scn CFIsTokenStable
 
 ; Token script example:
 ;begin GameMode
-;if eval !Call IsTokenStable
+;if eval !Call CFIsTokenStable
 ;	return
 ;elseif eval Call StandardTokenRemovalCheck
 ;	RemoveMe
