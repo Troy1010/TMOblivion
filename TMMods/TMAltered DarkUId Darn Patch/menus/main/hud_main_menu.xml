@@ -2191,7 +2191,11 @@
 				<onlyif src="HUDMainMenu" trait="_settingsmode" />
 			</depth>
 			<visible>
+				<!-- TMEdit -->
+				<!--
 				<copy src="HUDMainMenu" trait="_ce" />
+				-->
+				<not src="HUDMainMenu" trait="_ce" />
 				<or>
 					<copy src="HUDMainMenu" trait="_menumode" />
 					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
