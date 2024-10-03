@@ -827,14 +827,6 @@
 -->
 
 			<image name="hudmain_health_empty">
-				<!-- TMEdit -->
-				<visible>
-					<not src="HUDMainMenu" trait="_sbv" />
-					<or>
-						<copy src="HUDMainMenu" trait="_menumode" />
-						<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
-					</or>
-				</visible>
 				<filename> <copy src="darnui_settings" trait="_hudribbonhpe" /> </filename>
 				<depth> 1 </depth>
 				<width>
@@ -1356,14 +1348,6 @@
 -->
 
 			<image name="hudmain_fatigue_empty">
-				<!-- TMEdit -->
-				<visible>
-					<not src="HUDMainMenu" trait="_sbv" />
-					<or>
-						<copy src="HUDMainMenu" trait="_menumode" />
-						<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
-					</or>
-				</visible>
 				<filename> <copy src="darnui_settings" trait="_hudribbonfae" /> </filename>
 				<depth> 1 </depth>
 				<width>
@@ -1661,11 +1645,7 @@
 		<image name="hudmain_Weapon_Icon">
 			<id> 5 </id>
 			<visible>
-				<!-- TMEdit -->
-				<!--
 				<copy src="HUDMainMenu" trait="_wiv" />
-				-->
-				<not src="HUDMainMenu" trait="_wiv" />
 				<or>
 					<copy src="HUDMainMenu" trait="_menumode" />
 					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
@@ -2123,11 +2103,7 @@
 		<image name="hudmain_Magic_Icon">
 			<id> 6 </id>
 			<visible>
-				<!-- TMEdit -->
-				<!--
 				<copy src="HUDMainMenu" trait="_siv" />
-				-->
-				<not src="HUDMainMenu" trait="_siv" />
 				<or>
 					<copy src="HUDMainMenu" trait="_menumode" />
 					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
@@ -2215,11 +2191,7 @@
 				<onlyif src="HUDMainMenu" trait="_settingsmode" />
 			</depth>
 			<visible>
-				<!-- TMEdit -->
-				<!--
 				<copy src="HUDMainMenu" trait="_ce" />
-				-->
-				<not src="HUDMainMenu" trait="_ce" />
 				<or>
 					<copy src="HUDMainMenu" trait="_menumode" />
 					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
