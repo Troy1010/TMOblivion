@@ -6,7 +6,9 @@ array_var aTemp
 short isDarkCell
 
 Begin _Function { argumentArr }
+	Call LogTL "HandlerCellChanged`Open"
 	Let isDarkCell := ar_HasKey TLQst.CellsWithDarkLightingRegistry (GetFormIDString argumentArr["rNewCell"])
+	Call LogTL "isDarkCell:" + $isDarkCell
 	;==== Contrast
 	if eval TLQst.featureShaderInDarkCells
 		Call LogTL "Setting Shader. isDarkCell:"+$isDarkCell
@@ -32,5 +34,7 @@ Begin _Function { argumentArr }
 		endif
 	endif
 	;
-	Call LogTL "TMLighting`HandlerCellChanged`Close. argumentArr:"+$(Call ToLogStr &argumentArr)+" isDarkCell:"+$isDarkCell+" newCellID:"+$(GetFormIDString argumentArr["rNewCell"])+" lighting:"+$(Call ToLogStr (&((GetCellLighting argumentArr["rNewCell"])["ambient"])))
+	Call LogTL "HandlerCellChanged`Close"
+	;Commenting these out in case they're causing an error.
+	;Call LogTL "TMLighting`HandlerCellChanged`Close. argumentArr:"+$(Call ToLogStr &argumentArr)+" isDarkCell:"+$isDarkCell+" newCellID:"+$(GetFormIDString argumentArr["rNewCell"])+" lighting:"+$(Call ToLogStr (&((GetCellLighting argumentArr["rNewCell"])["ambient"])))
 end
