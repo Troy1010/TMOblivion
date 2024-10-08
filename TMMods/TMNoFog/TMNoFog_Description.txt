@@ -1,0 +1,5 @@
+This mod is meant to remove distance fog from LOD objects.
+I thought it was very awkward that the objects would look grey, but the mountains themselves didn't.
+
+This mod achieves this through script, but it's probably more performant and would avoid sudden graphical changes that could possibly happen.
+However, this should work no matter what, even with OblivionReloaded adding weathers in a weird way.
