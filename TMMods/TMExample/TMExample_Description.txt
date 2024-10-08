@@ -1,0 +1,3 @@
+This mod is meant to serve as an example.
+If I ever discover a good way to do something, I should put it here too, so that I can refer to it later.
+For now, it can also serve as a template.. But that might not be a good idea as more things get added.
