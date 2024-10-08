@@ -1,4 +1,4 @@
-scn CFGetSelf2
+﻿scn CFGetSelf2
 
 begin Function { }
 	if eval Call CFIsCallingObjectStable

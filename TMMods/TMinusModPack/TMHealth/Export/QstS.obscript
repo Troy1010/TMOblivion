@@ -1,26 +1,25 @@
-scn QstS
+﻿scn QstS
 
+; # Defined by ini
 short featureBleed
+float startBleedHealthPercentage
+float secondsUntilDeathFromBleedHealthPercentage
+short bDisallowRestWhileBleeding
 short featureRegen
+float startRegenHealthPercentage
+float secondsUntilFullHealthFromRegenHealthPercentage
+short bPrintToConsole
 short bShouldLogWarning
 short bShouldLogDebug
 short bShouldLogFlooding
-float startBleedHealthPercentage
-float startRegenHealthPercentage
-float secondsUntilDeathFromBleedHealthPercentage
-float secondsUntilFullHealthFromRegenHealthPercentage
 float neutralizefGlobalTimeMultiplier
-short bPrintToConsole
-
-short bDisallowRestWhileBleeding
-
+;
+short bInit
 float startBleedHealthFraction
 float startRegenHealthFraction
-
 ref rTemp
 int counter
-ref rTemp2
-short bInit
+ref rTemp2 ; Is this variable still necessary?
 
 begin _GameMode
 	Call Init
@@ -55,22 +54,11 @@ begin _GameMode
 			Set rTemp to GetNextRef
 			continue
 		endif
-
-		; TODO: Add to player silently
-		;		if eval (rTemp == PlayerRef)
-		;			;PlayerRef.AddItem shows a message at the top left of the screen.
-		;			;This workaround prevents that message from being shown.
-		;			Let rTemp2 := PlayerRef.PlaceAtMe TMHealthToken 1
-		;			rTemp2.Activate PlayerRef 1
-		;			Set rTemp to GetNextRef
-		;			continue
-		;		endif
-
 		Let counter += 1
 		if eval bShouldLogFlooding
 			Call LogTH "Adding item to:" + $(rTemp)
 		endif
-		rTemp.AddItem TMHealthToken 1
+		rTemp.AddItemNS TMHealthToken 1
 
 		Set rTemp to GetNextRef
 	loop

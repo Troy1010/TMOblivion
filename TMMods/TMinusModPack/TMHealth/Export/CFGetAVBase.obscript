@@ -1,4 +1,4 @@
-scn CFGetAVBase
+﻿scn CFGetAVBase
 ;What GetBaseAV *should* be, according to Common Functions
 ;Returns what value the av is with Base and Script modifiers included.
 ; Basically, how high a stat can go through Restoration effects - after all temporary max modifiers expire.
