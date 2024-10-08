@@ -1,0 +1,12 @@
+﻿scn GetNewCurrentTarget
+
+short iRandomInt
+ref rCurrentTarget
+
+begin _Function { }
+	Call PopulatePossibleTargets ; TODO: I should move this back to Init, as soon as I figure out why that is sometimes causing errors.
+	Let iRandomInt := Call RandomI 0 (ar_Size PEQQst.aPossibleTargets)
+	Let rCurrentTarget := PEQQst.aPossibleTargets[iRandomInt]
+	Call LogPEQ "rCurrentTarget:" + $rCurrentTarget + " iRandomInt:" + $iRandomInt
+	SetFunctionValue rCurrentTarget
+end

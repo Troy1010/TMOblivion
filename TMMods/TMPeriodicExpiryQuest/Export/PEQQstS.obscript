@@ -7,7 +7,6 @@ short bShouldLogFlooding
 ;
 short bInit
 float fQuestDelayTime
-; Used in this script
 long day
 array_var aPossibleTargets
 ref rCurrentTarget
@@ -33,17 +32,21 @@ begin _GameMode
 					Call LogPEQ "Player already did not have curse. Doing nothing."
 				endif
 			endif
-			; Move QstTarget
-			Call LogPEQ "Moving QstTarget."
-			Let iRandomInt := Call RandomI 0 (ar_Size aPossibleTargets)
-			Let rCurrentTarget := aPossibleTargets[iRandomInt]
-			Call LogPEQ "rCurrentTarget:" + $(Call NarrateSL &rCurrentTarget) + " iRandomInt:" + $iRandomInt
-			PEQQstTargetRef.MoveToMarker rCurrentTarget
+			; Choose next rCurrentTarget
+			Let rCurrentTarget := Call GetNewCurrentTarget
+			;Call LogPEQ "rCurrentTarget:" + $(Call NarrateSL &rCurrentTarget) + " iRandomInt:" + $iRandomInt
+			;^This might be causing an error? Or it might be the line above.
 			; Reset Quest to stage 10
 			Call LogPEQ "Resetting quest to stage 10"
 			SetStage PEQQst 10
 			Let bShowPEQTarget := 1
 		endif
+		; If rCurrentTarget is invalid, pick a new one
+		if eval !IsFormValid rCurrentTarget
+			Let rCurrentTarget := Call GetNewCurrentTarget
+		endif
+		; Keep moving TargetRef to rCurrentTarget
+		PEQQstTargetRef.MoveToMarker rCurrentTarget ;I am doing this because, sometimes
 		; Detect when player is close to target
 		if eval bShowPEQTarget && (PlayerRef.GetInSameCell PEQQstTargetRef)
 			Let distance := PlayerRef.GetDistance PEQQstTargetRef

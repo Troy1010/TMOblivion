@@ -1,0 +1,20 @@
+﻿scn PopulatePossibleTargets
+
+array_var iter
+
+begin _Function { }
+	; # Populate aPossibleTargets
+	Let PEQQst.aPossibleTargets := ar_Construct "Array"
+	ForEach iter <- ar_List (Call GetFormFromID "0003130C") (Call GetFormFromID "00030C1B") (Call GetFormFromID "00030849") (Call GetFormFromID "00010491") (Call GetFormFromID "00027DBE") (Call GetFormFromID "000309BA") (Call GetFormFromID "00030FA2")
+		if eval IsFormValid iter["Value"]
+			ar_Append PEQQst.aPossibleTargets iter["Value"]
+		else
+			Call LogPEQ "Warning, possible target was null. Key:" + $iter["Key"]
+		endif
+	loop
+	Call LogPEQ "PEQQst.aPossibleTargets size:" + $(ar_Size PEQQst.aPossibleTargets)
+	if eval 1 > ar_Size PEQQst.aPossibleTargets
+		Call LogPEQ "Error. Disabling featurePeriodicExpiryQuest because PEQQst.aPossibleTargets size:" + $(ar_Size PEQQst.aPossibleTargets)
+		Let PEQQst.featurePeriodicExpiryQuest := 0
+	endif
+end
