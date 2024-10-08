@@ -1,4 +1,4 @@
-scn DispatchEventWithIReturning
+﻿scn DispatchEventWithIReturning
 
 ;This function uses QH2, so okEvent must not be an in-game object.
 ;This function will call each EventHandler and break as soon as any EventHandler returns not -1.

@@ -1,4 +1,4 @@
-scn RemoveEventHandler2
+﻿scn RemoveEventHandler2
 
 ref okEvent ;okEvent. (ObjectKey)Event
 ref rHandlerFunction

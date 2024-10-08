@@ -1,4 +1,4 @@
-scn IsCallingObjectStable
+﻿scn IsCallingObjectStable
 
 ;When a script is called by an UnstableObject, most GetProperty functions (not including GetBaseObject) return null.
 ;Calling GetSelf from an unstable object will cause CTD.

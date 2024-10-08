@@ -1,4 +1,4 @@
-scn DispatchEvent3
+﻿scn DispatchEvent3
 
 ;This version will not modify the okEvent, which allows in-game objects to be used as okEvent.
 ;Therefore, it must let the calling script pass the QH of okEvent.

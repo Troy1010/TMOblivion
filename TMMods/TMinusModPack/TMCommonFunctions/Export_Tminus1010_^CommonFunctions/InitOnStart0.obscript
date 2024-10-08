@@ -1,4 +1,4 @@
-scn InitOnStart0
+﻿scn InitOnStart0
 ; Call this in a Function script with form ID xx000800.
 
 ; Example usage:

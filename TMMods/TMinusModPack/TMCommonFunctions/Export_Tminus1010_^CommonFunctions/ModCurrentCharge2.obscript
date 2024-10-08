@@ -1,4 +1,4 @@
-scn ModCurrentCharge2
+﻿scn ModCurrentCharge2
 
 ;*While OBSE's counterpart ModCurrentCharge will fizzle if you try to overcharge a weapon, this version will simply max out its charge.
 

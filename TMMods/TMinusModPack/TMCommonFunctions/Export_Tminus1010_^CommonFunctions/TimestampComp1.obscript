@@ -1,4 +1,4 @@
-scn TimestampComp1
+﻿scn TimestampComp1
 
 ;Returns 1 if the difference between both Timestamps are equal.
 

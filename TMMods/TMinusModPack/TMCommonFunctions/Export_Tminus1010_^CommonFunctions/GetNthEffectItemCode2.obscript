@@ -1,4 +1,4 @@
-scn GetNthEffectItemCode2
+﻿scn GetNthEffectItemCode2
 
 ;This command must be compiled without the OBSE compiler to be compatable with OBME.
 

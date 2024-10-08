@@ -1,4 +1,4 @@
-scn SetCFLocalData
+﻿scn SetCFLocalData
 
 ;This function allows child mods to set local data in CommonFunctions.
 ;It takes an okObjectKey argument to prevent conflicts.

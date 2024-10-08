@@ -1,4 +1,4 @@
-scn GetCFLocalData
+﻿scn GetCFLocalData
 
 ;Returns an array or boxed value.
 

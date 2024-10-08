@@ -1,4 +1,4 @@
-scn WithinRange
+﻿scn WithinRange
 
 float fArgument
 float fMin

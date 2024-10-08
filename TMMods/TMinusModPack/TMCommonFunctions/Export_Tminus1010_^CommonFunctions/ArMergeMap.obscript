@@ -1,4 +1,4 @@
-scn ArMergeMap
+﻿scn ArMergeMap
 
 array_var mMapToGiveTo
 array_var mMapToTakeFrom

@@ -1,4 +1,4 @@
-scn TimestampComp3
+﻿scn TimestampComp3
 
 ;Returns 1 if the difference between both Timestamps is within fHourRange
 

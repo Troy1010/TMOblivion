@@ -1,4 +1,4 @@
-scn CFCHandlerSaveGame
+﻿scn CFCHandlerSaveGame
 
 string_var svSaveFileName
 array_var aRuntimeSaveNames

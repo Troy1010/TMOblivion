@@ -1,4 +1,4 @@
-scn DispatchEventWithPrimaryHandler
+﻿scn DispatchEventWithPrimaryHandler
 
 ;This function uses QH2, so okEvent must not be an in-game object.
 ;The PrimaryHandler is expected to accept the rEventHandler and smVariables.

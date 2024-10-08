@@ -1,4 +1,4 @@
-scn GetFormFromID
+﻿scn GetFormFromID
 
 ;This function retrieves a form from a string of the form's FormID.
 

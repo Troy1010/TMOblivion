@@ -1,4 +1,4 @@
-scn DoOncePerFrame
+﻿scn DoOncePerFrame
 
 ;Will return true only once per CallingScript per frame.
 ;*This function will cause errors if called before SB.bGameLoaded==1.

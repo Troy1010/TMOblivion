@@ -1,4 +1,4 @@
-scn Loge
+﻿scn Loge
 ; Oh no an error occurred.
 ; Normally, Having this separate from "Info" is what allows it to have extra flare, like red highlight and such.
 ; However, I could not find a way to do that.. so I will just add an "E" prefix for now.

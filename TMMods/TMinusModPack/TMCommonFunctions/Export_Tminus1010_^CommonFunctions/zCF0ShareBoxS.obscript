@@ -1,14 +1,8 @@
-scn zCF0ShareBoxS
-
-; Used in CF
-short bSprinting
+﻿scn zCF0ShareBoxS
 
 ; Defined by CF
 short bGameLoaded ;0 during MainMenu, 1 during PostLoad frame, 2 after PostLoad frame (when objects might be stable).
 ref rLastCrosshairRef
-short bRunning
-short bWalking
-short bStanding
 short bBowDrawn
 ref rNull
 int iFrameCount
@@ -25,6 +19,12 @@ array_var LISTFloodingEvents	;If an event within this list is passed to Dispatch
 ; Defined in Mods.
 ;StatSystems
 ref avrPhysicality
+;RunningAlong
+short bRunning
+short bWalking
+short bStanding
+short bSprinting
+float fPhysicalityFraction ;A number between 0 and 1 that represents how dedicated to physical fitness the player is. Separate from normal stats because those are meant to scale.
 
 
 

@@ -1,4 +1,4 @@
-scn GetQuestVariable2F
+﻿scn GetQuestVariable2F
 
 ;Warning: Conflict prone when two quests have the same name.
 ;This function allows for quest variable retrieval without using the mod as a master.

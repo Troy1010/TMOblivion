@@ -1,4 +1,4 @@
-scn CFDebug2
+﻿scn CFDebug2
 ;Common Function Debug Method.
 ;This version allows an iIndentLengthOverride
 

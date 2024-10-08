@@ -1,4 +1,4 @@
-scn QH
+﻿scn QH
 ;QuasiHash
 ;Retrieves the last 6 digits of the passed FormID as a dec numeral (aka the 2nd key of QuasiFormMaps).
 

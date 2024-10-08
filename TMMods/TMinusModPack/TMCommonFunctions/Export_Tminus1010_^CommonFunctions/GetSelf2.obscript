@@ -1,4 +1,4 @@
-scn GetSelf2
+﻿scn GetSelf2
 
 begin Function { }
 if eval Call IsCallingObjectStable

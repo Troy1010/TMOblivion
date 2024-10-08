@@ -1,4 +1,4 @@
-scn DispatchEvent2
+﻿scn DispatchEvent2
 
 ;This function uses QH2, so okEvent must not be an in-game object.
 ;This function is meant as an alternative to OBSE's UserDefined Events, which can cause CTD if all events are not registered on the same frame.

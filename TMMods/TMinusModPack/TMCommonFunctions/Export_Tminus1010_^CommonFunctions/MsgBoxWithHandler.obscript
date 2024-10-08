@@ -1,4 +1,4 @@
-scn MsgBoxWithHandler
+﻿scn MsgBoxWithHandler
 
 ;array_var 
 ref rMsgBoxHandler	;rMsgBoxHandler. A Function that accepts an iButtonPressedIndex(0:FirstButtonWasPressed, 1:SecondButtonWasPressed, etc., up to 9)

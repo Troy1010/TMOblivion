@@ -1,4 +1,4 @@
-scn CFDebugSetModThreshold
+﻿scn CFDebugSetModThreshold
 
 ;Call on PostLoad2 and/or MainMenu2.
 

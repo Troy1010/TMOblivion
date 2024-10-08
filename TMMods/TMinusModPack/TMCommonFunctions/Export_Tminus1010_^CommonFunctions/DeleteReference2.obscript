@@ -1,4 +1,4 @@
-scn DeleteReference2
+﻿scn DeleteReference2
 
 ;Only disabled references can be deleted by DeleteReference.
 ;This function first disables the reference, then waits 2 frames before DeleteReference.

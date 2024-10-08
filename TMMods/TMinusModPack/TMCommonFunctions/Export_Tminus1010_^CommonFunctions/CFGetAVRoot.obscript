@@ -1,4 +1,4 @@
-scn CFGetAVRoot
+﻿scn CFGetAVRoot
 ;What GetAVForBaseActor *should* be, according to Common Functions
 ;Returns what value the av is for the base actor without armor/baseModifiers included.
 

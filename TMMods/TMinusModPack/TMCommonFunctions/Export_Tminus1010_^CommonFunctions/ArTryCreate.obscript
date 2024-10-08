@@ -1,4 +1,4 @@
-scn ArTryCreate
+﻿scn ArTryCreate
 
 ; Example
 ;Let aArray := Call ArTryCreate aArray iType

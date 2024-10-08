@@ -1,4 +1,4 @@
-scn zCFWaiterDeleteReference
+﻿scn zCFWaiterDeleteReference
 
 array_var aArguments ;0:rRefToDelete
 

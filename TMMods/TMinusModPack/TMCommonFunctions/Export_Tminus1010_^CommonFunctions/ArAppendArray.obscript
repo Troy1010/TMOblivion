@@ -1,4 +1,4 @@
-scn ArAppendArray
+﻿scn ArAppendArray
 
 array_var aArrayToGiveTo
 array_var aArrayToTakeFrom

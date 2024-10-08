@@ -1,6 +1,7 @@
-scn CFCzFnCallInitiations
+﻿scn CFCzFnCallInitiations ;0:OnStart 1:MainMenu 2:PostLoad 3:InGame
 
-int iInitiationType ;0:OnStart 1:MainMenu 2:PostLoad 3:InGame
+int iInitiationType
+;0:OnStart 1:MainMenu 2:PostLoad 3:InGame
 
 array_var a2dInitiations	;a2dInitiations[iInitiationIndex:aInitiations][iIndex:rInitiationFunction]
 array_var aSearched

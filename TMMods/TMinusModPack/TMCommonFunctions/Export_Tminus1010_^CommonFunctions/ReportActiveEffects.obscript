@@ -1,4 +1,4 @@
-scn ReportActiveEffects
+﻿scn ReportActiveEffects
 
 ref rTarget
 short sActiveEffectIndex

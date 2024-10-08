@@ -1,4 +1,4 @@
-scn SetPosComplete
+﻿scn SetPosComplete
 
 ;This function is meant to be used with GetPosComplete.
 

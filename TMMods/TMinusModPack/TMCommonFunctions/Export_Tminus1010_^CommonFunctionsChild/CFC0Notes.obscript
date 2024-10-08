@@ -1,4 +1,4 @@
-scn CFC0Notes
+﻿scn CFC0Notes
 
 ;CF needs a child mod so that its quest can be run before any other mods quests.
 ;This keeps proper functionality for: Initiations, Wait, FrameCount, DoOnce, DoOncePerFrame.

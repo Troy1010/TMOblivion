@@ -1,4 +1,4 @@
-scn InitInGame2
+﻿scn InitInGame2
 ; Call this in a Function script with form ID xx000800.
 
 ; Example usage:

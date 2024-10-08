@@ -1,4 +1,4 @@
-scn InitMainMenu1
+﻿scn InitMainMenu1
 ; Call this in a Function script with form ID xx000800.
 
 ; Example usage:

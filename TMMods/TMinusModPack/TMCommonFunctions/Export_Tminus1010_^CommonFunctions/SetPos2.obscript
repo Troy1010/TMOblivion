@@ -1,4 +1,4 @@
-scn SetPos2
+﻿scn SetPos2
 
 ref rActor
 float xPos

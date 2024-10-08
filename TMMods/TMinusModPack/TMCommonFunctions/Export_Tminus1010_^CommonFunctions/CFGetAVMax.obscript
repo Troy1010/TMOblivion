@@ -1,4 +1,4 @@
-scn CFGetAVMax
+﻿scn CFGetAVMax
 ;What GetAVMax *should* be, according to Common Functions
 ;Returns what value the av is with every modifier included besides "Damage" (and 'Carried Weight' for Encumbrance).
 ; Bascially, how high a stat can go through Restoration effects.

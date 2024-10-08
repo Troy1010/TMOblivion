@@ -1,7 +1,7 @@
-scn CFCHandlerOnNewGame
+﻿scn CFCHandlerOnNewGame
 
 begin _Function { }
-; Run PostLoad/NewGame Initiations
-let CFC.iInGameInitCountdown := 3
-Call CFCzFnCallInitiations 2
+	; Run PostLoad/NewGame Initiations
+	Let CFC.iInGameInitCountdown := 3
+	Call CFCzFnCallInitiations 2
 end

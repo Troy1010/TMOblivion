@@ -1,4 +1,4 @@
-scn CFCzFnAddressEVENTPlayerSlept
+﻿scn CFCzFnAddressEVENTPlayerSlept
 
 begin Function { }
 ; EVENTPlayerSlept

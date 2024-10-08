@@ -1,4 +1,4 @@
-scn zCFAddressMsgBoxWithHandler
+﻿scn zCFAddressMsgBoxWithHandler
 
 array_var aMsgBoxStrings ;aMsgBoxStrings. Null will handle a sent message. Otherwise, 0:Message 1+:ButtonLabels to send MessageBox. 
 

@@ -1,4 +1,4 @@
-scn Delay
+﻿scn Delay
 
 ;This function will only advance its timer during GameMode. Use Delay2 for more options.
 

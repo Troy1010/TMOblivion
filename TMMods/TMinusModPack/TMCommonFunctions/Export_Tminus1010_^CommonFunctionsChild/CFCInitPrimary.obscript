@@ -1,4 +1,4 @@
-scn CFCInitPrimary
+﻿scn CFCInitPrimary
 
 ;This function is meant to run every BaseDataLoad(OnMainMenu and OnLoad).
 

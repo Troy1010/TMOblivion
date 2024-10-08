@@ -1,9 +1,9 @@
-scn zCFMsgBoxHandlerDebug
+﻿scn zCFMsgBoxHandlerDebug
 
 short iButtonPressed
 
 begin _Function { iButtonPressed }
-if eval iButtonPressed ==1
-	Con_QuitGame
-endif
+	if eval iButtonPressed ==1
+		Let zCFQstHelper.bQuit := 1
+	endif
 end

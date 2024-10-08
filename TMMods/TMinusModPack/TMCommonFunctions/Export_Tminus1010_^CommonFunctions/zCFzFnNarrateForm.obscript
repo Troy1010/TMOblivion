@@ -1,4 +1,4 @@
-scn zCFzFnNarrateForm
+﻿scn zCFzFnNarrateForm
 
 ref rForm
 int bAlwaysFormID
@@ -18,4 +18,3 @@ SetFunctionValue svString
 ; Close
 sv_Destruct svString
 end
-

@@ -1,4 +1,4 @@
-scn IsWithinRange
+﻿scn IsWithinRange
 
 float fArgument
 float fMin

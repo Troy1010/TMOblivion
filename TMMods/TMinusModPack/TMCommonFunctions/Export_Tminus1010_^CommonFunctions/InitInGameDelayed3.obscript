@@ -1,4 +1,4 @@
-scn InitInGameDelayed3
+﻿scn InitInGameDelayed3
 ; Call this in a Function script with form ID xx000800.
 
 ; Example usage:

@@ -1,4 +1,4 @@
-scn CFDebugIsLevelMet
+﻿scn CFDebugIsLevelMet
 
 short iDebugLevel ;iDebugLevel. -1:BypassFilter 0:Ignore 1:Important 2:Limited 3:Fun 4:SemiVerbose 5:Verbose 6:Flooding
 ref rCallingScript

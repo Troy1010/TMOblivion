@@ -1,4 +1,4 @@
-scn ArConstructNumericFormMap
+﻿scn ArConstructNumericFormMap
 
 ;Proper usage:
 ;let aArray := Call ConstructFormMap

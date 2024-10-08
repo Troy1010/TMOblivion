@@ -1,4 +1,4 @@
-scn GetPosComplete
+﻿scn GetPosComplete
 
 ;Returns an array. 0::xPos 1::yPos 2::zPos 3::fAngle 4::rParentCell
 

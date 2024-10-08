@@ -1,4 +1,4 @@
-scn CFCInitActS
+﻿scn CFCInitActS
 
 short iInit
 short iCFDebugThreshold

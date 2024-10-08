@@ -1,18 +1,18 @@
-scn CFCHandlerPostLoadGame
+﻿scn CFCHandlerPostLoadGame
 
 short bSuccessfulLoad
 
 begin _Function { bSuccessfulLoad }
-; Set bModIndexResolutionRequired
-let SB.bModIndexResolutionRequired := 1
-if eval Call IsInCollection (Call GetCFLocalData OKLastLoadedSaveFileName),(Call GetCFLocalData OKRuntimeSaveNames)
-	let SB.bModIndexResolutionRequired := 0
-endif
-if eval Call CFDebugIsLevelMet 5
-	Call CFDebug 5 "bModIndexResolutionRequired:"+$(SB.bModIndexResolutionRequired)
-endif
+	; Set bModIndexResolutionRequired
+	Let SB.bModIndexResolutionRequired := 1
+	if eval Call IsInCollection (Call GetCFLocalData OKLastLoadedSaveFileName),(Call GetCFLocalData OKRuntimeSaveNames)
+		Let SB.bModIndexResolutionRequired := 0
+	endif
+	if eval Call CFDebugIsLevelMet 5
+		Call CFDebug 5 "bModIndexResolutionRequired:"+$(SB.bModIndexResolutionRequired)
+	endif
 
-; Run PostLoad/NewGame Initiations
-let CFC.iInGameInitCountdown := 3
-Call CFCzFnCallInitiations 2
+	; Run PostLoad/NewGame Initiations
+	Let CFC.iInGameInitCountdown := 3
+	Call CFCzFnCallInitiations 2
 end

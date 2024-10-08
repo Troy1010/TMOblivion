@@ -1,4 +1,4 @@
-scn RandomF ;random float
+﻿scn RandomF ;random float
 
 float min
 float max

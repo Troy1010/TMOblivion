@@ -1,4 +1,4 @@
-scn GetNthEffectItemActorValue2
+﻿scn GetNthEffectItemActorValue2
 
 ref rEffectItem
 short sEffectItemIndex

@@ -1,4 +1,4 @@
-scn CFCHandlerLoadGame
+﻿scn CFCHandlerLoadGame
 
 string_var svSaveFileName
 

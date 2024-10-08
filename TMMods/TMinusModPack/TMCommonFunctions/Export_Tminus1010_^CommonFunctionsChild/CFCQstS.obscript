@@ -1,4 +1,4 @@
-scn CFCQstS
+﻿scn CFCQstS
 ;Every frame, the quests at the bottom of the load order are run at the begining of the frame.
 ;(the quests at the top of the load order are run in the middle of the frame, before object scripts.)
 ;Wait Entries especially should be addressed here so that the Wait functionality is consistent.

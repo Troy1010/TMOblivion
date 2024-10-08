@@ -1,4 +1,4 @@
-scn InitPostLoad2
+﻿scn InitPostLoad2
 ; Call this in a Function script with form ID xx000800.
 
 ; Example usage:

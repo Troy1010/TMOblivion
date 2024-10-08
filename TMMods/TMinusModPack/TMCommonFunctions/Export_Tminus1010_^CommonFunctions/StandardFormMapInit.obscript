@@ -1,4 +1,4 @@
-scn StandardFormMapInit
+﻿scn StandardFormMapInit
 
 ;Recommended PostLoad2.
 ;EX: Let fmFormMap := Call StandardFormMapInit fmFormMap iType

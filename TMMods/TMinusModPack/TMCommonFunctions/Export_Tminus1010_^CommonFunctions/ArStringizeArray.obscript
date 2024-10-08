@@ -1,4 +1,4 @@
-scn ArStringizeArray
+﻿scn ArStringizeArray
 
 ;*Only 1d, normal arrays that do not contain forms are supported
 ;Intended to store an array as a string.

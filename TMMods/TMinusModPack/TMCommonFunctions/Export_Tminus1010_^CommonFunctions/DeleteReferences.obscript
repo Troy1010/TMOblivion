@@ -1,4 +1,4 @@
-scn DeleteReferences
+﻿scn DeleteReferences
 
 array_var aReferences
 

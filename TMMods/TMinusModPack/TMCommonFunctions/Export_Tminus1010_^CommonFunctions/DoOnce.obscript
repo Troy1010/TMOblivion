@@ -1,4 +1,4 @@
-scn DoOnce
+﻿scn DoOnce
 
 ;Will return true only once per CallingScript.
 ;*This function will cause errors if called before PostLoad.

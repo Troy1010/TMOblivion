@@ -1,4 +1,4 @@
-scn CFCzFnAddressDelayEntries
+﻿scn CFCzFnAddressDelayEntries
 
 ;a2dDelayEntries. Array of aDelayEntry. 0:fTimeToWait 1:iMenuModeType 2:rAction 3:smVariables
 

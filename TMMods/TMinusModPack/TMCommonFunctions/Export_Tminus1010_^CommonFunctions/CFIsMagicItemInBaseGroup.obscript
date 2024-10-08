@@ -1,4 +1,4 @@
-scn CFIsMagicItemInBaseGroup
+﻿scn CFIsMagicItemInBaseGroup
 ;According to CF, these magic items should modify the base.
 ;Not that they do without child mods..
 

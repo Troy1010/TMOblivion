@@ -1,4 +1,4 @@
-scn Delay2
+﻿scn Delay2
 
 float fSecsToWait ;fSecsToWait. (Negative values are considered FramesToWait)(-1 will execute at the start of the next frame)
 short iMenuModeType ;iMenuModeType. 0:Only GameMode 1:Only MenuMode 2:Both

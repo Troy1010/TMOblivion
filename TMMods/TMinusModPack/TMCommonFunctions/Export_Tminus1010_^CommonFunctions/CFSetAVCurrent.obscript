@@ -1,4 +1,4 @@
-scn CFSetAVCurrent
+﻿scn CFSetAVCurrent
 ;This methods sets the current value of an ActorValue.
 ;There might be other methods that do this, but I could not find them.
 

@@ -1,4 +1,4 @@
-scn GetMagicItemType2
+﻿scn GetMagicItemType2
 
 ;0-Not a MagicItem
 ;1-Spell

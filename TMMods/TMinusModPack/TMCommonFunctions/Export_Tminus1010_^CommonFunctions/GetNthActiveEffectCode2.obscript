@@ -1,4 +1,4 @@
-scn GetNthActiveEffectCode2
+﻿scn GetNthActiveEffectCode2
 
 ;This function uses the vanilla compiler to ensure compatibility with OBME for the command.
 

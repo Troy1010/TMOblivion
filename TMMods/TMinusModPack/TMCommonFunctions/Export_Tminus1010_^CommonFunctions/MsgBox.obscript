@@ -1,4 +1,4 @@
-scn MsgBox ; DEPRECATED: Just use MessageBox
+﻿scn MsgBox ; DEPRECATED: Just use MessageBox
 
 begin _Function { }
 

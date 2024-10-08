@@ -1,4 +1,4 @@
-scn GetFileName
+﻿scn GetFileName
 
 string_var sFileFullPath
 array_var aSplitFilePath

@@ -1,4 +1,4 @@
-scn GetNthActiveEffectActorValue2
+﻿scn GetNthActiveEffectActorValue2
 
 ref rActor ;rActor. (Pass a null reference to use calling object)
 short sActiveEffectIndex

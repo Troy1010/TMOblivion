@@ -1,4 +1,4 @@
-scn TimestampComp2
+﻿scn TimestampComp2
 
 ;Returns -1 if Timestamp1>Timestamp2. Returns 1 if Timestamp1<Timestamp2. Returns 0 if Timestamp1==Timestamp2.
 
