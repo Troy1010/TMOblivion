@@ -7,7 +7,10 @@ begin _Function { }
 		Let EQQst.aSpellCasts := ar_Construct "Array"
 		SetEventHandler "OnHit" HandlerOnHit
 		SetEventHandler "OnSpellCast" HandlerOnSpellCast
-		Call SetEventHandler2 EVENTNewHighActor HandlerNewHighActor
 		Call LogEQ "Init"
+	endif
+	if eval Call InitPostLoad2
+		Call SetEventHandler2 EVENTNewHighActor HandlerNewHighActor
+		Call LogEQ "Init`InitPostLoad2"
 	endif
 end
