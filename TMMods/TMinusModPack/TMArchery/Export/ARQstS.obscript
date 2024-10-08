@@ -1,4 +1,4 @@
-scn QstS
+﻿scn ARQstS
 ;This quest is only on while bow is drawn
 
 float fQuestDelayTime
@@ -11,21 +11,24 @@ float yDiceTimer
 float yMult
 float tempFloat
 float tempFloat2
-float movement
+float movementMult
 float drawtime
+float mouseMovementSettingMult
+short iDebugLevel
 
 begin _GameMode
+	Call CFDebug 6 "mouseMovementSettingMult:" + $mouseMovementSettingMult
 	; Bump drawtime
 	let drawtime += GetSecondsPassed
 	; Determine movement mult
 	if SB.bSprinting
-		let movement :=4
+		let movementMult :=4
 	elseif SB.bRunning
-		let movement :=2
+		let movementMult :=2
 	elseif SB.bWalking
-		let movement :=1.33
+		let movementMult :=1.33
 	else
-		let movement :=1
+		let movementMult :=1
 	endif
 	; X
 	let thetaX += GetSecondsPassed*4
@@ -37,11 +40,11 @@ begin _GameMode
 			let xMult := (1 - 2*(Call RandomI 0 1))*(Call RandomF 0.1 1) ;random speed multiplier with range [-1,-0.1]U[0.1,1]
 		endif
 	loop
-	let tempFloat := 0.3*0.06325*resolutionY*xMult*movement*RSIN thetaX ;using resolutionY standardises sway speed
+	let tempFloat := 0.3*0.06325*resolutionY*xMult*movementMult*RSIN thetaX ;using resolutionY standardises sway speed
 	; I'm not sure why, but SetMouseSpeed is doing nothing for me atm
 	; As a duct-tape solution, I am using MoveMouse instead.
 	;SetMouseSpeedX tempFloat
-	let tempFloat2 := tempFloat * GetSecondsPassed * 10
+	let tempFloat2 := tempFloat * GetSecondsPassed * 10 * mouseMovementSettingMult
 	MoveMouseX tempFloat2
 	; Y
 	let thetaY += GetSecondsPassed*4
@@ -53,11 +56,11 @@ begin _GameMode
 			let yMult := (1 - 2*(Call RandomI 0 1))*(Call RandomF 0.1 1) ;random speed multiplier with range [-1,-0.1]U[0.1,1]
 		endif
 	loop
-	let tempFloat := 0.3*0.06325*resolutionY*yMult*movement*RSIN thetaY
+	let tempFloat := 0.3*0.06325*resolutionY*yMult*movementMult*RSIN thetaY
 	; I'm not sure why, but SetMouseSpeed is doing nothing for me atm
 	; As a duct-tape solution, I am using MoveMouse instead.
 	;SetMouseSpeedY tempFloat
-	let tempFloat2 := tempFloat * GetSecondsPassed * 10
+	let tempFloat2 := tempFloat * GetSecondsPassed * 10 * mouseMovementSettingMult
 	MoveMouseY tempFloat2
 	; If SeathWeapon is pressed, denock the arrow.
 	if eval (!(IsEngaged ControlIDAttack)&&drawtime<1.43) || ((IsEngaged ControlIDAttack)&&(OnControlDown2 ControlIDSeathWeapon)&&((IsDisabled ControlIDSeathWeapon)==1))

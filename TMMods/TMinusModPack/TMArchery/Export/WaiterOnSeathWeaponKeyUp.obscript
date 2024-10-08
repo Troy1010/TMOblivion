@@ -1,4 +1,4 @@
-scn WaiterOnSeathWeaponKeyUp
+﻿scn WaiterOnSeathWeaponKeyUp
 
 array_var void
 

@@ -1,12 +1,12 @@
-scn HandlerOnPlayerBowRelease
+﻿scn HandlerOnPlayerBowRelease
 
 array_var void
 
 begin Function { void }
-	Call Logd "HandlerOnPlayerBowRelease`Open"
+	Call CFDebug 4 "HandlerOnPlayerBowRelease`Open"
 	SetMouseSpeedX 0
 	SetMouseSpeedY 0
 	Call WaiterOnSeathWeaponKeyUp ar_Null
 	StopQuest Qst
-	Call Logd "HandlerOnPlayerBowRelease`Close"
+	Call CFDebug 4 "HandlerOnPlayerBowRelease`Close"
 end
