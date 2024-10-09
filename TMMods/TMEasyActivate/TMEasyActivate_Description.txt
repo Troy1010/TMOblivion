@@ -1,6 +1,4 @@
 It's annoying how difficult it is to pick up certain plants, especially Wisp Stalks.
 This mod is meant to make them easier to grab.
 
-It seems like HarvestFlora doesn't work if the plant is not under the crosshair when the player activates it.
-So, instead of activating for plants before the player presses activate, it allows for activation afterwards.
-This also avoids any bugs that would arise for activations of things that are meant to be gone.
+To avoid any bugs that would arrise from activating things that are meant to be gone, this mod only activates what is currently hovered over by the player briefly after pressing the Activate key.

@@ -1,0 +1,10 @@
+﻿scn Init
+
+begin _Function { }
+	if eval GetGameLoaded || !QstEA.bInit
+		Let QstEA.bInit := 1
+		Let QstEA.fQuestDelayTime := 0.0001
+		RunBatchScript "Data\ini\TMEasyActivate.ini", 0, 1
+		Call LogEA "Init"
+	endif
+end

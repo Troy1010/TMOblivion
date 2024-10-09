@@ -1,0 +1,48 @@
+﻿scn QstEAS
+
+; Defined by ini
+int featureActivateLastCrosshairRef
+int bPrintToConsole
+int bShouldLogFlooding
+;
+float fQuestDelayTime
+int bInit
+ref rCurrentCrosshairRef
+int bHadValidCrosshairRef
+float timer
+float fSecondsPassed ; TODO: Adjust for global timer difference
+
+
+begin _GameMode
+	Call Init
+	Let fSecondsPassed := GetSecondsPassed
+	Let rCurrentCrosshairRef := GetCrosshairRef
+	if eval OnControlDown2 5 ;Activate ; TODO: Try to use OnControlDown2
+		if eval (!IsFormValid rCurrentCrosshairRef) || !rCurrentCrosshairRef
+			Call LogEA "Player pressed Activate while no activatable crosshair ref exists"
+			Let timer := 1
+		elseif eval !rCurrentCrosshairRef.IsActivatable
+			Call LogEA "Player pressed Activate while no activatable crosshair ref exists"
+			Let timer := 1
+		endif
+	elseif eval timer > 0
+		Let timer -= fSecondsPassed
+		if eval !(timer > 0)
+			Call LogEA "Timer done"
+		endif
+		if eval (IsFormValid rCurrentCrosshairRef) && rCurrentCrosshairRef
+			if eval rCurrentCrosshairRef.IsActivatable
+				Call LogEA "Activating"
+				; For some reason, doing this:
+				;rCurrentCrosshairRef.Activate2 PlayerRef
+				;Does not trigger HarvestFlora
+				TapControl 5
+				Let timer := 0
+			endif
+		endif
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end

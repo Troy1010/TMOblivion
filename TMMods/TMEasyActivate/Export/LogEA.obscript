@@ -1,0 +1,7 @@
+﻿scn LogEA
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`TMEasyActivate`" + s, QstEA.bPrintToConsole
+end
