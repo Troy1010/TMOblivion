@@ -6,9 +6,5 @@ Maybe at some point..
 	The player starts out as a pleb. They evolve into their class, instead of choosing it, and can adapt into a different class if they want.
 	The player can't have all the stats.
 	The player can't be a master at everything.
-As of 2024_08_8, still need to do..
-	Add ini.
-	Setting health is not correct.
-	Currently ignores class bonuses.
 	
 	
