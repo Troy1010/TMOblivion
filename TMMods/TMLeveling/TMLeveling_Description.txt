@@ -2,6 +2,7 @@ The point of this mod is to make it so that..
 	The annoyances of Oblivion Vanilla Leveling are avoided, including..
 		You should choose skills you don't want as major skills, so that you can maximize that stat on level.
 		You need to pick up Endurance early, otherwise your health doesn't scale well.
+		You need to completely change which skills you need to avoid leveling up whenever you level.
 Maybe at some point..
 	The player starts out as a pleb. They evolve into their class, instead of choosing it, and can adapt into a different class if they want.
 	The player can't have all the stats.
