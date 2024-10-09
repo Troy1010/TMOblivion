@@ -1,0 +1,17 @@
+﻿scn ArTake
+
+int numToTake
+array_var arr
+array_var iter
+array_var aReturning
+
+begin Function { arr, numToTake }
+	Let aReturning := ar_Construct "Array"
+	ForEach iter <- arr
+		if eval iter["key"] >= numToTake
+			break
+		endif
+		ar_Append aReturning iter["Value"]
+	loop
+	SetFunctionValue aReturning
+end
