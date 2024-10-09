@@ -5,7 +5,7 @@ begin _Function { }
 		Let MHQst.bInit := 1
 		Let MHQst.fQuestDelayTime := 0.0001
 		RunBatchScript "Data\ini\TMMerchantHarvest.ini", 0, 1
-		Call LogMH "featureSomething:" + $MHQst.featureSomething
+		Call LogMH "featureMerchantHarvest:" + $MHQst.featureMerchantHarvest
 		
 		; # Try to get the Cheap Magicka Potion from TMOblivionMod, otherwise fallback to normal magicka potion.
 		Let MHQst.rCheapMagickaPotion := GetFormFromMod "TMOblivionMod.esp" "000801" ;Cheap Magicka Potion
@@ -15,14 +15,6 @@ begin _Function { }
 		endif
 		Call LogMH "MHQst.rCheapMagickaPotion:" + $MHQst.rCheapMagickaPotion
 		
-		; # Try to get the Cheap Repair Hammer from TMOblivionMod, otherwise fallback to normal one.
-		Let MHQst.rCheapRepairHammer := GetFormFromMod "TMOblivionMod.esp" "000802" ;Cheap Repair Hammer
-		if eval !(IsFormValid MHQst.rCheapRepairHammer)
-			Let MHQst.rCheapRepairHammer := GetFormFromMod (GetNthModName 0) "00000C" ;Repair Hammer
-			Call LogMH "Form was not valid. Falling back to:" + $MHQst.rCheapRepairHammer
-		endif
-		Call LogMH "MHQst.rCheapRepairHammer:" + $MHQst.rCheapRepairHammer
-		
 		; # Try to get the Cheap Steel Arrow from TMOblivionMod, otherwise fallback to normal one.
 		Let MHQst.rCheapArrow := GetFormFromMod "TMOblivionMod.esp" "000804" ;Cheap Steel Arrow
 		if eval !(IsFormValid MHQst.rCheapArrow)
@@ -30,6 +22,10 @@ begin _Function { }
 			Call LogMH "Form was not valid. Falling back to:" + $MHQst.rCheapArrow
 		endif
 		Call LogMH "MHQst.rCheapArrow:" + $MHQst.rCheapArrow
+
+		; 
+		Let MHQst.rRepairHammer := GetFormFromMod (GetNthModName 0) "00000C" ;Repair Hammer
+		Call LogMH "MHQst.rRepairHammer:" + $MHQst.rRepairHammer
 		
 		;
 		Let MHQst.rHealthIngredient := GetFormFromMod (GetNthModName 0) "06251E" ;Cairn Bolete Cap

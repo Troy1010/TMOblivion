@@ -7,7 +7,7 @@ short bShouldLogFlooding
 short bShouldLogMore
 ;
 ref rCheapMagickaPotion
-ref rCheapRepairHammer
+ref rRepairHammer
 ref rCheapArrow
 ref rMagickaIngredient
 ref rHealthIngredient
