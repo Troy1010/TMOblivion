@@ -1,0 +1,8 @@
+This mod is meant to make it so that players with novice lockpicking can't pick as many locks.
+OOO already does this to an extent, but only for the boxes that have the OOO scripts. It also isn't configurable.
+
+# Implementation Comments
+The current implementation just closes the menu after it is opened.
+But, it might a good idea to disable the activation control, instead.
+It also might need a different implementation if using a mod which makes lockpicking live.
+It also might be a good idea to disable the OOO mirror feature.
