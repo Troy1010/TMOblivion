@@ -7,7 +7,6 @@ int eMagicEffect
 ; 3: REFA. Restore Fatigue.
 ref rItem
 ref rWeakestPotionBase
-long lWeakestAmount
 long lAmount
 long i
 long lEffectCount
@@ -15,60 +14,11 @@ int targetMagicEffectCode
 int bOnlyMsgForNoHits
 
 Begin _Function { eMagicEffect bOnlyMsgForNoHits }
-
-	if eval eMagicEffect == 1
-		let targetMagicEffectCode := GetMagicEffectCode "REHE"
-	elseif eval eMagicEffect == 2
-		let targetMagicEffectCode := GetMagicEffectCode "RESP"
-	elseif eval eMagicEffect == 3
-		let targetMagicEffectCode := GetMagicEffectCode "REFA"
-	endif
-	
-	;Call LogDD "DrinkWeakestPotion`start"
-
-    let rWeakestPotionBase := 0
-    let lWeakestAmount := 999999
-
-    foreach rItem <- PlayerRef
-
-        if eval (rItem.GetObjectType == 40) && (rItem.IsPoison == 0) ; This IsPoison might need to be used on the base object
-			;Call LogDD "rItem:" + $rItem + " MagicItemHasEffect REHE:" + $(MagicItemHasEffect "REHE" rItem) + " MagicItemHasEffect REHE GetBaseObject:" + $(MagicItemHasEffect "REHE" (rItem.GetBaseObject))
-			if eval (MagicItemHasEffectCode targetMagicEffectCode rItem.GetBaseObject)
-				;Call LogDD "MagicItemHasEffect: True"
-
-                let lEffectCount := GetMagicItemEffectCount rItem.GetBaseObject
-                let lAmount := 0
-
-                let i := 0
-                while i < lEffectCount
-					;Call LogDD "lEffectCount:" + $lEffectCount
-                    if eval (GetNthEffectItemCode rItem.GetBaseObject i) == targetMagicEffectCode
-                        let lAmount := lAmount + ((GetNthEffectItemMagnitude rItem.GetBaseObject i) * (Call Max (GetNthEffectItemDuration rItem.GetBaseObject i) 1))
-                    endif
-                    let i += 1
-                loop
-
-				;Call LogDD "lAmount:"+$lAmount + " lWeakestAmount:"+$lWeakestAmount
-                if lAmount < lWeakestAmount
-                    let lWeakestAmount := lAmount
-                    let rWeakestPotionBase := rItem.GetBaseObject
-					;Call LogDD "setting rWeakestPotionBase:"+$rWeakestPotionBase
-                endif
-            endif
-        endif
-
-	loop
-
-	;Call LogDD "rWeakestPotionBase:"+$rWeakestPotionBase
+    let rWeakestPotionBase := Call FindBaseOfWeakestPotion eMagicEffect
+	Call LogDD "rWeakestPotionBase:"+$rWeakestPotionBase
 	if eval rWeakestPotionBase
 		if eval !bOnlyMsgForNoHits
-			foreach rItem <- PlayerRef
-				if (rItem.GetBaseObject == rWeakestPotionBase)
-					;Call LogDD "Equipping"
-					rItem.EquipMe
-					break
-				endif
-			loop
+			player.EquipItem rWeakestPotionBase
 		endif
 	else
 		if eval eMagicEffect == 1
@@ -79,6 +29,4 @@ Begin _Function { eMagicEffect bOnlyMsgForNoHits }
 			MessageEX "No Fatigue Potions"
 		endif
 	endif
-
-	;Call LogDD "DrinkWeakestPotion`end"
 End

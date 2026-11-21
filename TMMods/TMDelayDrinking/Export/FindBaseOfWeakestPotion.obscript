@@ -45,7 +45,7 @@ Begin _Function { eMagicEffect }
 
                 if lAmount < lWeakestAmount
 					let lWeakestAmount := lAmount
-					let rResult := rTemp.GetBaseObject ;rTemp already is the base object, but, I think, without this call, the reference is lost at the end of the loop.
+					let rResult := rTemp.GetBaseObject ;I think, if you don't do .GetBaseObject, the reference is forgotten.
                 endif
             endif
         endif
@@ -53,5 +53,5 @@ Begin _Function { eMagicEffect }
 
 	SetFunctionValue rResult
 
-	Call LogDD "FindWeakestPotion`end. rResult:"+$rResult
+	Call LogDD "FindBaseOfWeakestPotion`end. rResult:"+$rResult
 End
