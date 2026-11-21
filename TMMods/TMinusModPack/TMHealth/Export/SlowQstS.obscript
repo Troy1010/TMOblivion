@@ -1,0 +1,51 @@
+﻿scn SlowQstS
+
+ref rTemp
+int counter
+
+
+begin _GameMode
+	; Add tokens
+	Let counter := 0
+	Set rTemp to GetFirstRef
+	while rTemp
+		if eval !(rTemp.Call CFIsCallingObjectStable)
+			if eval TMHealthQst.bShouldLogFlooding
+				Call LogTH "Skipping bc rTemp is not stable. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		if eval !(rTemp.IsActor)
+			if eval TMHealthQst.bShouldLogFlooding
+				Call LogTH "Skipping bc rTemp was not an actor. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		if eval (rTemp.GetItemCount TMHealthToken) > 0
+			if eval TMHealthQst.bShouldLogFlooding
+				Call LogTH "Skipping bc rTemp already has token. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		if eval (rTemp.GetDead)
+			if eval TMHealthQst.bShouldLogFlooding
+				Call LogTH "Skipping bc rTemp is dead. rTemp:" +$rTemp
+			endif
+			Set rTemp to GetNextRef
+			continue
+		endif
+		Let counter += 1
+		if eval TMHealthQst.bShouldLogFlooding
+			Call LogTH "Adding item to:" + $(rTemp)
+		endif
+		rTemp.AddItemNS TMHealthToken 1
+
+		Set rTemp to GetNextRef
+	loop
+	if eval TMHealthQst.bShouldLogFlooding
+		Call LogTH "Loop complete. counter:" +$counter
+	endif
+end

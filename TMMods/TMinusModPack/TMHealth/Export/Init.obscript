@@ -5,12 +5,25 @@ ref rTemp
 begin _Function { }
 	if eval GetGameLoaded || !TMHealthQst.bInit
 		Let TMHealthQst.bInit := 1
+		let TMHealthQst.fQuestDelayTime := 0.00001 ; Is this the value I usually use?
+		;Delaying initialization in case we need HeartbeatBreath to initialize first. I am not positive that this is necessary.
+		Let TMHealthQst.iInitDelay := 5
+		;PrintToConsole "Game is loaded. TMHealthQst.iInitDelay:" + $TMHealthQst.iInitDelay
+	elseif TMHealthQst.iInitDelay > 0
+		Let TMHealthQst.iInitDelay -= 1
+		;PrintToConsole "TMHealthQst.iInitDelay:" + $TMHealthQst.iInitDelay
+	endif
+	if eval TMHealthQst.iInitDelay == 0
+		Let TMHealthQst.iInitDelay := -1
 		RunBatchScript "Data\ini\TMHealth.ini", 0, 1
+		if eval TMHealthQst.bShouldLogDebug
+			Call LogTH "Initializing"
+		endif
 		Let TMHealthQst.startBleedHealthFraction := TMHealthQst.startBleedHealthPercentage / 100
 		Let rTemp := (GetFormFromMod "HeartbeatBreath.esp" "00085C")
 		if eval (IsFormValid rTemp)
 			if eval TMHealthQst.bShouldLogDebug
-				Call LogTH "Form is valid"
+				Call LogTH "HeartbeatBreath form is valid"
 			endif
 			Let TMHealthQst.startRegenHealthFraction := Call rTemp
 			if eval TMHealthQst.bShouldLogDebug
