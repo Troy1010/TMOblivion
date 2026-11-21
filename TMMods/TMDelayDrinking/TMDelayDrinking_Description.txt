@@ -1,0 +1,1 @@
+This mod is meant to make it so that there is a cost to pausing mid-combat to drink potions or whatever.

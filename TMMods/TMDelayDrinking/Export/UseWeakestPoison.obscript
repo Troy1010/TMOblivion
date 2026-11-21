@@ -1,0 +1,65 @@
+﻿scn UseWeakestPoison
+;TODO: This is not fully implemented
+; This script is not refined for performance or readability.
+
+ref rItem
+ref rWeakestPoisonBase
+long lWeakestAmount
+long lAmount
+long i
+long lEffectCount
+long lEffectCode
+int targetMagicEffectCode
+
+Begin _Function { }
+
+	;Call LogDD "UseWeakestPoison`start"
+
+	Let rWeakestPoisonBase := 0
+	Let lWeakestAmount := 999999
+
+	ForEach rItem <- PlayerRef
+
+		if eval (rItem.GetObjectType == 40) && (rItem.IsPoison == 1)
+			;Call LogDD "rItem:" + $rItem + " MagicItemHasEffect REHE:" + $(MagicItemHasEffect "REHE" rItem) + " MagicItemHasEffect REHE GetBaseObject:" + $(MagicItemHasEffect "REHE" (rItem.GetBaseObject))
+			if eval (MagicItemHasEffectCode targetMagicEffectCode rItem.GetBaseObject)
+				;Call LogDD "MagicItemHasEffect: True"
+
+				Let lEffectCount := GetMagicItemEffectCount rItem.GetBaseObject
+				Let lAmount := 0
+
+				Let i := 0
+				while i < lEffectCount
+					;Call LogDD "lEffectCount:" + $lEffectCount
+					if eval (GetNthEffectItemCode rItem.GetBaseObject i) == targetMagicEffectCode
+						Let lAmount := lAmount + ((GetNthEffectItemMagnitude rItem.GetBaseObject i) * (Call Max (GetNthEffectItemDuration rItem.GetBaseObject i) 1))
+					endif
+					Let i += 1
+				loop
+
+				;Call LogDD "lAmount:"+$lAmount + " lWeakestAmount:"+$lWeakestAmount
+				if eval lAmount < lWeakestAmount
+					Let lWeakestAmount := lAmount
+					Let rWeakestPoisonBase := rItem.GetBaseObject
+					;Call LogDD "setting rWeakestPotionBase:"+$rWeakestPotionBase
+				endif
+			endif
+		endif
+
+	loop
+
+	;Call LogDD "rWeakestPotionBase:"+$rWeakestPotionBase
+	if eval rWeakestPoisonBase
+		ForEach rItem <- PlayerRef
+			if eval (rItem.GetBaseObject == rWeakestPoisonBase)
+				;Call LogDD "Equipping"
+				rItem.EquipMe
+				break
+			endif
+		loop
+	else
+		MessageEX "No Poisons"
+	endif
+
+	;Call LogDD "UseWeakestPoison`end"
+End

@@ -1,0 +1,111 @@
+﻿scn QstDDS
+; This script is not refined for performance or readability.
+
+; Defined by ini
+int featureDelayDrinks
+int bPrintToConsole
+int bShouldLogFlooding
+;
+float fDelayTime
+int bInit
+float fQuestDelayTime
+float timer
+int ePressType
+; 1: Health Potion
+; 2: Magicka Potion
+; 3: Fatigue Potion
+; 4: Poison
+; 5: Menu
+int ePreviousPressType
+
+
+begin _GameMode
+	let fDelayTime := 1.7
+	Call Init
+	if eval QstDD.featureDelayDrinks
+		if eval Call OnControlDown2 "HealthPotion"
+			Call LogDD "HealthPotion pressed"
+			Let timer := fDelayTime
+			let ePressType := 1
+			Call DrinkOrMsgWeakestPotion ePressType 1
+		endif
+		if eval Call OnControlDown2 "MagickaPotion"
+			Call LogDD "MagickaPotion pressed"
+			Let timer := fDelayTime
+			let ePressType := 2
+			Call DrinkOrMsgWeakestPotion ePressType 1
+		endif
+		if eval Call OnControlDown2 "FatiguePotion"
+			Call LogDD "FatiguePotion pressed"
+			Let timer := fDelayTime
+			let ePressType := 3
+			Call DrinkOrMsgWeakestPotion ePressType 1
+		endif
+		if eval Call OnControlDown2 "Poison"
+			Call LogDD "Poison pressed"
+			Let timer := fDelayTime
+			let ePressType := 4
+			; TODO: Not yet implemented
+		endif
+		if eval Call OnControlDown2 "Menu"
+			Let timer := fDelayTime
+			let ePressType := 5
+		endif
+	endif
+	if eval ePressType != 0
+		if eval ePressType == 1
+			if eval Call IsEngaged "HealthPotion"
+				if eval (timer -= GetSecondsPassed) < 0
+					Call DrinkOrMsgWeakestPotion ePressType 0
+					let ePressType := 0
+				endif
+			else
+				Call LogDD "HealthPotion no longer engaged"
+				let ePressType := 0
+			endif
+		elseif eval ePressType == 2
+			if eval Call IsEngaged "MagickaPotion"
+				if eval (timer -= GetSecondsPassed) < 0
+					Call DrinkOrMsgWeakestPotion ePressType 0
+					let ePressType := 0
+				endif
+			else
+				Call LogDD "MagickaPotion no longer engaged"
+				let ePressType := 0
+			endif
+		elseif eval ePressType == 3
+			if eval Call IsEngaged "FatiguePotion"
+				if eval (timer -= GetSecondsPassed) < 0
+					Call DrinkOrMsgWeakestPotion ePressType 0
+					let ePressType := 0
+				endif
+			else
+				Call LogDD "FatiguePotion no longer engaged"
+				let ePressType := 0
+			endif
+		elseif eval ePressType == 5
+			if eval Call IsEngaged "Menu"
+				if eval (timer -= GetSecondsPassed) < 0
+					TapControl (Call GetKey "Menu")
+					let ePressType := 0
+				endif
+			else
+				Call LogDD "Menu no longer engaged"
+				let ePressType := 0
+			endif
+		endif
+	endif
+	if eval ePressType != ePreviousPressType
+		if eval ePreviousPressType != 0 && ePressType == 0
+			Call EnableControls ar_List "Forward" "Left" "Backward" "Right" "Attack" "Block" "Activate" "Cast" "SeathWeapon" "AutoMove" "Jump"
+		endif
+		if eval ePreviousPressType == 0 && ePressType != 0
+			Call DisableControls ar_List "Forward" "Left" "Backward" "Right" "Attack" "Block" "Activate" "Cast" "SeathWeapon" "AutoMove" "Jump"
+		endif
+		let ePreviousPressType := ePressType
+	endif
+end
+
+begin _MenuMode
+	Call Init
+end

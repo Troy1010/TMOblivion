@@ -1,0 +1,7 @@
+﻿scn LogDD
+
+string_var s
+
+begin _Function { s }
+	Scribe (GetFormIDString GetCallingScript) + "`TMDelayDrinking`" + s, QstDD.bPrintToConsole
+end
