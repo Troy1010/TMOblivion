@@ -1,0 +1,57 @@
+﻿scn FindBaseOfWeakestPotion
+; This script is not refined for performance or readability.
+
+int eMagicEffect
+; 1: REHE. Restore Health.
+; 2: RESP. Restore Mana.
+; 3: REFA. Restore Fatigue.
+
+long lWeakestAmount
+long lAmount
+long i
+long lEffectCount
+int targetMagicEffectCode
+ref rTemp
+ref rResult
+
+
+Begin _Function { eMagicEffect }
+	Call LogDD "FindBaseOfWeakestPotion`start"
+
+	if eval eMagicEffect == 1
+		let targetMagicEffectCode := GetMagicEffectCode "REHE"
+	elseif eval eMagicEffect == 2
+		let targetMagicEffectCode := GetMagicEffectCode "RESP"
+	elseif eval eMagicEffect == 3
+		let targetMagicEffectCode := GetMagicEffectCode "REFA"
+	endif
+
+    let lWeakestAmount := 999999
+
+	foreach rTemp <- PlayerRef
+        if eval (rTemp.GetObjectType == 40) && (rTemp.IsPoison == 0)
+			if eval (MagicItemHasEffectCode targetMagicEffectCode rTemp.GetBaseObject)
+
+                let lEffectCount := GetMagicItemEffectCount rTemp.GetBaseObject
+                let lAmount := 0
+
+                let i := 0
+                while i < lEffectCount
+                    if eval (GetNthEffectItemCode rTemp.GetBaseObject i) == targetMagicEffectCode
+                        let lAmount := lAmount + ((GetNthEffectItemMagnitude rTemp.GetBaseObject i) * (Call Max (GetNthEffectItemDuration rTemp.GetBaseObject i) 1))
+                    endif
+                    let i += 1
+                loop
+
+                if lAmount < lWeakestAmount
+					let lWeakestAmount := lAmount
+					let rResult := rTemp.GetBaseObject ;rTemp already is the base object, but, I think, without this call, the reference is lost at the end of the loop.
+                endif
+            endif
+        endif
+	loop
+
+	SetFunctionValue rResult
+
+	Call LogDD "FindWeakestPotion`end. rResult:"+$rResult
+End

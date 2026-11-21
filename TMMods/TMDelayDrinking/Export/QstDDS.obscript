@@ -5,8 +5,9 @@
 int featureDelayDrinks
 int bPrintToConsole
 int bShouldLogFlooding
-;
+int featurePassOutPotions
 float fDelayTime
+;
 int bInit
 float fQuestDelayTime
 float timer
@@ -17,17 +18,43 @@ int ePressType
 ; 4: Poison
 ; 5: Menu
 int ePreviousPressType
+ref rTarget
+ref rPotion
+ref rTemp
 
 
 begin _GameMode
-	let fDelayTime := 1.7
 	Call Init
 	if eval QstDD.featureDelayDrinks
 		if eval Call OnControlDown2 "HealthPotion"
-			Call LogDD "HealthPotion pressed"
-			Let timer := fDelayTime
-			let ePressType := 1
-			Call DrinkOrMsgWeakestPotion ePressType 1
+			if eval featurePassOutPotions && Call IsEngaged "Modifier1"
+				Call LogDD "HealthPotion pressed with modifier"
+				let rTarget := GetCrosshairRef
+				; Use potion on target
+				;Validate target
+				if eval rTarget.GetDead
+					Call LogDD "rTarget not valid. rTarget.GetDead:"+$rTarget.GetDead
+				else
+					;Validate if potion exists
+					let rPotion := Call FindBaseOfWeakestPotion 1
+					if eval !rPotion
+						Call LogDD "No Health Potions"
+						MessageEX "No Health Potions"
+					else
+						;Remove potion
+						player.RemoveItem rPotion 1
+						;Add potion to target
+						rTarget.AddItem rPotion 1
+						;Target uses potion
+						rTarget.EquipItem rPotion
+					endif
+				endif
+			else
+				Call LogDD "HealthPotion pressed"
+				Let timer := fDelayTime
+				let ePressType := 1
+				Call DrinkOrMsgWeakestPotion ePressType 1
+			endif
 		endif
 		if eval Call OnControlDown2 "MagickaPotion"
 			Call LogDD "MagickaPotion pressed"

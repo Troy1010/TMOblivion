@@ -1,17 +1,16 @@
 ﻿scn DrinkOrMsgWeakestPotion
 ; This script is not refined for performance or readability.
 
+int eMagicEffect
+; 1: REHE. Restore Health.
+; 2: RESP. Restore Mana.
+; 3: REFA. Restore Fatigue.
 ref rItem
 ref rWeakestPotionBase
 long lWeakestAmount
 long lAmount
 long i
 long lEffectCount
-long lEffectCode
-int eMagicEffect
-; 1: REHE. Restore Health.
-; 2: RESP. Restore Mana.
-; 3: REFA. Restore Fatigue.
 int targetMagicEffectCode
 int bOnlyMsgForNoHits
 
