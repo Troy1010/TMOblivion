@@ -13,56 +13,76 @@ short bShouldLogWarning
 short bShouldLogDebug
 short bShouldLogFlooding
 float neutralizefGlobalTimeMultiplier
+short featureSleepWaitHealing
+float durationOfRecentlyRested
+short bHealOnWait
 ;
 short bInit
+float fQuestDelayTime
 float startBleedHealthFraction
 float startRegenHealthFraction
-ref rTemp
-int counter
-ref rTemp2 ; Is this variable still necessary?
+int iInitDelay
+float xMax
+float fRecentlySleptTimer
+float secondsPassed
+int bShouldSetHealthAfterSleepOrWait
+float fPreviousHealth
+
 
 begin _GameMode
 	Call Init
-	Let counter := 0
-	Set rTemp to GetFirstRef
-	while rTemp
-		if eval !(rTemp.Call CFIsCallingObjectStable)
-			if eval bShouldLogFlooding
-				Call LogTH "Skipping bc rTemp is not stable. rTemp:" +$rTemp
+	; SleepWaitHealing
+	if eval featureSleepWaitHealing
+		if eval bShouldSetHealthAfterSleepOrWait
+			if eval bShouldLogDebug
+				Call LogTH "bShouldSetHealthAfterSleepOrWait:" + $bShouldSetHealthAfterSleepOrWait
 			endif
-			Set rTemp to GetNextRef
-			continue
-		endif
-		if eval !(rTemp.IsActor)
-			if eval bShouldLogFlooding
-				Call LogTH "Skipping bc rTemp was not an actor. rTemp:" +$rTemp
+			let bShouldSetHealthAfterSleepOrWait := 0
+			
+			if eval !player.HasSpell RecentlySlept
+				if eval bShouldLogDebug
+					Call LogTH "Adding health because: has not slept recently."
+				endif
+				player.AddSpell RecentlySlept
+				let fRecentlySleptTimer := durationOfRecentlyRested
+				let xMax := (Call CFGetAVMax PlayerRef avcHealth)
+				Call CFSetAVCurrent playerRef avcHealth Call CFMin xMax fPreviousHealth + 0.3 * xMax
+			else
+				if eval bShouldLogDebug
+					Call LogTH "Setting to previous health because: already slept recently."
+				endif
+				Call CFSetAVCurrent playerRef avcHealth fPreviousHealth
 			endif
-			Set rTemp to GetNextRef
-			continue
 		endif
-		if eval (rTemp.GetItemCount TMHealthToken) > 0
-			if eval bShouldLogFlooding
-				Call LogTH "Skipping bc rTemp already has token. rTemp:" +$rTemp
+		; RecentlySlept removal by timer
+		if eval (neutralizefGlobalTimeMultiplier != 0)
+			Let secondsPassed := GetSecondsPassed / neutralizefGlobalTimeMultiplier
+		else
+			Let secondsPassed := GetSecondsPassed
+		endif
+		if eval (fRecentlySleptTimer -= secondsPassed) < 0
+			player.RemoveSpell RecentlySlept
+			if eval bShouldLogDebug
+				Call LogTH "Removing Spell. fRecentlySleptTimer:" +$fRecentlySleptTimer
 			endif
-			Set rTemp to GetNextRef
-			continue
-		endif
-		if eval (rTemp.GetDead)
+		else
 			if eval bShouldLogFlooding
-				Call LogTH "Skipping bc rTemp is dead. rTemp:" +$rTemp
+				Call LogTH "fRecentlySleptTimer:" + $fRecentlySleptTimer
 			endif
-			Set rTemp to GetNextRef
-			continue
 		endif
-		Let counter += 1
-		if eval bShouldLogFlooding
-			Call LogTH "Adding item to:" + $(rTemp)
-		endif
-		rTemp.AddItemNS TMHealthToken 1
-
-		Set rTemp to GetNextRef
-	loop
-	if eval bShouldLogFlooding
-		Call LogTH "Loop complete. counter:" +$counter
+		;
+		let fPreviousHealth := Call CFGetAVCurrent PlayerRef avcHealth
 	endif
 end
+
+Begin MenuMode 1012
+	; Detect if sleep or wait occurred
+	if eval featureSleepWaitHealing
+		if eval IsTimePassing == 1 && (bHealOnWait || IsPCSleeping)
+			if eval bShouldLogFlooding
+				Call LogTH "Sleep or wait detected"
+			endif
+			let bShouldSetHealthAfterSleepOrWait := 1
+		endif
+	endif
+End
