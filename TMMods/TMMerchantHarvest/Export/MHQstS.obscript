@@ -11,6 +11,7 @@ ref rRepairHammer
 ref rCheapArrow
 ref rMagickaIngredient
 ref rHealthIngredient
+ref rBandage
 short bInit
 ref rLastCrosshairRef
 ref rTemp

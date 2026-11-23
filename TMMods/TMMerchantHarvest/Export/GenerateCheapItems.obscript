@@ -12,7 +12,7 @@ ref rTemp
 Begin _Function { }
 	Call LogMH "GenerateCheapItems`Open"
 	; Clear
-	ForEach iter <- ar_List MHQst.rCheapMagickaPotion MHQst.rRepairHammer MHQst.rCheapArrow MHQst.rMagickaIngredient MHQst.rHealthIngredient
+	ForEach iter <- ar_List MHQst.rCheapMagickaPotion MHQst.rRepairHammer MHQst.rCheapArrow MHQst.rMagickaIngredient MHQst.rHealthIngredient MHQst.rBandage
 		RemoveItem iter["Value"] 100
 	loop
 	; Define aCheapItemsInMerchantCategories
@@ -35,6 +35,7 @@ Begin _Function { }
 			Call LogMH "Merchant has category: Miscellaneous"
 		endif
 		ar_Append aCheapItemsInMerchantCategories MHQst.rRepairHammer
+		ar_Append aCheapItemsInMerchantCategories MHQst.rBandage
 	endif
 	if eval (GetServicesMask GetBaseObject) & 8192 ; Potion
 		if eval MHQst.bShouldLogMore

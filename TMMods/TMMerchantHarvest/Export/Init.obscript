@@ -35,6 +35,11 @@ begin _Function { }
 		Let MHQst.rMagickaIngredient := GetFormFromMod (GetNthModName 0) "08446C" ;Bog Beacon Asco Cap
 		Call LogMH "MHQst.rMagickaIngredient:" + $MHQst.rMagickaIngredient
 		
+		;
+		;TODO: Check what happens if MOO doesn't exist.
+		Let MHQst.rBandage := GetFormFromMod "Maskar's Oblivion Overhaul.esp" "304677" ;Bandage
+		Call LogMH "MHQst.rBandage:" + $MHQst.rBandage
+		
 		Call LogMH "Init"
 	endif
 end
