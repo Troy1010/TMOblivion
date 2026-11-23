@@ -28,7 +28,7 @@ begin _GameMode
 	DisableControl 15; Menu; I'm not sure if there is a better command for this.
 	if eval QstDD.featureDelayDrinks
 		if eval OnControlDown2_ByRef CONTROLHealthPotion
-			if eval featurePassOutPotions && IsKeyPressed 42;TODO: Is there some other way to handle shift?
+			if eval featurePassOutPotions && IsKeyPressed3 42;TODO: Is there some other way to handle shift?
 				Call LogDD "HealthPotion pressed with modifier"
 				let rTarget := GetCrosshairRef
 				; Use potion on target
