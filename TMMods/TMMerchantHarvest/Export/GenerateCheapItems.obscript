@@ -8,6 +8,8 @@ array_var aCheapItemsInMerchantCategories
 array_var iter
 short numItemsToAdd
 ref rTemp
+int i
+ref rItem
 
 Begin _Function { }
 	Call LogMH "GenerateCheapItems`Open"
@@ -35,7 +37,9 @@ Begin _Function { }
 			Call LogMH "Merchant has category: Miscellaneous"
 		endif
 		ar_Append aCheapItemsInMerchantCategories MHQst.rRepairHammer
-		ar_Append aCheapItemsInMerchantCategories MHQst.rBandage
+		if eval IsFormValid MHQst.rBandage
+			ar_Append aCheapItemsInMerchantCategories MHQst.rBandage
+		endif
 	endif
 	if eval (GetServicesMask GetBaseObject) & 8192 ; Potion
 		if eval MHQst.bShouldLogMore
@@ -43,6 +47,13 @@ Begin _Function { }
 		endif
 		ar_Append aCheapItemsInMerchantCategories MHQst.rCheapMagickaPotion
 	endif
+	;Remove invalid (For example, rBandage might be invalid if MOO is not installed)
+	Let i := ar_Size aCheapItemsInMerchantCategories
+	While (i -= 1) >= 0
+	    if eval !IsFormValid aCheapItemsInMerchantCategories[i]
+	        ar_Erase aCheapItemsInMerchantCategories i
+	    endif
+	Loop
 	Call LogMH "aCheapItemsInMerchantCategories:" + $(Call ToLogStrSL &aCheapItemsInMerchantCategories)
 	; Add randomly between 1 and 3 items, randomly selected from aCheapItemsInMerchantCategories
 	Let numItemsToAdd := Call CFRandomI 1 3
