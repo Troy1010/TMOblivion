@@ -25,9 +25,10 @@ ref rTemp
 
 begin _GameMode
 	Call Init
+	DisableControl 15; Menu; I'm not sure if there is a better command for this.
 	if eval QstDD.featureDelayDrinks
-		if eval Call OnControlDown2 "HealthPotion"
-			if eval featurePassOutPotions && Call IsEngaged "Modifier1"
+		if eval OnControlDown2_ByRef CONTROLHealthPotion
+			if eval featurePassOutPotions && IsKeyPressed 42;TODO: Is there some other way to handle shift?
 				Call LogDD "HealthPotion pressed with modifier"
 				let rTarget := GetCrosshairRef
 				; Use potion on target
@@ -56,32 +57,21 @@ begin _GameMode
 				Call DrinkOrMsgWeakestPotion ePressType 1
 			endif
 		endif
-		if eval Call OnControlDown2 "MagickaPotion"
+		if eval OnControlDown2_ByRef CONTROLMagickaPotion
 			Call LogDD "MagickaPotion pressed"
 			Let timer := fDelayTime
 			let ePressType := 2
 			Call DrinkOrMsgWeakestPotion ePressType 1
 		endif
-		if eval Call OnControlDown2 "FatiguePotion"
-			Call LogDD "FatiguePotion pressed"
-			Let timer := fDelayTime
-			let ePressType := 3
-			Call DrinkOrMsgWeakestPotion ePressType 1
-		endif
-		if eval Call OnControlDown2 "Poison"
-			Call LogDD "Poison pressed"
-			Let timer := fDelayTime
-			let ePressType := 4
-			; TODO: Not yet implemented
-		endif
-		if eval Call OnControlDown2 "Menu"
+		if eval (OnControlDown2 15);Menu
+			Call LogDD "OnControlDown2 15"
 			Let timer := fDelayTime
 			let ePressType := 5
 		endif
 	endif
 	if eval ePressType != 0
 		if eval ePressType == 1
-			if eval Call IsEngaged "HealthPotion"
+			if eval IsEngaged_ByRef CONTROLHealthPotion
 				if eval (timer -= GetSecondsPassed) < 0
 					Call DrinkOrMsgWeakestPotion ePressType 0
 					let ePressType := 0
@@ -91,7 +81,7 @@ begin _GameMode
 				let ePressType := 0
 			endif
 		elseif eval ePressType == 2
-			if eval Call IsEngaged "MagickaPotion"
+			if eval IsEngaged_ByRef CONTROLMagickaPotion
 				if eval (timer -= GetSecondsPassed) < 0
 					Call DrinkOrMsgWeakestPotion ePressType 0
 					let ePressType := 0
@@ -100,20 +90,12 @@ begin _GameMode
 				Call LogDD "MagickaPotion no longer engaged"
 				let ePressType := 0
 			endif
-		elseif eval ePressType == 3
-			if eval Call IsEngaged "FatiguePotion"
-				if eval (timer -= GetSecondsPassed) < 0
-					Call DrinkOrMsgWeakestPotion ePressType 0
-					let ePressType := 0
-				endif
-			else
-				Call LogDD "FatiguePotion no longer engaged"
-				let ePressType := 0
-			endif
 		elseif eval ePressType == 5
-			if eval Call IsEngaged "Menu"
+			if eval (IsEngaged 15);Menu
+				Call LogDD "Menu being pressed"
 				if eval (timer -= GetSecondsPassed) < 0
-					TapControl (Call GetKey "Menu")
+					Call LogDD "Menu pressed for duration"
+					TapControl 15;Menu
 					let ePressType := 0
 				endif
 			else
@@ -124,10 +106,10 @@ begin _GameMode
 	endif
 	if eval ePressType != ePreviousPressType
 		if eval ePreviousPressType != 0 && ePressType == 0
-			Call EnableControls ar_List "Forward" "Left" "Backward" "Right" "Attack" "Block" "Activate" "Cast" "SeathWeapon" "AutoMove" "Jump"
+			EnableControls ar_List ControlIDForward ControlIDLeft ControlIDBack ControlIDRight ControlIDAttack ControlIDBlock ControlIDActivate ControlIDCast ControlIDSeathWeapon ControlIDAutoMove ControlIDJump
 		endif
 		if eval ePreviousPressType == 0 && ePressType != 0
-			Call DisableControls ar_List "Forward" "Left" "Backward" "Right" "Attack" "Block" "Activate" "Cast" "SeathWeapon" "AutoMove" "Jump"
+			DisableControls ar_List ControlIDForward ControlIDLeft ControlIDBack ControlIDRight ControlIDAttack ControlIDBlock ControlIDActivate ControlIDCast ControlIDSeathWeapon ControlIDAutoMove ControlIDJump
 		endif
 		let ePreviousPressType := ePressType
 	endif
@@ -135,4 +117,5 @@ end
 
 begin _MenuMode
 	Call Init
+	EnableControl 15; Menu; I'm not sure if there is a better command for this.
 end

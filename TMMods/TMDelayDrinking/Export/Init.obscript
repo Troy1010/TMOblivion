@@ -1,11 +1,13 @@
 ﻿scn Init
 
 begin _Function { }
+	if eval Call InitInGame0
+		RegisterControl CONTROLHealthPotion 34 0
+		RegisterControl CONTROLMagickaPotion 35 0
+		;TODO: Register FatiguePotion control
+		;TODO: Register POISON control
+	endif
 	if eval GetGameLoaded || !QstDD.bInit
-		;if eval !QstDD.bInit
-		;	Call NoFlagDisable "Menu"
-		;endif
-		Call NoFlagDisable "Menu" ; idk if this should be done some other way.
 		Let QstDD.bInit := 1
 		Let QstDD.fQuestDelayTime := 0.0001 ; TODO: I'm not sure if this is the number I usually use here.
 		RunBatchScript "Data\ini\TMDelayDrinking.ini", 0, 1
