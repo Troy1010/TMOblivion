@@ -1,0 +1,258 @@
+﻿scn zMMMBloodNoWoundGreen
+
+float fWndHealth
+float fWndBaseHealth
+float fWndPrevHealth
+float fWndMaxHealth
+short sWndActorLevel
+ref rWndActor
+
+short sWndTimer
+short sWndFatigueTemp
+short sWndTrigger
+
+short sWounding
+short sWoundingPrev
+
+short sWndProcess
+short sWndRandom
+short sWndDelay
+short sWndFinished
+
+short sWndType
+
+float fWndBaseStrength
+float fWndBaseAgility
+float fWndBaseSpeed
+float fWndBaseAthletics
+float fWndModStrength
+float fWndModAgility
+float fWndModSpeed
+float fWndModAthletics
+float fWndBaseFatigue
+short fWndFatigueDamage
+short sWndBonusAdjustment
+float sWndFactor
+
+begin GameMode
+
+; Counter for RemoveMe to avoid CTD
+	if sWndFinished == 10
+		RemoveMe
+	elseif sWndFinished
+		set sWndFinished to sWndFinished + 1
+		return
+	endif
+
+	if zMMMWoundingMain.zActive == 0
+		set sWndFinished to 1
+		return
+	endif
+
+	if GetContainer
+		set rWndActor to GetContainer
+	else
+		return
+	endif
+
+	if sWndProcess == 1
+		set sWndActorLevel to rWndActor.GetLevel
+		set fWndBaseHealth to rWndActor.GetBaseAV health
+		set fWndMaxHealth to rWndActor.GetAV health
+		set fWndPrevHealth to fWndMaxHealth
+
+		if fWndBaseHealth > fWndMaxHealth
+			set fWndMaxHealth to fWndBaseHealth
+		endif
+
+		set fWndBaseStrength to rWndActor.GetBaseAV strength
+		set fWndBaseAgility to rWndActor.GetBaseAV agility
+		set fWndBaseSpeed to rWndActor.GetBaseAV speed
+		set fWndBaseAthletics to rWndActor.GetBaseAV athletics
+		set fWndBaseFatigue to rWndActor.GetBaseAV fatigue
+		set fWndModStrength to 0
+		set fWndModAgility to 0
+		set fWndModSpeed to 0
+		set fWndModAthletics to 0
+		set fWndFatigueDamage to 0
+		set sWndBonusAdjustment to 0
+		set sWndFatigueTemp to 0
+		set sWndFactor to zMMMWoundingMain.zFactor
+
+		set sWndType to 4
+		set sWndProcess to 2
+		return
+	elseif sWndProcess == 0
+		set sWndProcess to 1
+		return
+	endif
+
+	if rWndActor.GetIsReference player
+		set sWndFinished to 1
+		return
+	endif
+
+	if rWndActor.GetDead || sWndActorLevel != rWndActor.GetLevel
+		rWndActor.stopmagicshadervisuals zMMMWoundg1
+		rWndActor.stopmagicshadervisuals zMMMWoundg2
+		rWndActor.stopmagicshadervisuals zMMMWoundg3
+
+		set fWndModStrength to fWndModStrength * -1
+		set fWndModAgility to fWndModAgility * -1
+		set fWndModSpeed to fWndModSpeed * -1
+		set fWndModAthletics to fWndModAthletics * -1
+		set fWndFatigueDamage to fWndFatigueDamage * -1
+		set sWndBonusAdjustment to sWndBonusAdjustment * -1
+
+;		rWndActor.ModAV strength fWndModStrength
+;		rWndActor.ModAV agility fWndModAgility
+;		rWndActor.ModAV speed fWndModSpeed
+;		rWndActor.ModAV athletics fWndModAthletics
+;		rWndActor.ModAV AttackBonus sWndBonusAdjustment
+;		rWndActor.ModAV DefendBonus sWndBonusAdjustment
+;		rWndActor.ModAV fatigue fWndFatigueDamage
+
+		if sWndFatigueTemp != 0
+			set sWndFatigueTemp to -(sWndFatigueTemp)
+			rWndActor.ForceAV fatigue sWndFatigueTemp
+			set sWndFatigueTemp to 0
+		endif
+
+		if rWndActor.GetDead
+			if sWounding == 1
+				rWndActor.playmagicshadervisuals zMMMWoundg3
+			elseif sWounding == 2
+				rWndActor.playmagicshadervisuals zMMMWoundg2
+			else
+				rWndActor.playmagicshadervisuals zMMMWoundg1
+			endif
+			if AMMRatPercent > 0 && rWndActor.GetItemCount zMMMRatSpawnToken == 0
+				rWndActor.AddItem zMMMRatSpawnToken 1
+			endif
+		else
+			set sWndProcess to rWndActor.GetItemCount zMMMProcessToken
+			if sWndProcess
+				rWndActor.RemoveItem zMMMProcessToken sWndProcess
+			endif
+		endif
+
+		set sWndFinished to 1
+		return
+	endif
+
+	if sWndDelay
+		set sWndDelay to 0
+	else
+		set sWndDelay to 1
+		return
+	endif
+
+	set fWndHealth to rWndActor.GetAV health
+
+	if fWndHealth != fWndPrevHealth
+
+		;if fWndHealth < (fWndMaxHealth * 0.15)
+		if fWndHealth < (fWndMaxHealth * TMHealthQst.startBleedHealthPercentage/100/3)
+			set sWounding to 1
+		;elseif fWndHealth < (fWndMaxHealth* 0.30)
+		elseif fWndHealth < (fWndMaxHealth * TMHealthQst.startBleedHealthPercentage/100*2/3)
+			set sWounding to 2
+		;elseif fWndHealth < (fWndMaxHealth * 0.60)
+		elseif fWndHealth < (fWndMaxHealth * TMHealthQst.startBleedHealthPercentage/100)
+			set sWounding to 3
+		else
+			set sWounding to 0
+		endif
+
+		if sWounding != sWoundingPrev
+			rWndActor.stopmagicshadervisuals zMMMWoundg1
+			rWndActor.stopmagicshadervisuals zMMMWoundg2
+			rWndActor.stopmagicshadervisuals zMMMWoundg3
+
+			set fWndModStrength to fWndModStrength * -1
+			set fWndModAgility to fWndModAgility * -1
+			set fWndModSpeed to fWndModSpeed * -1
+			set fWndModAthletics to fWndModAthletics * -1
+			set fWndFatigueDamage to fWndFatigueDamage * -1
+			set sWndBonusAdjustment to sWndBonusAdjustment * -1
+
+;			rWndActor.ModAV strength fWndModStrength
+;			rWndActor.ModAV agility fWndModAgility
+;			rWndActor.ModAV speed fWndModSpeed
+;			rWndActor.ModAV athletics fWndModAthletics
+;			rWndActor.ModAV AttackBonus sWndBonusAdjustment
+;			rWndActor.ModAV DefendBonus sWndBonusAdjustment
+;			rWndActor.ModAV fatigue fWndFatigueDamage
+
+			if sWounding == 1
+				set fWndModStrength to -(fWndBaseStrength * .50 * sWndFactor)
+				set fWndModAgility to -(fWndBaseAgility * .50 * sWndFactor)
+				set fWndModSpeed to -(fWndBaseSpeed * .40 * sWndFactor)
+				set fWndModAthletics to -(fWndBaseAthletics * .90 * sWndFactor)
+				set fWndFatigueDamage to -(fWndBaseFatigue * .20 * sWndFactor)
+				set sWndBonusAdjustment to -(sWndActorLevel / 4 * sWndFactor)
+				rWndActor.playmagicshadervisuals zMMMWoundg3
+			elseif sWounding == 2
+				set fWndModStrength to -(fWndBaseStrength * .35 * sWndFactor)
+				set fWndModAgility to -(fWndBaseAgility * .35 * sWndFactor)
+				set fWndModSpeed to -(fWndBaseSpeed * .30 * sWndFactor)
+				set fWndModAthletics to -(fWndBaseAthletics * .70 * sWndFactor)
+				set fWndFatigueDamage to -(fWndBaseFatigue * .10 * sWndFactor)
+				set sWndBonusAdjustment to -(sWndActorLevel / 8 * sWndFactor)
+				rWndActor.playmagicshadervisuals zMMMWoundg2
+			elseif sWounding == 3
+				set fWndModStrength to -(fWndBaseStrength * .20 * sWndFactor)
+				set fWndModAgility to -(fWndBaseAgility * .20 * sWndFactor)
+				set fWndModSpeed to -(fWndBaseSpeed * .20 * sWndFactor)
+				set fWndModAthletics to -(fWndBaseAthletics * .50 * sWndFactor)
+				set fWndFatigueDamage to -(fWndBaseFatigue * .05 * sWndFactor)
+				set sWndBonusAdjustment to -(sWndActorLevel / 12 * sWndFactor)
+				rWndActor.playmagicshadervisuals zMMMWoundg1
+			else
+				set fWndModStrength to 0
+				set fWndModAgility to 0
+				set fWndModSpeed to 0
+				set fWndModAthletics to 0
+				set fWndFatigueDamage to 0
+				set sWndBonusAdjustment to 0
+			endif
+
+;			rWndActor.ModAV strength fWndModStrength
+;			rWndActor.ModAV agility fWndModAgility
+;			rWndActor.ModAV speed fWndModSpeed
+;			rWndActor.ModAV athletics fWndModAthletics
+;			rWndActor.ModAV AttackBonus sWndBonusAdjustment
+;			rWndActor.ModAV DefendBonus sWndBonusAdjustment
+;			rWndActor.ModAV fatigue fWndFatigueDamage
+
+			set sWoundingPrev to sWounding
+		endif
+
+		set fWndPrevHealth to fWndHealth
+
+	endif
+
+;	if rWndActor.IsEssential || rWndActor.IsGuard || rWndActor.GetInFaction BladesCG || rWndActor.GetInFaction Blades
+;	else
+;		if sWounding > 0
+;			if sWndTimer > 0
+;				set sWndTimer to sWndTimer -1
+;				if sWndTimer == sWndTrigger
+;					set sWndFatigueTemp to -(sWndFatigueTemp)
+;					rWndActor.ForceAV fatigue sWndFatigueTemp
+;					set sWndFatigueTemp to 0
+;				endif
+;				return
+;			endif
+;			set sWndRandom to GetRandomPercent
+;			if sWndRandom == 0 && rWndActor.GetAV fatigue > 0
+;				set sWndFatigueTemp to -(rWndActor.GetAV fatigue + 10)
+;				rWndActor.ForceAV fatigue sWndFatigueTemp
+;				set sWndTimer to (zMMMStaggerTimer + rWndActor.GetAV strength + rWndActor.GetAV endurance)
+;				set sWndTimer to (sWndTimer * sWounding) / 2
+;				set sWndTrigger to (sWndTimer - 1)
+;			endif
+;		endif
+;	endif
+
+end
